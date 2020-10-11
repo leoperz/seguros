@@ -1,3 +1,40 @@
-<p>
-  prueba de github GNF
-</p>
+<!-- Button trigger modal -->
+<button hidden=true id="boton" type="button" data-toggle="modal" data-target="#exampleModal">
+  
+</button>
+
+<!-- Modal -->
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h5 class="modal-title" id="exampleModalLabel">Inicio de sesion</h5>
+        
+      </div>
+
+      <div class="modal-body">
+        
+        
+        <div class="row">
+
+          <div class="col-md-4"><p class="form-control no-border">Usuario:</p></div>
+            <div class="col-md-8"><input [(ngModel)]="usuario" type="text" class="form-control" ></div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4"><p class="form-control no-border">Contraseña:</p></div>
+            <div class="col-md-8"><input type="password" [(ngModel)]="pass"class="form-control"></div>
+            
+
+        </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button *ngIf="usuario != '' && pass != ''  " (click)="mostrarDatos()" type="button" class="btn btn-primary">Aceptar</button>
+        <button disabled *ngIf="usuario == '' || pass == ''  " (click)="mostrarDatos()" type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

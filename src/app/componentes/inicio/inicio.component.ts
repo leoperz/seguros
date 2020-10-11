@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
+  usuario:string="";
+  pass:string="";
   constructor() { }
 
   ngOnInit() {
+    document.getElementById('boton').click();
+  }
+
+
+  mostrarDatos(){
+    console.log("estos son los datos-->",this.pass, this.usuario);
   }
 
 }

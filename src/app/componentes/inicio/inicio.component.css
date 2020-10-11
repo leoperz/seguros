@@ -1,0 +1,9 @@
+.modal { 
+    background-color: rgb(43, 42, 42) !important; 
+ }
+
+
+ .no-border {
+    border: 0;
+    box-shadow: none; 
+}
