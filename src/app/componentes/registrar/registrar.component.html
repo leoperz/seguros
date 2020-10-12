@@ -10,18 +10,18 @@
                     
                     <div style="padding-top: 10px;" class="form-group">
                         
-                        <input placeholder="Nombre completo..." type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                            <div *ngIf="f.firstName.errors.required">nombre completo obligatorio</div>
+                        <input placeholder="Nombre completo..." type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">nombre completo obligatorio</div>
                         </div>
                     </div>
                    
                    
                     <div style="padding-top: 10px;" class="form-group">
                        
-                        <input placeholder="Apellido..." type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                            <div *ngIf="f.lastName.errors.required">apellido obligatorio</div>
+                        <input placeholder="Apellido..." type="text" formControlName="apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+                        <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+                            <div *ngIf="f.apellido.errors.required">apellido obligatorio</div>
                         </div>
                     </div>
                    
@@ -34,19 +34,37 @@
                             <div *ngIf="f.email.errors.email">debe ser un mail valido</div>
                         </div>
                     </div>
+
+                    <div style="padding-top: 10px;" class="form-group">
+                        
+                        <input placeholder="Reingrese mail..." type="text" formControlName="reemail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.reemail.errors }" />
+                        <div *ngIf="submitted && f.reemail.errors" class="invalid-feedback">
+                            <div *ngIf="f.reemail.errors.required">mail obligatorio</div>
+                            <div *ngIf="f.reemail.errors.mustMatch">El mail no coincide</div>
+                        </div>
+                    </div>
                     
                     
                     <div style="padding-top: 10px;" class="form-group">
                         
-                        <input placeholder="Contraeña..." type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <input placeholder="Contraseña..." type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                            <div *ngIf="f.password.errors.required">Password is required</div>
-                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                            <div *ngIf="f.password.errors.minlength">Como minimo 6 caracteres</div>
+                        </div>
+                    </div>
+
+                    <div style="padding-top: 10px;" class="form-group">
+                        
+                        <input placeholder="Reingrese la contraseña" type="password" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }" />
+                        <div *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.repassword.errors.required">La contraseña es requerida</div>
+                            <div *ngIf="f.repassword.errors.mustMatch">La contraseña no coincide</div>
                         </div>
                     </div>
                    
                     <div style="padding-top: 10px;" class="form-group">
-                        <button [disabled]="loading" class="btn btn-primary">Register</button>
+                        <button [disabled]="loading" class="btn btn-primary">Registrarse</button>
                     </div>
                 </form>
             
