@@ -1,0 +1,55 @@
+<div style="padding-top: 10px;" class="container h-100 d-flex justify-content-center">
+        
+        <div class="jumbotron my-auto">
+            <h1 class="display-6">Ingrese sus datos personales</h1>
+            <br>
+            <br>
+            
+                
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    
+                    <div style="padding-top: 10px;" class="form-group">
+                        
+                        <input placeholder="Nombre completo..." type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">nombre completo obligatorio</div>
+                        </div>
+                    </div>
+                   
+                   
+                    <div style="padding-top: 10px;" class="form-group">
+                       
+                        <input placeholder="Apellido..." type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">apellido obligatorio</div>
+                        </div>
+                    </div>
+                   
+                   
+                    <div style="padding-top: 10px;" class="form-group">
+                        
+                        <input placeholder="Mail..." type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email obligatorio</div>
+                            <div *ngIf="f.email.errors.email">debe ser un mail valido</div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div style="padding-top: 10px;" class="form-group">
+                        
+                        <input placeholder="Contraeña..." type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                        </div>
+                    </div>
+                   
+                    <div style="padding-top: 10px;" class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            
+      
+    </div>
+</div>

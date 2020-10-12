@@ -17,7 +17,7 @@
         
         <div class="row">
 
-          <div class="col-md-4"><p class="form-control no-border">Usuario:</p></div>
+          <div class="col-md-4"><p class="form-control no-border">Mail:</p></div>
             <div class="col-md-8"><input [(ngModel)]="usuario" type="text" class="form-control" ></div>
 
         </div>
@@ -31,7 +31,7 @@
         </div>
      
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button (click)="registrarse()" type="button" class="btn btn-warning" data-dismiss="modal">Registrarse</button>
         <button *ngIf="usuario != '' && pass != ''  " (click)="mostrarDatos()" type="button" class="btn btn-primary">Aceptar</button>
         <button disabled *ngIf="usuario == '' || pass == ''  " (click)="mostrarDatos()" type="button" class="btn btn-primary">Aceptar</button>
       </div>
