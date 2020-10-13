@@ -11,6 +11,7 @@ import {AngularFirestoreModule} from "@angular/fire/firestore";
 import { environment } from 'src/environments/environment';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { AgendaComponent } from './componentes/agenda/agenda.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
     InicioComponent,
     RegistrarComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    AgendaComponent
   ],
   imports: [
     BrowserModule,

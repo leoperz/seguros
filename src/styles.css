@@ -2,3 +2,8 @@
 body{
     font-family: 'Rubik', sans-serif;
 }
+
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: grey; 
+    font-family: 'PT Serif', serif;
+} 

@@ -32,4 +32,8 @@ export class UsuarioService {
       }
   }
 
+  getUsuarios(){
+    return this._fire.collection('usuarios').valueChanges();
+  }
+
 }

@@ -10,7 +10,7 @@
           </div>
     
           <ul class="list-unstyled components">
-              <p>Dummy Heading</p>
+              <p>Menú Principal</p>
               <li class="active">
                   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Noticias Principales</a>
                   <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -25,30 +25,21 @@
               </li>
               
               <li>
-                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categorias</a>
+                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Acciones</a>
                   <ul class="collapse list-unstyled" id="pageSubmenu">
                       <li>
-                          <a href="#">Negocios</a>
+                          <a href="#">
+                            <img src="../../../assets/imagenes/enviar.png">
+                            Enviar mensaje
+                          </a>
                       </li>
                       <li>
-                          <a href="#">Entretenimiento</a>
-                      </li>
-                      <li>
-                          <a href="#">General</a>
-                      </li>
-                      <li>
-                        <a href="#">Salud</a>
+                        <a [routerLink]="['/agenda']">
+                          <img src="../../../assets/imagenes/agenda.png">
+                          Agenda
+                        </a>
                     </li>
-                    <li>
-                      <a href="#">Ciencia</a>
-                  </li>
-                  <li>
-                    <a href="#">Deporte</a>
-                </li>
-                <li>
-                  <a href="#">Tecnologia</a>
-              </li>
-                  </ul>
+                   </ul>
               </li>
           </ul>
       </nav>

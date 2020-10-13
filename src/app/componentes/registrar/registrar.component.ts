@@ -33,6 +33,7 @@ export function CompareData(
 })
 export class RegistrarComponent implements OnInit {
 
+  perfil:string="";
   flag=0;
   sucursal:string="";
   registerForm: FormGroup;
@@ -55,6 +56,7 @@ export class RegistrarComponent implements OnInit {
       
     },
   );
+    document.getElementById('botonRegistrar').click();
   }
 
 
@@ -87,7 +89,8 @@ export class RegistrarComponent implements OnInit {
     }
 
 
-    
+    if(this.sucursal=='Estudio de abogados')this.perfil = "abogado";
+    else this.perfil = "operador";
     
     let payload = {
       nombre:this.registerForm.controls.nombre.value,
@@ -95,16 +98,19 @@ export class RegistrarComponent implements OnInit {
       sucursal:this.sucursal,
       mail:this.registerForm.controls.email.value,
       password:this.registerForm.controls.password.value,
+      perfil:this.perfil,
       imagen:""
     }
 
     this._usuario.registrarUsuario(payload).then(
       resp=>{
         this.registerForm.reset();
+
+        document.getElementById('btnCerrar').click();
         document.getElementById('botonMensaje').click();
-        setTimeout(() => {
-          this._router.navigateByUrl('/inicio');
-        }, 2000);
+        
+        
+       
         
       }
     ).catch(resp=>{
@@ -112,6 +118,11 @@ export class RegistrarComponent implements OnInit {
     });
 
 
+}
+
+redireccionar(){
+  
+    this._router.navigateByUrl('/inicio');
 }
 
 
