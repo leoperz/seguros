@@ -14,26 +14,31 @@
 
       <div class="modal-body">
         
-        
+        <div *ngIf="flag==1" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            Usuario o contraseña incorrecta
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class="row">
 
-          <div class="col-md-4"><p class="form-control no-border">Mail:</p></div>
-            <div class="col-md-8"><input [(ngModel)]="usuario" type="text" class="form-control" ></div>
+          
+            <div class="col-md"><input [(ngModel)]="mail" type="text" class="form-control text-center" placeholder="Mail" ></div>
 
         </div>
-
+        <br>
         <div class="row">
 
-          <div class="col-md-4"><p class="form-control no-border">Contraseña:</p></div>
-            <div class="col-md-8"><input type="password" [(ngModel)]="pass"class="form-control"></div>
+          
+            <div class="col-md"><input type="password" [(ngModel)]="password"class="form-control text-center" placeholder="Password"></div>
             
 
         </div>
      
       <div class="modal-footer">
         <button (click)="registrarse()" type="button" class="btn btn-warning" data-dismiss="modal">Registrarse</button>
-        <button *ngIf="usuario != '' && pass != ''  " (click)="mostrarDatos()" type="button" class="btn btn-primary">Aceptar</button>
-        <button disabled *ngIf="usuario == '' || pass == ''  " (click)="mostrarDatos()" type="button" class="btn btn-primary">Aceptar</button>
+        <button *ngIf="mail != '' && password != ''  " (click)="iniciarSesion()" type="button" class="btn btn-primary">Aceptar</button>
+        <button disabled *ngIf="mail == '' || password == ''  " (click)="iniciarSesion()" type="button" class="btn btn-primary">Aceptar</button>
       </div>
     </div>
   </div>

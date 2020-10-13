@@ -24,13 +24,26 @@
                             <div *ngIf="f.apellido.errors.required">apellido obligatorio</div>
                         </div>
                     </div>
+
+                    <div style="padding-top: 10px;" class="form-group">
+                       
+                        <select  class="form-control" (change)="cambiarEstado($event.target.value)" [ngClass]="{ 'is-invalid': flag==1 }">
+                            <option value="" disabled selected>Selecciona una sucursal de trabajo</option>
+                            <option value="burzaco">Burzaco</option>
+                            <option value="guernica">Guernica</option>
+                            <option value="longchamps">Longchamps</option>
+                        </select>
+                        <div *ngIf="flag==1" class="invalid-feedback">
+                            <div *ngIf="flag==1">sucursal obligatoria</div>
+                        </div>
+                    </div>
                    
                    
                     <div style="padding-top: 10px;" class="form-group">
                         
                         <input placeholder="Mail..." type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                            <div *ngIf="f.email.errors.required">Email obligatorio</div>
+                            <div *ngIf="f.email.errors.required">mail obligatorio</div>
                             <div *ngIf="f.email.errors.email">debe ser un mail valido</div>
                         </div>
                     </div>
@@ -67,7 +80,29 @@
                         <button [disabled]="loading" class="btn btn-primary">Registrarse</button>
                     </div>
                 </form>
+                
+                
             
       
     </div>
+
 </div>
+
+<button hidden=true id="botonMensaje" type="button" data-toggle="modal" data-target="#mensaje"></button>
+<div class="modal fade" id="mensaje" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          
+        </div>
+        <div class="modal-body text-center">
+          Usuario registrado correctamente
+        </div>
+        <div class="modal-footer">
+            
+            
+          </div>
+      </div>
+    </div>
+  </div>

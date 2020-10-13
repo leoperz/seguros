@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrarComponent } from './componentes/registrar/registrar.component';
-
-
+import {AngularFireModule} from '@angular/fire'
+import {AngularFirestoreModule} from "@angular/fire/firestore";
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { RegistrarComponent } from './componentes/registrar/registrar.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import {Router} from '@angular/router';
 
 export function CompareData(
   controlName: string,
@@ -31,9 +33,11 @@ export function CompareData(
 })
 export class RegistrarComponent implements OnInit {
 
+  flag=0;
+  sucursal:string="";
   registerForm: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private _usuario: UsuarioService, private _router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -42,7 +46,7 @@ export class RegistrarComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       repassword:['',Validators.required],
-      reemail:['',Validators.required],
+      reemail:['',Validators.required]
       
   },
   
@@ -56,22 +60,55 @@ export class RegistrarComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
+
+
+  cambiarEstado(sucursal:any){
+    this.sucursal=sucursal;
+    this.flag=0;
+  }
+
+
   onSubmit() {
     this.submitted = true;
-
+    
     
     if (this.registerForm.invalid) {
+
+      if(this.sucursal==""){
+        this.flag = 1;
+      }
+      console.log(this.sucursal, this.flag);
         return;
     }
 
-    console.log(this.registerForm.controls.nombre.value);
+    if(this.sucursal==""){
+      this.flag = 1;
+      return;
+    }
+
+
+    
     
     let payload = {
       nombre:this.registerForm.controls.nombre.value,
       apellido:this.registerForm.controls.apellido.value,
+      sucursal:this.sucursal,
       mail:this.registerForm.controls.email.value,
       password:this.registerForm.controls.password.value
     }
+
+    this._usuario.registrarUsuario(payload).then(
+      resp=>{
+        this.registerForm.reset();
+        document.getElementById('botonMensaje').click();
+        setTimeout(() => {
+          this._router.navigateByUrl('/inicio');
+        }, 2000);
+        
+      }
+    ).catch(resp=>{
+      console.log(resp);
+    });
 
 
 }
