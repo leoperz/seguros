@@ -9,12 +9,16 @@ import { RegistrarComponent } from './componentes/registrar/registrar.component'
 import {AngularFireModule} from '@angular/fire'
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import { environment } from 'src/environments/environment';
+import { DashboardComponent } from './componentes/dashboard/dashboard.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    DashboardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

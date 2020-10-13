@@ -39,6 +39,7 @@
         <button (click)="registrarse()" type="button" class="btn btn-warning" data-dismiss="modal">Registrarse</button>
         <button *ngIf="mail != '' && password != ''  " (click)="iniciarSesion()" type="button" class="btn btn-primary">Aceptar</button>
         <button disabled *ngIf="mail == '' || password == ''  " (click)="iniciarSesion()" type="button" class="btn btn-primary">Aceptar</button>
+        <button id="botonCerrar" hidden=true data-dismiss="modal"></button>
       </div>
     </div>
   </div>

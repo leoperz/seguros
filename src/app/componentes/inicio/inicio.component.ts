@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { StorageService } from 'src/app/servicios/storage.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class InicioComponent implements OnInit {
   flag = 0;
   mail:string="";
   password:string="";
-  constructor(private _r : Router, private _usuario:UsuarioService) { }
+  constructor(private _r : Router, private _usuario:UsuarioService, private _storage: StorageService) { }
 
   ngOnInit() {
     document.getElementById('boton').click();
@@ -31,7 +32,10 @@ export class InicioComponent implements OnInit {
         if(resp.length!=0){
          let value= this._usuario.comprobarPass(resp[0].password, this.password);
          if(value){
-           console.log("todo bien");
+           this._storage.setLocalStorage(resp[0]);
+           document.getElementById('botonCerrar').click();
+           this._r.navigateByUrl("dashboard");
+
            
          }else{
            this.password="";
