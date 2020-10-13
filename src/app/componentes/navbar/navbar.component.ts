@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/servicios/storage.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  url = '../../../assets/imagenes/sinfoto.png';
+  usuario:any={};
+  constructor(private _storage: StorageService) { }
 
   ngOnInit() {
+    this.usuario = this._storage.getLocalStorage();
+    if(this.usuario.imagen !=''){
+
+    }
+      
   }
 
 }

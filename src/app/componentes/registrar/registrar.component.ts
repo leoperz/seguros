@@ -94,7 +94,8 @@ export class RegistrarComponent implements OnInit {
       apellido:this.registerForm.controls.apellido.value,
       sucursal:this.sucursal,
       mail:this.registerForm.controls.email.value,
-      password:this.registerForm.controls.password.value
+      password:this.registerForm.controls.password.value,
+      imagen:""
     }
 
     this._usuario.registrarUsuario(payload).then(

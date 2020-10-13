@@ -10,8 +10,18 @@ export class StorageService {
 
 
   setLocalStorage(payload:any){
+
+    if(localStorage.getItem('identity')){
+      localStorage.removeItem('identity');
+    }
     
     localStorage.setItem('identity',JSON.stringify(payload));
+  }
+
+
+  getLocalStorage(){
+    return JSON.parse(localStorage.getItem('identity'));
+    
   }
 
 
