@@ -27,8 +27,15 @@
               <li>
                   <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Acciones</a>
                   <ul class="collapse list-unstyled" id="pageSubmenu">
+
+                    <li>
+                      <a>
+                        <img style="width: 30px; height: 30px;" src="../../../assets/imagenes/registrarse.png">
+                        Llenar informe
+                      </a>
+                  </li>
                       <li>
-                          <a href="#">
+                          <a (click)="mensajes()">
                             <img src="../../../assets/imagenes/enviar.png">
                             Enviar mensaje
                           </a>
@@ -46,5 +53,15 @@
     
     </div>
   
+  </div>
+
+  <div class="col-md-8">
+    <div *ngIf="mensaje == false " hidden=true>
+      <app-mensaje></app-mensaje>
+    </div>
+    <div *ngIf="mensaje==true">
+      <app-mensaje></app-mensaje>
+    </div>
+    
   </div>
 </div>

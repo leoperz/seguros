@@ -12,6 +12,8 @@ import { environment } from 'src/environments/environment';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { AgendaComponent } from './componentes/agenda/agenda.component';
+import { MensajeComponent } from './componentes/mensaje/mensaje.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { AgendaComponent } from './componentes/agenda/agenda.component';
     RegistrarComponent,
     DashboardComponent,
     NavbarComponent,
-    AgendaComponent
+    AgendaComponent,
+    MensajeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { AgendaComponent } from './componentes/agenda/agenda.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
