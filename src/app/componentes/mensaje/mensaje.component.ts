@@ -1,6 +1,5 @@
-import { GeneratedFile } from '@angular/compiler';
+
 import { Component, OnInit } from '@angular/core';
-import { timeStamp } from 'console';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { MensajeService } from 'src/app/servicios/mensaje.service';
 import { StorageService } from 'src/app/servicios/storage.service';

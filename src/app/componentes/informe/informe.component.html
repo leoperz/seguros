@@ -1,0 +1,122 @@
+
+<div style="padding-top: 20px;" class="container">
+  
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    
+    <fieldset>
+      <legend>Alta de siniestro:</legend>
+      
+      <div style="padding-top: 10px;">
+      <input id="my-input" placeholder="Fecha de nacimiento" class="form-control col-md-2" type="text" 
+            data-datedropper data-dd-theme="leaf" data-dd-format="d/m/Y" data-dd-lang="es" data-dd-large="true">
+      </div>
+   
+   
+    <div style="padding-top: 20px;" class="form-group">
+       
+        <input placeholder="Compañia del tercero" type="text" formControlName="apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+        <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+            <div *ngIf="f.apellido.errors.required">Compañia del tercero</div>
+        </div>
+    </div>
+  
+    <div>
+      <h4 class="text-center">Datos del reclamante</h4>
+    </div>
+    <hr>
+    
+   
+    <div style="padding-top: 10px">
+        <div class="row">
+          <div class="col-md-4">
+            <input placeholder="Nombre completo" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <input placeholder="Apellido" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <input placeholder="Documento" class="form-control">
+          </div>
+        </div>
+        
+    </div>
+    <br>
+    <hr>
+    <br>
+    <h4 class="text-center">Datos del vehículo</h4>
+    <div style="padding-top: 10px;">
+        
+      <div class="row">
+        <div class="col-md-4">
+          <input placeholder="Dominio" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <input placeholder="Marca" class="form-control">
+        </div>
+        <div class="col-md-4">
+          <input placeholder="Modelo" class="form-control">
+        </div>
+      </div>  
+
+    </div>
+    <br>
+    <hr>
+    
+    
+    <div style="padding-top: 10px;">
+      <div style="margin-left: 0px;" class="row">
+        <div style="padding-top: 10px; width: 10px;" >
+          <i class="fomr-control" class="fas fa-dollar-sign"></i>
+        </div>
+        <div style="width: 200px;">
+          <input placeholder="importe a reclamar" type="number" class="form-control">
+        </div>
+      </div>
+      
+        
+    </div>
+  
+    <div style="padding-top: 10px;" class="form-group">
+        
+        <input placeholder="Telefono" type="number" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }" />
+        <div *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
+            <div *ngIf="f.repassword.errors.required">La contraseña es requerida</div>
+            <div *ngIf="f.repassword.errors.mustMatch">La contraseña no coincide</div>
+        </div>
+    </div>
+
+    <div style="padding-top: 10px;" class="form-group">
+        
+      <input placeholder="Domicilio" type="text" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }" />
+      <div *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
+          <div *ngIf="f.repassword.errors.required">La contraseña es requerida</div>
+          <div *ngIf="f.repassword.errors.mustMatch">La contraseña no coincide</div>
+      </div>
+  </div>
+
+  <div style="padding-top: 10px">
+        
+    <label class="custom-file">
+      <span class="btn btn-primary btn-file">
+        <i class="fas fa-file-upload"></i>
+          Añadir documentos<input type="file" (change)="subirDocumento($event)">
+      </span>
+</label>
+</div>
+   
+    <div style="padding-top: 10px;">
+        <button [disabled]="loading" class="btn btn-primary">Registrarse</button>
+    </div>
+    </fieldset>
+                    
+
+  </form>
+
+
+
+</div>
+
+
+
+	  
+

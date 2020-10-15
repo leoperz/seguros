@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
@@ -14,6 +13,9 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { AgendaComponent } from './componentes/agenda/agenda.component';
 import { MensajeComponent } from './componentes/mensaje/mensaje.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { InformeComponent } from './componentes/informe/informe.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     DashboardComponent,
     NavbarComponent,
     AgendaComponent,
-    MensajeComponent
+    MensajeComponent,
+    InformeComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
