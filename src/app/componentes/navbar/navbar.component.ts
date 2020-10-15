@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   url = '../../../assets/imagenes/sinfoto.png';
   usuario:any={};
   mensajes:any[]=[];
-  sms:any;
+  sms:any={asunto:""};
   constructor(private _storage: StorageService, private _mens:MensajeService) { }
 
   ngOnInit() {
@@ -22,11 +22,14 @@ export class NavbarComponent implements OnInit {
 
     }
 
-    this._mens.getMensajes(this.usuario.uid).subscribe(resp=>{
+    this._mens.getMensajes(this.usuario.uid).subscribe((resp:any)=>{
       
       this.mensajes=[];
       for(let i of resp){
-        this.mensajes.push(i);
+        if(i.leido == false){
+          this.mensajes.push(i);
+        }
+        
         
       }
       console.log(this.mensajes);
@@ -37,7 +40,9 @@ export class NavbarComponent implements OnInit {
 
   verMensaje(mensaje:any){
     this.sms=mensaje.mensaje;
+    this._mens.leerMensaje(mensaje.uid);
     document.getElementById('btnMensaje').click();
+
 
   }
 

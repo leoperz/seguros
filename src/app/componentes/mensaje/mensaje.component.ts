@@ -16,7 +16,7 @@ export class MensajeComponent implements OnInit {
   selectedItems = [];
   dropdownSettings:IDropdownSettings = {};
   para:any;
-  asunto:string="";
+  asunto:any;
   cuerpo:string="";
   constructor(private _storage: StorageService, private _mens: MensajeService) {
     

@@ -25,7 +25,11 @@ export class MensajeService {
               mensaje:payload,
               leido:false
             }
-            this._fire.collection('usuarioMensaje').add(aux).then();
+            this._fire.collection('usuarioMensaje').add(aux).then(resp=>{
+              this._fire.collection('usuarioMensaje').doc(resp.id).update({
+                uid:resp.id
+              })
+            });
           }
         });
       }
@@ -39,6 +43,13 @@ export class MensajeService {
   getMensajes(uid:string){
     
     return this._fire.collection('usuarioMensaje', (resp:any)=>resp.where('usuario.uid','==',uid)).valueChanges();
+  }
+
+
+  leerMensaje(uid:string){
+    this._fire.collection('usuarioMensaje').doc(uid).update({
+      leido:true
+    });
   }
 
 
