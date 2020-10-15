@@ -11,3 +11,20 @@ img{
 #lista:hover {
     background-color: hotpink;
   }
+
+
+  .dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+
+  
+.modal-header {
+    
+  background-color: #0480be;
+  
+}

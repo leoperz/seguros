@@ -20,9 +20,33 @@
     </ul>
 
     <ul style="padding-top: 20px">
-      <i style="font-size: 25px;" class="far fa-envelope"></i>
-      <span class="badge badge-info">2</span>
-    </ul>
+      <li class="nav-item dropdown">
+        
+        <a  data-toggle="dropdown">
+          <i style="font-size: 25px; cursor: pointer;" class="far fa-envelope"></i>
+          <span *ngIf="mensajes.length!=0" class="badge badge-danger">{{mensajes.length}}</span>
+          
+        </a>
+        
+        
+        
+        <div style="background-color: rgb(255,243,205) ;" class="dropdown-menu dropdown-menu-right text-center">
+            <a><strong>Nuevos mensajes</strong></a>
+            
+            <div class="dropdown-divider"></div>
+            
+            <div *ngFor="let item of mensajes">
+              <a (click)="verMensaje(item)"  class="dropdown-item"><strong>Asunto: </strong>{{item.mensaje.asunto}}</a>
+              <div class="dropdown-divider"></div>
+            </div>
+           
+            
+            
+            
+            <a href="#"class="dropdown-item">Borrar todos <i class="fas fa-ban"></i></a>
+        </div>
+      </li>
+  </ul>
 
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item dropdown">
@@ -34,7 +58,7 @@
               <a id="lista" href="#" class="dropdown-item">Reportes <i class="fas fa-clipboard-list"></i></a>
               <a id="lista" href="#" class="dropdown-item">Configuracion <i class="fab fa-whmcs"></i></a>
               <div id="lista" class="dropdown-divider"></div>
-              <a href="#"class="dropdown-item">Salir <i class="fas fa-door-open"></i></a>
+              <a id="lista" href="#"class="dropdown-item">Salir <i class="fas fa-door-open"></i></a>
           </div>
       </li>
   </ul>
@@ -47,3 +71,50 @@
   </div>
 
 </nav>
+
+
+
+
+
+<!-- Button trigger modal -->
+<button id="btnMensaje" type="button" data-toggle="modal" data-target="#exampleModal"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+
+        <div class="row">
+          <div class="col-md-2">
+            <label>De: </label>
+          </div>
+          <div>
+            <label>Ariel</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Asunto: </label>
+          </div>
+          <div>
+            <label>{{sms.asunto}}</label>
+          </div>
+        </div>
+        <textarea class="form-control" id="textArea" rows="2">{{sms.cuerpo}}</textarea>
+
+
+
+
+      </div>
+      
+    </div>
+  </div>
+</div>

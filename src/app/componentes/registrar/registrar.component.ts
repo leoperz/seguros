@@ -102,21 +102,11 @@ export class RegistrarComponent implements OnInit {
       imagen:""
     }
 
-    this._usuario.registrarUsuario(payload).then(
-      resp=>{
-        this.registerForm.reset();
+    this._usuario.registrarUsuario(payload);
 
-        document.getElementById('btnCerrar').click();
-        document.getElementById('botonMensaje').click();
-        
-        
-       
-        
-      }
-    ).catch(resp=>{
-      console.log(resp);
-    });
-
+    this.registerForm.reset();
+    document.getElementById('btnCerrar').click();
+    document.getElementById('botonMensaje').click();
 
 }
 

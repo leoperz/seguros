@@ -15,7 +15,12 @@ export class UsuarioService {
   registrarUsuario(payload:any){
     payload.password = crypt.AES.encrypt(payload.password, 'arielSeguros').toString();
     console.log(payload.password);
-    return this._fire.collection('usuarios').add(payload);
+    this._fire.collection('usuarios').add(payload).then(resp=>{
+      this._fire.collection('usuarios').doc(resp.id).update({
+        uid:resp.id
+      })
+    });
+    
   }
 
   InicioSesion(payload:any){
@@ -34,6 +39,10 @@ export class UsuarioService {
 
   getUsuarios(){
     return this._fire.collection('usuarios').valueChanges();
+  }
+
+  getUsuariosPorSucursal(sucursales:string[]){
+    return this._fire.collection('usuarios', resp=>resp.where('sucursal','in', sucursales)).valueChanges();
   }
 
 }
