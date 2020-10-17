@@ -56,7 +56,7 @@ export class InformeComponent  {
   public subirArchivo() {
     let archivo = this.datosFormulario.get('archivo');
     
-    this.nombresArch.push(this.nombreArchivo);
+    
     let tarea = this._fireStorage.tareaCloudStorage(this.nombreArchivo, archivo);
     
     //Cambia el porcentaje
@@ -64,7 +64,7 @@ export class InformeComponent  {
       this.porcentaje = Math.round(porcentaje);
       if (this.porcentaje == 100) {
         this.finalizado = true;
-        
+        this.nombresArch.push(this.nombreArchivo);
       }
 
     });
@@ -74,10 +74,16 @@ export class InformeComponent  {
 
   
    getUrls(){
+     
      this.nombresURL=[];
      for(let i of this.nombresArch){
       this._fireStorage.referenciaCloudStorage(i).getDownloadURL().subscribe(resp=>{
-        this.nombresURL.push(resp);
+         
+      
+          
+          this.nombresURL.push(resp);
+        
+        
       });
      }
     console.log(this.nombresURL);
@@ -124,6 +130,7 @@ export class InformeComponent  {
         this.telefono="";
         this.domicilio="";
         this.nombresURL=[];
+        this.nombresArch =[];
         //document.getElementById('btnMensajeFormulario').click();
       });
     }
