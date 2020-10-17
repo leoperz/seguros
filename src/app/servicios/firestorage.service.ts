@@ -10,13 +10,13 @@ export class FirestorageService {
 
 
 
-  subirArchivo(nombreArchivo:string, datos:any){
+  public tareaCloudStorage(nombreArchivo: string, datos: any) {
     return this._fireStorage.upload(nombreArchivo, datos);
   }
 
-  referenciaCloudStorage(nombreArchivo:string){
+  public referenciaCloudStorage(nombreArchivo: string) {
     return this._fireStorage.ref(nombreArchivo);
-   }
+  }
 
 
 }
