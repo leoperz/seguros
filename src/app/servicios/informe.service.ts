@@ -9,6 +9,7 @@ export class InformeService {
   constructor(private _firestore: AngularFirestore) { }
 
   guardarInforme(payload:any){
+    console.log("payload que entra en el servicio-->",payload);
     return this._firestore.collection('informe').add(payload);
   }
 }

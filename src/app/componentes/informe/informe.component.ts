@@ -87,6 +87,10 @@ export class InformeComponent  {
    explorador(){
      document.getElementById('file').click();
    }
+
+   cancelar(){
+     this.nombresURL=[];
+   }
     
     
     altaSiniestro(){
@@ -104,8 +108,23 @@ export class InformeComponent  {
         domicilio:this.domicilio,
         archivos:this.nombresURL
       }
+
+      console.log(payload);
+      
       this._infor.guardarInforme(payload).then(resp=>{
-        
+        this.fechaAlta="";
+        this.compania="";
+        this.nombreCompleto="";
+        this.apellido="";
+        this.documento="";
+        this.dominio="";
+        this.modelo="";
+        this.marca="";
+        this.importe="";
+        this.telefono="";
+        this.domicilio="";
+        this.nombresURL=[];
+        //document.getElementById('btnMensajeFormulario').click();
       });
     }
 

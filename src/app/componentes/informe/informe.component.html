@@ -8,14 +8,14 @@
     <legend>Alta de siniestro:</legend>
     
     <div style="padding-top: 10px;">
-    <input id="my-input" placeholder="Fecha de alta" class="form-control col-md-2" type="text" 
+    <input [(ngModel)]="fechaAlta" id="my-input" placeholder="Fecha de alta" class="form-control col-md-2" type="text" 
           data-datedropper data-dd-theme="leaf" data-dd-format="d/m/Y" data-dd-lang="es" data-dd-large="true">
     </div>
  
  
   <div style="padding-top: 20px;" class="form-group">
      
-      <input placeholder="Compañia del tercero" type="text" class="form-control" />
+      <input [(ngModel)]="compania" placeholder="Compañia del tercero" type="text" class="form-control" />
       
  </div>
 
@@ -28,13 +28,13 @@
   <div style="padding-top: 10px">
       <div class="row">
         <div class="col-md-4">
-          <input placeholder="Nombre completo" class="form-control">
+          <input [(ngModel)]="nombreCompleto" placeholder="Nombre completo" class="form-control">
         </div>
         <div class="col-md-4">
-          <input placeholder="Apellido" class="form-control">
+          <input [(ngModel)]="apellido" placeholder="Apellido" class="form-control">
         </div>
         <div class="col-md-4">
-          <input placeholder="Documento" class="form-control">
+          <input [(ngModel)]="documento" placeholder="Documento" class="form-control">
         </div>
       </div>
       
@@ -47,13 +47,13 @@
       
     <div class="row">
       <div class="col-md-4">
-        <input placeholder="Dominio" class="form-control">
+        <input [(ngModel)]="dominio" placeholder="Dominio" class="form-control">
       </div>
       <div class="col-md-4">
-        <input placeholder="Marca" class="form-control">
+        <input [(ngModel)]="modelo" placeholder="Marca" class="form-control">
       </div>
       <div class="col-md-4">
-        <input placeholder="Modelo" class="form-control">
+        <input [(ngModel)]="marca" placeholder="Modelo" class="form-control">
       </div>
     </div>  
 
@@ -68,7 +68,7 @@
         <i class="fomr-control" class="fas fa-dollar-sign"></i>
       </div>
       <div style="width: 200px;">
-        <input placeholder="importe a reclamar" type="number" class="form-control">
+        <input [(ngModel)]="importe" placeholder="importe a reclamar" type="number" class="form-control">
       </div>
     </div>
     
@@ -77,25 +77,44 @@
 
   <div style="padding-top: 20px;" class="form-group">
       
-      <input placeholder="Telefono" type="number" class="form-control"/>
+      <input [(ngModel)]="telefono" placeholder="Telefono" type="number" class="form-control"/>
       
   </div>
   
 
   <div style="padding-top: 10px;" class="form-group">
       
-    <input placeholder="Domicilio" type="text" class="form-control" />
+    <input [(ngModel)]="domicilio" placeholder="Domicilio" type="text" class="form-control" />
     
   </div>
 
+<div *ngIf="nombresURL.length > 1" style="padding-top: 10px;">
+  <div class="alert alert-primary" role="alert">
+    se adjuntaran {{nombresURL.length}} archivos
+  </div>
+</div>
+<div *ngIf="nombresURL.length == 1" style="padding-top: 10px;">
+  <div class="alert alert-primary" role="alert">
+    se adjuntara {{nombresURL.length}} archivo
+  </div>
+</div>
 
 <div style="padding-top: 10px">
       
-  <label class="custom-file">
+  <div class="row">
+    <div class="col-md-3">
+      <label class="custom-file">
     
-      <button class="btn btn-primary" data-toggle="modal" data-target="#cargaDoc" type="button"><i class="fas fa-file-upload"></i> cargar documentos</button>
-    
-  </label>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#cargaDoc" type="button"><i class="fas fa-file-upload"></i> cargar documentos</button>
+      
+    </label>
+    </div>
+    <div class="col-md-3">
+      <button (click)="altaSiniestro()" type="button" class="btn btn-dark"><i class="fas fa-arrow-right"></i>Enviar formulario</button>
+    </div>
+  </div>
+
+  
 </div>
  
  <br>
@@ -138,11 +157,31 @@
 
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <button (click)="getUrls()" type="button" class="btn btn-primary">Guardar archivos</button>
+      <button (click)="cancelar()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      <button data-dismiss="modal" (click)="getUrls()" type="button" class="btn btn-primary">Guardar archivos</button>
     </div>
   </div>
 </div>
 </div>
   
-
+<button id="btnMensajeFormulario" type="button" data-toggle="modal" data-target="#mensajeFormulario">
+</button>
+<div class="modal fade" id="mensajeFormulario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Se ha generado el alta de siniestro.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
