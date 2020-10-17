@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestorageService } from 'src/app/servicios/firestorage.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InformeService } from 'src/app/servicios/informe.service';
+import { StorageService } from 'src/app/servicios/storage.service';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class InformeComponent  {
 
   referencia:any;
 
-  constructor(private _fireStorage: FirestorageService, private _infor :InformeService) { }
+  constructor(private _fireStorage: FirestorageService, private _infor :InformeService, private _stor : StorageService) { }
 
   public archivoForm = new FormGroup({
     archivo: new FormControl(null, Validators.required),
@@ -112,7 +113,8 @@ export class InformeComponent  {
         importe:this.importe,
         telefono:this.telefono,
         domicilio:this.domicilio,
-        archivos:this.nombresURL
+        archivos:this.nombresURL,
+        usuario:this._stor.getLocalStorage()
       }
 
       console.log(payload);
@@ -131,7 +133,7 @@ export class InformeComponent  {
         this.domicilio="";
         this.nombresURL=[];
         this.nombresArch =[];
-        //document.getElementById('btnMensajeFormulario').click();
+        document.getElementById('btnMensajeFormulario').click();
       });
     }
 
