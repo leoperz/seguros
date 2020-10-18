@@ -15,6 +15,7 @@ import { MensajeComponent } from './componentes/mensaje/mensaje.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { InformeComponent } from './componentes/informe/informe.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { NgxCurrencyModule } from "ngx-currency";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     NgMultiSelectDropDownModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgxCurrencyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

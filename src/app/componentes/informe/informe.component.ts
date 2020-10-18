@@ -19,7 +19,6 @@ export class InformeComponent  {
   public porcentaje = 0;
   public finalizado = false;
   public nombresURL:any[]=[];
-  fechaAlta="";
   compania="";
   nombreCompleto="";
   apellido="";
@@ -27,7 +26,6 @@ export class InformeComponent  {
   dominio="";
   modelo="";
   marca="";
-  importe="";
   telefono="";
   domicilio="";
 
@@ -101,8 +99,11 @@ export class InformeComponent  {
     
     
     altaSiniestro(){
+      
+      console.log();
       let payload={
-        fechaAlta : this.fechaAlta,
+        
+        fechaAlta : (document.getElementById('my-input') as HTMLInputElement).value,
         compania: this.compania,
         nombreCompleto:this.nombreCompleto,
         apellido:this.apellido,
@@ -110,7 +111,7 @@ export class InformeComponent  {
         dominio:this.dominio,
         modelo:this.modelo,
         marca:this.marca,
-        importe:this.importe,
+        importe: (document.getElementById('importe') as HTMLInputElement).value,
         telefono:this.telefono,
         domicilio:this.domicilio,
         archivos:this.nombresURL,
@@ -120,7 +121,8 @@ export class InformeComponent  {
       console.log(payload);
       
       this._infor.guardarInforme(payload).then(resp=>{
-        this.fechaAlta="";
+        (document.getElementById('my-input') as HTMLInputElement).value="";
+        (document.getElementById('importe') as HTMLInputElement).value="$ 0,00";
         this.compania="";
         this.nombreCompleto="";
         this.apellido="";
@@ -128,7 +130,6 @@ export class InformeComponent  {
         this.dominio="";
         this.modelo="";
         this.marca="";
-        this.importe="";
         this.telefono="";
         this.domicilio="";
         this.nombresURL=[];
