@@ -16,7 +16,7 @@
 
     <ul style="padding-top: 20px; padding-left: 0px;">
       <i style="font-size: 25px;" class="far fa-bell"></i>
-      <span class="badge badge-danger">2</span>
+      <span *ngIf="notificaciones.length!=0" class="badge badge-danger">{{notificaciones.length}}</span>
     </ul>
 
     <ul style="padding-top: 20px">

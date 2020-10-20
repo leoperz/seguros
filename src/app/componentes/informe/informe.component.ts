@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FirestorageService } from 'src/app/servicios/firestorage.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InformeService } from 'src/app/servicios/informe.service';
@@ -115,12 +115,14 @@ export class InformeComponent  {
         telefono:this.telefono,
         domicilio:this.domicilio,
         archivos:this.nombresURL,
-        usuario:this._stor.getLocalStorage()
+        usuario:this._stor.getLocalStorage(),
+        indemnizacion:"",
+        estado:"Pendiente"
       }
 
       console.log(payload);
       
-      this._infor.guardarInforme(payload).then(resp=>{
+      this._infor.guardarInforme(payload);
         (document.getElementById('my-input') as HTMLInputElement).value="";
         (document.getElementById('importe') as HTMLInputElement).value="$ 0,00";
         this.compania="";
@@ -135,7 +137,7 @@ export class InformeComponent  {
         this.nombresURL=[];
         this.nombresArch =[];
         document.getElementById('btnMensajeFormulario').click();
-      });
+      
     }
 
     

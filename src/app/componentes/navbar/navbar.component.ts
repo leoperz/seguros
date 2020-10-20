@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   usuario:any={};
   mensajes:any[]=[];
   sms:any={asunto:""};
+  notificaciones:any[]=[];
   constructor(private _storage: StorageService, private _mens:MensajeService) { }
 
   ngOnInit() {
@@ -21,6 +22,14 @@ export class NavbarComponent implements OnInit {
     if(this.usuario.imagen !=''){
 
     }
+
+    this._mens.getNotifiaciones(this.usuario.sucursal).subscribe(resp=>{
+      console.log(resp);
+      this.notificaciones=[];
+      for(let i of resp){
+        this.notificaciones.push(i);
+      }
+    });
 
     this._mens.getMensajes(this.usuario.uid).subscribe((resp:any)=>{
       
@@ -32,7 +41,7 @@ export class NavbarComponent implements OnInit {
         
         
       }
-      console.log(this.mensajes);
+      
     });
       
   }

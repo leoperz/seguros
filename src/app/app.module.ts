@@ -16,6 +16,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { InformeComponent } from './componentes/informe/informe.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { NgxCurrencyModule } from "ngx-currency";
+import { TablaInformeComponent } from './componentes/tabla-informe/tabla-informe.component';
+import { Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { NgxCurrencyModule } from "ngx-currency";
     NavbarComponent,
     AgendaComponent,
     MensajeComponent,
-    InformeComponent
+    InformeComponent,
+    TablaInformeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import { NgxCurrencyModule } from "ngx-currency";
     AngularFirestoreModule,
     NgMultiSelectDropDownModule,
     AngularFireStorageModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

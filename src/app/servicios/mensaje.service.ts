@@ -53,5 +53,10 @@ export class MensajeService {
   }
 
 
+  getNotifiaciones(sucursal:string){
+    return this._fire.collection('informe', resp=>resp.where('usuario.sucursal','==',sucursal )).valueChanges();
+  }
+
+
 
 }

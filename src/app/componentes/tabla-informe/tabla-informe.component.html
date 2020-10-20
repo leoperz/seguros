@@ -1,0 +1,92 @@
+
+<div class="container" style="padding-top: 45px;">
+
+  <input type="text" [(ngModel)]="search" class="form-control" placeholder="Ingrese su busqueda...">
+<br>
+<label>Items por página:  <select (change)="cambiarEstado($event.target.value)">
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="15">15</option>
+</select> </label>
+
+<table class="table table-bordered table-dark">
+  <thead class="thead-dark text-center">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ESTADO</th>
+      <th scope="col">FECHA DE ALTA</th>
+      <th scope="col">SUCURSAL</th>
+      <th scope="col">COMPAÑIA DE TERCEROS</th>
+      <th scope="col">DATOS DEL RECLAMANTE</th>
+      <th scope="col">DATOS DEL VEHICULO</th>
+      <th scope="col">ADJUNTOS</th>
+      <th scope="col">IMPORTE</th>
+      <th scope="col">MONTO DE INDEMNIZACION</th>
+      <th scope="col">ACCION</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+    <tr *ngFor="let item of informes | filter:search |  paginate: {itemsPerPage:page, currentPage: p } ; index as i">
+      <th scope="row">{{i+1}}</th>
+      <td *ngIf="item.estado == 'Pendiente' "><span  class="badge badge-pill badge-danger">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'En tramite' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Resuelto' "><span  class="badge badge-pill badge-warning">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Cerrado' "><span  class="badge badge-pill badge-success  ">{{item.estado}}</span></td>
+      <td> {{item.fechaAlta}}</td>
+      <td> {{item.usuario.sucursal}}</td>
+      <td>{{item.compania}}</td>
+      <td><i style="cursor: pointer;" class="far fa-eye"></i></td>
+      <td ><i style="cursor: pointer;" class="far fa-eye"></i></td>
+      <td><i style="cursor: pointer;" class="fas fa-paperclip"></i></td>
+      <td>{{item.importe}}</td>
+      <td>{{item.indemnizacion}}</td>
+      <td>
+        <select *ngIf="usuario.perfil == 'operador'" (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
+        <option value="" disabled selected>---Selecciona---</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Cerrado">Cerrado</option>
+        </select>
+        <select *ngIf="usuario.perfil == 'abogado'" (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
+          <option value="" disabled selected>---Selecciona---</option>
+          <option value="En tramite">En tramite</option>
+          <option value="Resuelto">Resuelto</option>
+          </select>
+      </td>
+     
+    </tr>
+   
+  </tbody>
+  
+</table>
+<pagination-controls 
+                      (pageChange)="p=$event" 
+                      previousLabel="Anterior" 
+                      nextLabel="Siguiente" 
+                      responsive= "true">
+                      
+</pagination-controls>
+</div>
+
+
+<button hidden=true id="btnIndemnizacion" type="button" data-toggle="modal" data-target="#indemnizacion"></button>
+
+<div class="modal fade" id="indemnizacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        <div class="row">
+          <div class="col-md-2">
+            <label style="margin-top: 6px;">Importe:</label>
+          </div>
+          <div class="col-md-6">
+            <input id="importe" class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button (click)="guardarIndemnizacion()" type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
