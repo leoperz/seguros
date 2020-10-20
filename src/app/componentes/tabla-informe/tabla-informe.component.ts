@@ -64,8 +64,17 @@ export class TablaInformeComponent implements OnInit {
   }
 
 
-  test(){
-    document.getElementById('test').click();
+  test(archivos:[]){
+    for(let i of archivos){
+    let a = document.createElement('a');
+    a.href = i;
+    a.download = "title";
+    document.body.appendChild(a);
+    a.target="_blank";
+    a.click();
+    a.remove();
+    }
+    
   }
 
 }

@@ -11,18 +11,8 @@
     
           <ul class="list-unstyled components">
               <p>Menú Principal</p>
-              <li class="active">
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Noticias Principales</a>
-                  <ul class="collapse list-unstyled" id="homeSubmenu">
-                      <li>
-                          <a href="#">Argentina</a>
-                      </li>
-                      <li>
-                          <a href="#">Resto del mundo</a>
-                      </li>
-                      
-                  </ul>
-              </li>
+             
+            
               
               <li>
                   <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Acciones</a>
@@ -35,7 +25,7 @@
                       </a>
                   </li>
                   <li>
-                    <a routerLink="/informe">
+                    <a (click)="verInformes()">
                       <img style="width: 30px; height: 30px;" src="../../../assets/imagenes/informe.png">
                       ver informes
                     </a>
@@ -62,12 +52,64 @@
   </div>
 
   <div class="col-md-8">
+
+    <div class="accordion" id="accordionExample">
+     
+     
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button (click)="test()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#informes" aria-expanded="false" aria-controls="collapseThree">
+              Ver informes <i *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
+            </button>
+          </h5>
+        </div>
+        <div id="informes" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div style="height: 700px;" class="card-body">
+            <app-tabla-informe></app-tabla-informe>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div style="padding-top: 10px;" class="accordion" id="accordionExample">
+     
+     
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button (click)="test()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Enviar mensaje <i *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div style="height: 500px;" class="card-body">
+            <app-mensaje></app-mensaje>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <div *ngIf="mensaje == false " hidden=true>
       <app-mensaje></app-mensaje>
     </div>
     <div *ngIf="mensaje==true">
       <app-mensaje></app-mensaje>
     </div>
+
+    <div *ngIf="informes == false " hidden=true>
+      <app-tabla-informe></app-tabla-informe>
+    </div>
+    <div *ngIf="informes  ==true">
+      <app-tabla-informe></app-tabla-informe>
+    </div>
     
   </div>
+
+  
+    
+    
+  
 </div>

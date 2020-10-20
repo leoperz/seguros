@@ -37,6 +37,20 @@
           <input [(ngModel)]="documento" placeholder="Documento" class="form-control">
         </div>
       </div>
+
+      <!--Telefono-->
+      <div style="padding-top: 20px;" class="form-group">
+      
+        <input [(ngModel)]="telefono" placeholder="Telefono" type="number" class="form-control"/>
+        
+    </div>
+    
+  
+    <div style="padding-top: 10px;" class="form-group">
+        
+      <input [(ngModel)]="domicilio" placeholder="Domicilio" type="text" class="form-control" />
+      
+    </div>
       
   </div>
   <br>
@@ -58,10 +72,12 @@
     </div>  
 
   </div>
+
+
   <br>
   <hr>
   
-  
+  <br>
   <div style="padding-top: 10px;">
     <div style="margin-left: 0px;" class="row">
       <div>
@@ -75,18 +91,8 @@
       
   </div>
 
-  <div style="padding-top: 20px;" class="form-group">
-      
-      <input [(ngModel)]="telefono" placeholder="Telefono" type="number" class="form-control"/>
-      
-  </div>
-  
-
-  <div style="padding-top: 10px;" class="form-group">
-      
-    <input [(ngModel)]="domicilio" placeholder="Domicilio" type="text" class="form-control" />
-    
-  </div>
+  <br>
+  <br>
 
 <div *ngIf="nombresURL.length > 1" style="padding-top: 10px;">
   <div class="alert alert-primary" role="alert">

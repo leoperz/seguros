@@ -3,6 +3,8 @@ import { FirestorageService } from 'src/app/servicios/firestorage.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
+import * as moment from 'moment';
+import { NotificacionService } from 'src/app/servicios/notificacion.service';
 
 
 @Component({
@@ -31,7 +33,10 @@ export class InformeComponent  {
 
   referencia:any;
 
-  constructor(private _fireStorage: FirestorageService, private _infor :InformeService, private _stor : StorageService) { }
+  constructor(private _fireStorage: FirestorageService, private _infor :InformeService, 
+              private _stor : StorageService,
+              private _noti : NotificacionService
+              ) { }
 
   public archivoForm = new FormGroup({
     archivo: new FormControl(null, Validators.required),
@@ -137,6 +142,13 @@ export class InformeComponent  {
         this.nombresURL=[];
         this.nombresArch =[];
         document.getElementById('btnMensajeFormulario').click();
+      
+      let variable ={
+        motivo:"Se ha generado un nuevo informe",
+        sucursal:payload.usuario.sucursal,
+        fecha: moment().format('DD/MM/yyyy')
+      }
+      this._noti.guardarNotificacion(variable);
       
     }
 

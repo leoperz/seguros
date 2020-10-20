@@ -1,5 +1,5 @@
 
-<div  style="padding-top: 45px;">
+<div class="container"  style="padding-top: 45px;">
 
   <input type="text" [(ngModel)]="search" class="form-control" placeholder="Ingrese su busqueda...">
 <br>
@@ -9,7 +9,7 @@
   <option value="15">15</option>
 </select> </label>
 
-<table class="table table-bordered table-dark">
+<table class="table table-bordered table-dark table-responsive">
   <thead class="thead-dark text-center">
     <tr>
       <th scope="col">#</th>
@@ -37,7 +37,7 @@
       <td>{{item.compania}}</td>
       <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
       <td > <i (click)="verVehiculo(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
-      <td><i   (click)="test()"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
+      <td><i *ngIf="item.archivos.length > 0" (click)="test(item.archivos)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
       <td>{{item.importe}}</td>
       <td>{{item.indemnizacion}}</td>
       <td>
@@ -109,7 +109,7 @@
             <label>{{reclamante.nombreCompleto}} {{reclamante.apellido}}</label>
           </div>
         </div>
-
+        <hr>
         <div class="row">
           <div class="col-md-3">
             <label>Documento:</label>
@@ -118,13 +118,22 @@
             <label>{{reclamante.documento}}</label>
           </div>
         </div>
-
+        <hr>
         <div class="row">
           <div class="col-md-3">
             <label>Telefono:</label>
           </div>
           <div class="col-md-3">
             <label>{{reclamante.telefono}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Domicilio:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.domicilio}}</label>
           </div>
         </div>
 
@@ -157,7 +166,7 @@
             <label>{{reclamante.dominio}}</label>
           </div>
         </div>
-
+        <hr>
         <div class="row">
           <div class="col-md-3">
             <label>Marca:</label>
@@ -166,7 +175,7 @@
             <label>{{reclamante.marca}}</label>
           </div>
         </div>
-
+        <hr>
         <div class="row">
           <div class="col-md-3">
             <label>Modelo:</label>
@@ -186,4 +195,4 @@
   </div>
 </div>
 
-<a href="https://firebasestorage.googleapis.com/v0/b/seguros-1d4ac.appspot.com/o/informe.xlsx?alt=media&token=18c66359-f0a4-439a-9c67-1073812b2fb2" download="pepe">Download link</a>
+
