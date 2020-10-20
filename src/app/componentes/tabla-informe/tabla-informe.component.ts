@@ -15,6 +15,8 @@ export class TablaInformeComponent implements OnInit {
   informes:any[]=[];
   usuario:any={};
   flag:any="";
+  reclamante:any={};
+  
 
   constructor(private _info:InformeService, private _stor :StorageService) { }
 
@@ -46,6 +48,24 @@ export class TablaInformeComponent implements OnInit {
   guardarIndemnizacion(){
     this._info.updateEstado2((document.getElementById('importe') as HTMLInputElement).value,this.flag);
     
+  }
+
+  verReclamante(item:any){
+    
+    this.reclamante=item;
+    document.getElementById('btnReclamante').click();
+  }
+
+
+  verVehiculo(item:any){
+    
+    this.reclamante=item;
+    document.getElementById('btnVehiculo').click();
+  }
+
+
+  test(){
+    document.getElementById('test').click();
   }
 
 }

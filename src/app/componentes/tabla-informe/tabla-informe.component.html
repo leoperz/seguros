@@ -1,5 +1,5 @@
 
-<div class="container" style="padding-top: 45px;">
+<div  style="padding-top: 45px;">
 
   <input type="text" [(ngModel)]="search" class="form-control" placeholder="Ingrese su busqueda...">
 <br>
@@ -35,9 +35,9 @@
       <td> {{item.fechaAlta}}</td>
       <td> {{item.usuario.sucursal}}</td>
       <td>{{item.compania}}</td>
-      <td><i style="cursor: pointer;" class="far fa-eye"></i></td>
-      <td ><i style="cursor: pointer;" class="far fa-eye"></i></td>
-      <td><i style="cursor: pointer;" class="fas fa-paperclip"></i></td>
+      <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
+      <td > <i (click)="verVehiculo(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
+      <td><i   (click)="test()"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
       <td>{{item.importe}}</td>
       <td>{{item.indemnizacion}}</td>
       <td>
@@ -90,3 +90,100 @@
     </div>
   </div>
 </div>
+
+
+
+<button hidden=true id="btnReclamante" type="button" data-toggle="modal" data-target="#reclamante"></button>
+
+
+<div class="modal fade" id="reclamante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label>Nombre:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.nombreCompleto}} {{reclamante.apellido}}</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label>Documento:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.documento}}</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label>Telefono:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.telefono}}</label>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<button hidden=true id="btnVehiculo" type="button" data-toggle="modal" data-target="#vehiculo"></button>
+
+
+<div class="modal fade" id="vehiculo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label>Dominio:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.dominio}}</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label>Marca:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.marca}}</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label>Modelo:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.modelo}}</label>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="https://firebasestorage.googleapis.com/v0/b/seguros-1d4ac.appspot.com/o/informe.xlsx?alt=media&token=18c66359-f0a4-439a-9c67-1073812b2fb2" download="pepe">Download link</a>
