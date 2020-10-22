@@ -29,10 +29,16 @@ export class TablaInformeComponent implements OnInit {
         for(let i of resp){
           this.informes.push(i);
         }
-        console.log(this.informes);
+        
       }
     );
   }
+
+
+  cambiarItems(number:any){
+    this.page=number;
+  }
+
 
 
   cambiarEstado(value:string, uid:string){

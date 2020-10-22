@@ -12,6 +12,9 @@ export class InicioComponent implements OnInit {
   flag = 0;
   mail:string="";
   password:string="";
+  pass:any="";
+  bandera=0;
+  uid:string;
   constructor(private _r : Router, private _usuario:UsuarioService, private _storage: StorageService) { }
 
   ngOnInit() {
@@ -33,6 +36,7 @@ export class InicioComponent implements OnInit {
          let value= this._usuario.comprobarPass(resp[0].password, this.password);
          if(value){
            this._storage.setLocalStorage(resp[0]);
+           this._usuario.usuarioLogueado$.emit("logueado");
            document.getElementById('botonCerrar').click();
            this._r.navigateByUrl("dashboard");
 
@@ -49,6 +53,27 @@ export class InicioComponent implements OnInit {
         
       }
     );
+  }
+
+  olvide(){
+    if(this.mail==''){
+      this.bandera=1;
+      return;
+    }
+    this._usuario.getUsuarioByMail(this.mail).subscribe((resp:any)=>{
+      
+      this.uid=resp[0].uid;
+      this._usuario.repass$.emit(this.uid);
+    });
+    document.getElementById('btnRandom').click();
+    this.pass=Math.floor(Math.random() * 9999) + 1000;
+    
+    
+  }
+
+
+  cerrar(){
+    this._r.navigateByUrl('/repass');
   }
 
 }

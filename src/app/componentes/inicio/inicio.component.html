@@ -1,7 +1,5 @@
 <!-- Button trigger modal -->
-<button hidden=true id="boton" type="button" data-toggle="modal" data-target="#exampleModal">
-  
-</button>
+<button hidden=true id="boton" type="button" data-toggle="modal" data-target="#exampleModal"></button>
 
 <!-- Modal -->
 <div data-backdrop="static" data-keyboard="false" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -17,6 +15,13 @@
       </div>
 
       <div class="modal-body">
+
+        <div *ngIf="bandera == 1" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Atencion!</strong> Es obligatorio ingresar el mail
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         
         <div *ngIf="flag==1" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
             Usuario o contraseña incorrecta
@@ -40,11 +45,50 @@
         </div>
      
       <div class="modal-footer">
-        <button (click)="registrarse()" type="button" class="btn btn-warning" data-dismiss="modal">Registrarse</button>
-        <button *ngIf="mail != '' && password != ''  " (click)="iniciarSesion()" type="button" class="btn btn-primary">Aceptar</button>
-        <button disabled *ngIf="mail == '' || password == ''  " (click)="iniciarSesion()" type="button" class="btn btn-primary">Aceptar</button>
+        <button (click)="registrarse()"  q class="btn btn-warning" data-dismiss="modal">Registrarse</button>
+        <button  *ngIf="mail != '' && password != ''" (click)="iniciarSesion()" type="button" class="btn btn-primary">Aceptar</button>
+        <button   disabled *ngIf="mail == '' || password == ''  "  type="button" class="btn btn-primary">Aceptar</button>
         <button id="botonCerrar" hidden=true data-dismiss="modal"></button>
+        
       </div>
+      <p style="cursor: pointer;" (click)="olvide()"><strong>olvidé la contraseña</strong></p>
     </div>
   </div>
 </div>
+
+
+
+
+<button hidden=true id="btnRandom" type="button" data-toggle="modal" data-target="#random"></button>
+
+
+<div data-backdrop="static" data-keyboard="false" class="modal fade" id="random" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+      
+    </div>
+     
+      <div class="modal-body">
+        
+       <div class="row">
+         <div class="col-md-4">
+          <label>Contraseña</label>
+         </div>
+         <div class="col-md-4">
+          <label>{{pass}}</label>
+         </div>
+       </div>
+
+
+      
+        <div class="modal-footer">
+        <button (click)="cerrar()"  class="btn btn-warning" >Cerrar</button>
+        
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+

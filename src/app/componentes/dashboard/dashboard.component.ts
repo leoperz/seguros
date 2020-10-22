@@ -9,6 +9,7 @@ export class DashboardComponent implements OnInit {
   mensaje=false;
   informes=false;
   flecha:string="abajo";
+  flechamsn:string="abajo";
   constructor() { }
 
   ngOnInit() {
@@ -25,5 +26,10 @@ export class DashboardComponent implements OnInit {
   test(){
     if(this.flecha=="abajo") this.flecha="arriba"
     else this.flecha="abajo"
+  }
+
+  flechaMensaje(){
+    if(this.flechamsn=="abajo") this.flechamsn="arriba"
+    else this.flechamsn="abajo"
   }
 }

@@ -8,9 +8,9 @@
         <div class="modal-body">
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     
-                <div style="padding-top: 10px;" class="form-group">
+                <div class="col-md-2" style="padding-top: 10px;" class="form-group">
                     
-                    <input placeholder="Nombre completo..." type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+                    <input  placeholder="Nombre completo..." type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
                     <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
                         <div *ngIf="f.nombre.errors.required">nombre completo obligatorio</div>
                     </div>

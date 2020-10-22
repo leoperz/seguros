@@ -24,6 +24,17 @@ export class StorageService {
     
   }
 
+  removeLocalStorage(){
+    localStorage.removeItem('identity');
+    
+  }
+
+  modificarImagenStorage(url:string){
+    let payload = this.getLocalStorage();
+    payload.imagen = url;
+    this.setLocalStorage(payload);
+  }
+
 
 }
 

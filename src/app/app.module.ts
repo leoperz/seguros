@@ -19,6 +19,7 @@ import { NgxCurrencyModule } from "ngx-currency";
 import { TablaInformeComponent } from './componentes/tabla-informe/tabla-informe.component';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { RepasswordComponent } from './componentes/repassword/repassword.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AgendaComponent,
     MensajeComponent,
     InformeComponent,
-    TablaInformeComponent
+    TablaInformeComponent,
+    RepasswordComponent
   ],
   imports: [
     BrowserModule,

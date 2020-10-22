@@ -3,7 +3,7 @@
 
   <input type="text" [(ngModel)]="search" class="form-control" placeholder="Ingrese su busqueda...">
 <br>
-<label>Items por página:  <select (change)="cambiarEstado($event.target.value)">
+<label>Items por página:  <select (change)="cambiarItems($event.target.value)">
   <option value="5">5</option>
   <option value="10">10</option>
   <option value="15">15</option>

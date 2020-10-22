@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import * as crypt from 'crypto-js';
 
@@ -8,6 +8,8 @@ import * as crypt from 'crypto-js';
 })
 export class UsuarioService {
 
+  repass$ = new EventEmitter<any>();
+  usuarioLogueado$ = new EventEmitter<any>();
   constructor(private _fire: AngularFirestore) { }
 
 
@@ -43,6 +45,46 @@ export class UsuarioService {
 
   getUsuariosPorSucursal(sucursales:string[]){
     return this._fire.collection('usuarios', resp=>resp.where('sucursal','in', sucursales)).valueChanges();
+  }
+
+  getUsuario(uid:string){
+    return this._fire.collection('usuarios').doc(uid).valueChanges();
+  }
+
+  cambiarImagen(url:string, uid:string){
+    this._fire.collection('usuarios').doc(uid).update({
+      imagen:url
+    });
+  }
+
+  cambiarDatos(nombre:string, apellido:string, correo:string, uid:string){
+    this._fire.collection('usuarios').doc(uid).update({
+      nombre:nombre,
+      apellido:apellido,
+      mail:correo
+    });
+  }
+
+  cambiarPass(pass:string, uid:string){
+    this._fire.collection('usuarios').doc(uid).update({
+      password:uid
+    });
+  }
+
+  getUsuarioByMail(mail:string){
+    return this._fire.collection('usuarios', ref=>ref.where('mail','==',mail)).valueChanges();
+  }
+
+
+  compararPass(pass:string, uid:string):boolean{
+    let flag:boolean;
+    this._fire.collection('usuarios').doc(uid).valueChanges().subscribe(
+      (resp:any)=>{
+       if(resp.password = pass)flag=true;
+       else flag=false;
+      }
+    );
+    return flag;
   }
 
 }

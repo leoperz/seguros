@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { MensajeService } from 'src/app/servicios/mensaje.service';
 import { StorageService } from 'src/app/servicios/storage.service';
-import { UsuarioService } from 'src/app/servicios/usuario.service';
+
 
 @Component({
   selector: 'app-mensaje',
@@ -61,6 +61,9 @@ export class MensajeComponent implements OnInit {
     
     
     this._mens.enviarMensaje(payload);
+    this.asunto="";
+    this.cuerpo="";
+    this.para=[];
     
   }
 

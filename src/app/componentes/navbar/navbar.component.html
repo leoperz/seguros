@@ -26,19 +26,15 @@
         <div style="background-color: rgb(255,243,205) ;" class="dropdown-menu dropdown-menu-right text-center">
             
             <div *ngFor="let item of notificaciones">
-              <a *ngIf="notificaciones.length > 0"><strong>{{item.motivo}}. Sucursal {{item.sucursal}}</strong></a>
+              <a *ngIf="notificaciones.length > 0" ><strong>{{item.motivo}}. Sucursal {{item.sucursal}}</strong></a>
             </div>
             
             
-            <a *ngIf="notificaciones.length == 0"><strong>No hay mensajes nuevos</strong></a>
+            <a *ngIf="notificaciones.length == 0"><strong>No hay notificaciones nuevas</strong></a>
             
             <div class="dropdown-divider"></div>
             
-            <div *ngFor="let item of mensajes">
-              <a  (click)="verMensaje(item)"  class="dropdown-item"><strong>Asunto: </strong>{{item.mensaje.asunto}}</a>
-              <div class="dropdown-divider"></div>
-            </div>
-           
+            
             
             
             
@@ -81,13 +77,13 @@
       <li class="nav-item dropdown">
           <a class="nav-link " data-toggle="dropdown"><img role="button" id="imagen"  src= {{url}}  class="rounded img-fluid img-thumbnail"></a>
           <div class="dropdown-menu dropdown-menu-right text-center">
-              <a>{{usuario.nombre}}</a>
-              <p style=" text-align: center; font-size: small;">{{usuario.mail}}</p>
+              <a *ngIf="usuario!=null">{{usuario.nombre}}</a>
+              <p *ngIf="usuario!=null" style=" text-align: center; font-size: small;">{{usuario.mail}}</p>
               <div class="dropdown-divider"></div>
               <a id="lista" href="#" class="dropdown-item">Reportes <i class="fas fa-clipboard-list"></i></a>
-              <a id="lista" href="#" class="dropdown-item">Configuracion <i class="fab fa-whmcs"></i></a>
+              <a (click)="configuracion()" id="lista"  class="dropdown-item">Configuracion <i class="fab fa-whmcs"></i></a>
               <div id="lista" class="dropdown-divider"></div>
-              <a id="lista" href="#"class="dropdown-item">Salir <i class="fas fa-door-open"></i></a>
+              <a  (click)="cerrarSesion()"  id="lista" class="dropdown-item">Salir <i class="fas fa-door-open"></i></a>
           </div>
       </li>
   </ul>
@@ -138,12 +134,74 @@
           </div>
         </div>
         <textarea class="form-control" id="textArea" rows="2">{{sms.cuerpo}}</textarea>
-
-
-
-
       </div>
       
+    </div>
+  </div>
+</div>
+
+
+
+<button hidden=true id="btnPersonalizacion" type="button" data-toggle="modal" data-target="#personalizacion"></button>
+
+<div class="modal fade" id="personalizacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <img  (click)="cambiarImagen()" style="width: 100px; height: 100px; cursor: pointer;" src="{{url}}">
+        
+        <span  hidden=true class="btn btn-primary btn-file">
+          <input id="arch" type="file" (change)="cambioArchivo($event)">
+      </span>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <input [(ngModel)]="usuNombre" class="form-control" type="text">
+          </div>
+        </div>
+
+        
+
+        <div style="padding-top: 20px;" class="row">
+          <div class="col-md-12">
+            <input [(ngModel)]="usuApellido" class="form-control" type="text">
+          </div>
+        </div>
+
+        <div style="padding-top: 20px;" class="row">
+          <div class="col-md-12">
+            <input [(ngModel)]="usuMail" class="form-control" type="text">
+          </div>
+        </div>
+
+       
+
+        <div style="padding-top: 20px;" class="row">
+          <div class="col-md-12">
+            <input *ngIf="usuario!=null" disabled=true class="form-control" type="text" value={{usuario.sucursal}}>
+          </div>
+        </div>
+
+        <div style="padding-top: 20px;" class="row">
+          <div class="col-md-12">
+            <input *ngIf="usuario!=null" disabled=true class="form-control" type="text" value={{usuario.perfil}}>
+          </div>
+        </div>
+
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button data-dismiss="modal" (click)="guardarCambios()" type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
     </div>
   </div>
 </div>
