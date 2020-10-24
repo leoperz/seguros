@@ -104,7 +104,12 @@ export class NavbarComponent implements OnInit {
         this.notificaciones=[];
         for(let i of resp){
           
-          
+          if(this.usuario.perfil == "abogado" || this.usuario.perfil == "adm"){
+            if(i.fecha.toString() == moment().format('DD/MM/yyyy').toString()){
+              this.notificaciones.push(i);
+            }
+          }
+
           if(i.sucursal == this.usuario.sucursal && i.fecha.toString() == moment().format('DD/MM/yyyy').toString()  ){
             this.notificaciones.push(i);
           }
