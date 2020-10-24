@@ -33,17 +33,20 @@ export class TablaInformeComponent implements OnInit {
       });
     }
 
-    this._info.getInformesSucursal(this.usuario.sucursal).subscribe(
-      resp=>{
-        
-        this.informes=[];
-        for(let i of resp){
-          this.informes.push(i);
+    if(this.usuario.perfil=="operador"){
+      this._info.getInformesSucursal(this.usuario.sucursal).subscribe(
+        resp=>{
+          
+          this.informes=[];
+          for(let i of resp){
+            this.informes.push(i);
+          }
+          
         }
-        
-      }
-    );
-  }
+      );
+    }
+    }
+  
 
 
   cambiarItems(number:any){
