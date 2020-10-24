@@ -21,7 +21,18 @@ export class TablaInformeComponent implements OnInit {
   constructor(private _info:InformeService, private _stor :StorageService) { }
 
   ngOnInit() {
+
     this.usuario = this._stor.getLocalStorage();
+    
+    if(this.usuario.perfil == "abogado" || this.usuario.perfil == "adm"){
+      this._info.getInformes().subscribe(resp=>{
+        this.informes=[];
+        for(let u of resp){
+          this.informes.push(u);
+        }
+      });
+    }
+
     this._info.getInformesSucursal(this.usuario.sucursal).subscribe(
       resp=>{
         
