@@ -66,13 +66,24 @@ export class RepasswordComponent implements OnInit {
     
     if (this.registerForm.invalid) {
 
+    this.registerForm.reset(); 
      return;
       
     }else{
+      let pass = this.registerForm.controls.pass.value;
       
+      this._usuario.compararPass(this.uid).subscribe((resp:any)=>{
+          if(resp.password == pass){
+            this._usuario.asignarNuevaPass(this.uid,this.registerForm.controls.password.value)
+          } 
+        
+      });
+
+      document.getElementById('botonCerrarModal').click();
+      this._router.navigateByUrl('inicio');
     }
   
-    this.registerForm.reset();
+    
     
 }
 

@@ -20,6 +20,8 @@ import { TablaInformeComponent } from './componentes/tabla-informe/tabla-informe
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { RepasswordComponent } from './componentes/repassword/repassword.component';
+import { HistorialMensajesComponent } from './componentes/historial-mensajes/historial-mensajes.component';
+import { OperadoresComponent } from './componentes/operadores/operadores.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { RepasswordComponent } from './componentes/repassword/repassword.compone
     MensajeComponent,
     InformeComponent,
     TablaInformeComponent,
-    RepasswordComponent
+    RepasswordComponent,
+    HistorialMensajesComponent,
+    OperadoresComponent
   ],
   imports: [
     BrowserModule,

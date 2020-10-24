@@ -30,12 +30,7 @@
                       ver informes
                     </a>
                 </li>
-                      <li>
-                          <a (click)="mensajes()">
-                            <img src="../../../assets/imagenes/enviar.png">
-                            Enviar mensaje
-                          </a>
-                      </li>
+                      
                       <li>
                         <a [routerLink]="['/agenda']">
                           <img src="../../../assets/imagenes/agenda.png">
@@ -44,6 +39,30 @@
                     </li>
                    </ul>
               </li>
+              <div *ngIf="usuario.perfil=='adm'">
+                <li>
+                  <a href="#admpageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrador</a>
+                  <ul class="collapse list-unstyled" id="admpageSubmenu">
+  
+                    <li>
+                      <a style="cursor: pointer;" routerLink="/operadores">
+                        <img width="30px" src="../../../assets/imagenes/usuario.png">
+                          Operadores
+                      </a>
+                  </li>
+                    
+                    
+                      <li>
+                          <a (click)="mensajes()">
+                            <img src="../../../assets/imagenes/enviar.png">
+                            Enviar mensaje
+                          </a>
+                      </li>
+                    
+                   </ul>
+              </li>
+              </div>
+             
           </ul>
       </nav>
     
@@ -60,7 +79,7 @@
         <div class="card-header" id="headingThree">
           <h5 class="mb-0">
             <button (click)="test()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#informes" aria-expanded="false" aria-controls="collapseThree">
-              Ver informes <i *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
+              Ver informes <i data-toggle="collapse" data-target="#informes" *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i data-toggle="collapse" data-target="#informes" *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
             </button>
           </h5>
         </div>
@@ -75,11 +94,11 @@
     <div style="padding-top: 10px;" class="accordion" id="accordionExample">
      
      
-      <div class="card">
+      <div *ngIf="usuario.perfil=='adm'" class="card">
         <div class="card-header" id="headingThree">
           <h5 class="mb-0">
             <button (click)="flechaMensaje()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Enviar mensaje <i *ngIf="flechamsn == 'abajo'" class="fas fa-arrow-down"></i><i *ngIf=" flechamsn == 'arriba'" class="fas fa-arrow-up"></i>
+              Enviar mensaje <i class="btn btn-link collapsed" data-target="#collapseThree" data-toggle="collapse" *ngIf="flechamsn == 'abajo'" class="fas fa-arrow-down"></i><i class="btn btn-link collapsed" data-target="#collapseThree" data-toggle="collapse" *ngIf=" flechamsn == 'arriba'" class="fas fa-arrow-up"></i>
             </button>
           </h5>
         </div>
@@ -90,15 +109,7 @@
         </div>
       </div>
     </div>
-
-
-    
-    
-
-    
-    
-    
-  </div>
+</div>
 
   
     

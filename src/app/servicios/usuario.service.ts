@@ -67,7 +67,7 @@ export class UsuarioService {
 
   cambiarPass(pass:string, uid:string){
     this._fire.collection('usuarios').doc(uid).update({
-      password:uid
+      password:pass
     });
   }
 
@@ -76,15 +76,18 @@ export class UsuarioService {
   }
 
 
-  compararPass(pass:string, uid:string):boolean{
-    let flag:boolean;
-    this._fire.collection('usuarios').doc(uid).valueChanges().subscribe(
-      (resp:any)=>{
-       if(resp.password = pass)flag=true;
-       else flag=false;
-      }
-    );
-    return flag;
+  compararPass(uid:string){
+    
+    return this._fire.collection('usuarios').doc(uid).valueChanges();
+    
+  }
+
+  asignarNuevaPass(uid:string, password:string){
+    password = crypt.AES.encrypt(password, 'arielSeguros').toString();
+    this._fire.collection('usuarios').doc(uid).update({
+      password:password
+    });
+
   }
 
 }

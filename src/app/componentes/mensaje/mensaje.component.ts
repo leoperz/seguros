@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { MensajeService } from 'src/app/servicios/mensaje.service';
 import { StorageService } from 'src/app/servicios/storage.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -53,6 +54,7 @@ export class MensajeComponent implements OnInit {
     let payload:any={
       tipo:"general",
       de:identity.uid,
+      fecha:moment().format('DD/MM/yyyy'),
       para:array,
       asunto:this.asunto,
       cuerpo:this.cuerpo

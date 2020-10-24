@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg  navbar-dark bg-white">
    <img style="width: 60px; height: 60px;" src="../../../assets/imagenes/as.png">
-  <a style="color: black;" id="titulo" class="navbar-brand">Alvarenga Seguros</a>
+  <a routerLink="/dashboard"  style="color: black; cursor: pointer;" id="titulo" class="navbar-brand">Alvarenga Seguros</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -64,11 +64,7 @@
               <a  (click)="verMensaje(item)"  class="dropdown-item"><strong>Asunto: </strong>{{item.mensaje.asunto}}</a>
               <div class="dropdown-divider"></div>
             </div>
-           
-            
-            
-            
-            <a href="#"class="dropdown-item">Ver todos <i class="fas fa-comment-dots"></i></a>
+          <a routerLink="/historial" class="dropdown-item">Ver Historial<i class="fas fa-comment-dots"></i></a>
         </div>
       </li>
   </ul>

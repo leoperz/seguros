@@ -65,7 +65,9 @@ export class InicioComponent implements OnInit {
       this.uid=resp[0].uid;
       this._usuario.repass$.emit(this.uid);
     });
+    
     document.getElementById('btnRandom').click();
+    
     this.pass=Math.floor(Math.random() * 9999) + 1000;
     
     
@@ -73,6 +75,8 @@ export class InicioComponent implements OnInit {
 
 
   cerrar(){
+    this._usuario.cambiarPass(this.pass, this.uid);
+    document.getElementById('dismiss').click();
     this._r.navigateByUrl('/repass');
   }
 
