@@ -41,7 +41,7 @@
       <td>{{item.importe}}</td>
       <td>{{item.indemnizacion}}</td>
       <td>
-        <select *ngIf="usuario.perfil == 'operador'" (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
+        <select *ngIf="usuario.perfil == 'operador' || usuario.perfil == 'adm' " (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
         <option value="" disabled selected>---Selecciona---</option>
         <option value="Pendiente">Pendiente</option>
         <option value="Cerrado">Cerrado</option>
