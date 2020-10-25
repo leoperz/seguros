@@ -42,4 +42,8 @@ export class InformeService {
     });
   }
 
+  delete(uid:string){
+    this._firestore.collection('informe').doc(uid).delete().then();
+  }
+
 }

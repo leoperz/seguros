@@ -56,7 +56,7 @@ export class TablaInformeComponent implements OnInit {
 
 
   cambiarEstado(value:string, uid:string){
-    if(value=='Cerrado'){
+    if(value=='Resuelto'){
       //abrir modal para ingreso de indemnizacion
       this.flag=uid;
       document.getElementById('btnIndemnizacion').click();
@@ -95,6 +95,10 @@ export class TablaInformeComponent implements OnInit {
     a.remove();
     }
     
+  }
+
+  borrarRegistro(uid:string){
+    this._info.delete(uid);
   }
 
 }

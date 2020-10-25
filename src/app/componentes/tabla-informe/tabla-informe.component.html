@@ -23,6 +23,7 @@
       <th scope="col">IMPORTE</th>
       <th scope="col">MONTO DE INDEMNIZACION</th>
       <th scope="col">ACCION</th>
+      <th *ngIf="usuario.perfil == 'adm'" scope="col">BORRAR REGISTRO</th>
     </tr>
   </thead>
   <tbody class="text-center">
@@ -52,6 +53,7 @@
           <option value="Resuelto">Resuelto</option>
           </select>
       </td>
+      <td *ngIf="usuario.perfil == 'adm'"><i style="cursor: pointer;" (click)="borrarRegistro(item.uid)" class="fas fa-trash"></i></td>
      
     </tr>
    
