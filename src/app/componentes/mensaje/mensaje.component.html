@@ -4,14 +4,14 @@
     <strong>Enviar un mensaje a una o todas las sucursales.</strong>
   </div>
   
-  <div style="padding-top: 10px; padding-bottom: 10px; background-color: rgb(173, 186, 230);" class="jumbotron jumbotron-fluid">
+  <div>
     <div class="container">
       <h1 class="display-6 text-center">Mensaje</h1>
       <hr>
       <br>
       <div class="row">
         <div class="col-md-2">
-          <button (click)="enviarMensaje()" style="margin-top: 15px;" class="btn btn-lg btn-dark" type="button">Enviar</button>
+          <button (click)="enviarMensaje()" style="margin-top: 15px;" class="btn btn-lg btn-secondary" type="button">Enviar</button>
         </div>
         <div class="col-md">
           <div class="row">
@@ -22,7 +22,7 @@
             [data]="dropdownList"
             [(ngModel)]="selectedItems"
             [settings]="dropdownSettings"
-           style="background-color: white; width: 100%; border-color: grey;">
+           style="background-color: white; width: 95%; border-color: grey;">
           </ng-multiselect-dropdown>
             
          
@@ -30,7 +30,8 @@
           <br>
           <div class="row">
             
-            <input [(ngModel)]="asunto" class="form-control" placeholder="Asunto">
+            <input [(ngModel)]="asunto" class="form-control" placeholder="Asunto"
+            style="background-color: white; width: 95%; border-color: grey;"> 
           
        
         </div>
@@ -40,8 +41,9 @@
     </div>
 
     <div style="padding-top: 20px;" class="form-group">
-      
-      <textarea [(ngModel)]="cuerpo" placeholder="Escriba su mensaje..." class="form-control" id="textArea" rows="2"></textarea>
+      <div class="container" style="background-color: white; width: 100%; border-color: grey;">
+      <textarea [(ngModel)]="cuerpo" placeholder="Escriba su mensaje..." class="form-control" id="textArea" rows="6"></textarea>
+    </div>
     </div>
   </div>
 </div>
