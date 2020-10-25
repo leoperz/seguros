@@ -22,6 +22,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { RepasswordComponent } from './componentes/repassword/repassword.component';
 import { HistorialMensajesComponent } from './componentes/historial-mensajes/historial-mensajes.component';
 import { OperadoresComponent } from './componentes/operadores/operadores.component';
+import {NgbModule  } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { OperadoresComponent } from './componentes/operadores/operadores.compone
     TablaInformeComponent,
     RepasswordComponent,
     HistorialMensajesComponent,
-    OperadoresComponent
+    OperadoresComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { OperadoresComponent } from './componentes/operadores/operadores.compone
     AngularFireStorageModule,
     NgxCurrencyModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,16 +17,17 @@
         
         <a  data-toggle="dropdown">
           <i style="font-size: 25px; cursor: pointer;" class="far fa-bell"></i>
-          <span *ngIf="notificaciones.length > 0"  class="badge badge-danger">{{notificaciones.length}}</span>
+          <span *ngIf="notificaciones.length > 0"  class="badge badge-success">{{notificaciones.length}}</span>
           
         </a>
         
         
         
-        <div style="background-color: rgb(255,243,205) ;" class="dropdown-menu dropdown-menu-right text-center">
+        <div style="background-color:antiquewhite ;" class="dropdown-menu dropdown-menu-right text-center">
             
             <div *ngFor="let item of notificaciones">
-              <a *ngIf="notificaciones.length > 0" ><strong>{{item.motivo}}. Sucursal {{item.sucursal}}</strong></a>
+              <a *ngIf="notificaciones.length > 0" ><i class="fas fa-exclamation"></i> {{item.motivo}}. Sucursal {{item.sucursal}}</a>
+              <hr>
             </div>
             
             
@@ -38,7 +39,7 @@
             
             
             
-            <a href="#"class="dropdown-item">Ver todos <i class="fas fa-comment-dots"></i></a>
+            <a (click)="limpiarNotificaciones()" class="dropdown-item">Limpiar notificaciones <i class="fas fa-comment-dots"></i></a>
         </div>
       </li>
   </ul>
@@ -64,7 +65,7 @@
               <a  (click)="verMensaje(item)"  class="dropdown-item"><strong>Asunto: </strong>{{item.mensaje.asunto}}</a>
               <div class="dropdown-divider"></div>
             </div>
-          <a routerLink="/historial" class="dropdown-item">Ver Historial<i class="fas fa-comment-dots"></i></a>
+          <a routerLink="/historial" class="dropdown-item">Ver Historial <i class="fas fa-comment-dots"></i></a>
         </div>
       </li>
   </ul>

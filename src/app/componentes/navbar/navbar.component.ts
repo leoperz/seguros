@@ -220,4 +220,8 @@ export class NavbarComponent implements OnInit {
 
    }
 
+   limpiarNotificaciones(){
+     this.notificaciones=[];
+   }
+
 }

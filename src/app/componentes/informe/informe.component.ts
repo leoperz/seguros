@@ -5,6 +5,7 @@ import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import * as moment from 'moment';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { NotificacionService } from 'src/app/servicios/notificacion.service';
 })
 export class InformeComponent  {
   
+  model: NgbDateStruct;
   public mensajeArchivo = 'No hay un archivo seleccionado';
   public datosFormulario = new FormData();
   public nombreArchivo = '';
