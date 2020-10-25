@@ -7,15 +7,17 @@
   <fieldset>
     <legend>Alta de siniestro:</legend>
     
-   <!-- <div style="padding-top: 10px;">
-    <input [(ngModel)]="fechaAlta" id="my-input" placeholder="Fecha de alta" class="form-control col-md-2" type="text" 
-          data-datedropper data-dd-theme="leaf" data-dd-format="d/m/Y" data-dd-lang="es" data-dd-large="true">
-    </div> -->
-    <input class="form-control" placeholder="yyyy-mm-dd"
-             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-             <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            <div class="row">
+              <div style="padding-right: 0px;" class="col-md-4">
+                <input type="text" class="form-control" placeholder="Fecha de alta" name="dp" [(ngModel)]="fechaAlta" ngbDatepicker #d="ngbDatepicker">
+              </div>
+              <div style="padding-left: 0px;" class="col-md-2">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i style="font-size: 20px;" class="far fa-calendar-alt"></i></button>
+              </div>  
             </div>
+            
+            
+            
  
     <div style="padding-top: 20px;" class="form-group">
      
@@ -33,6 +35,7 @@
       <div class="row">
         <div class="col-md-4">
           <input [(ngModel)]="nombreCompleto" placeholder="Nombre completo" class="form-control">
+          <span *ngIf="nombrecompletoFlag==1" style="color: red;">Campo obligatorio</span>
         </div>
         <div class="col-md-4">
           <input [(ngModel)]="apellido" placeholder="Apellido" class="form-control">

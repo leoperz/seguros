@@ -22,7 +22,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { RepasswordComponent } from './componentes/repassword/repassword.component';
 import { HistorialMensajesComponent } from './componentes/historial-mensajes/historial-mensajes.component';
 import { OperadoresComponent } from './componentes/operadores/operadores.component';
-import {NgbModule  } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
