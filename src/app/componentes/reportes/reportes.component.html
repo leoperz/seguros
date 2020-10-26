@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="col-md-6">
+
+    <div style="padding-top: 40px;" class="container">
+
+
+      <img style="width: 100px; height: 100px;" *ngIf="operador.imagen == ''" src="../../../assets/imagenes/sinfoto.png">
+      <img *ngIf="operador.imagen != ''" src="{{operador.imagen}}">
+        <br>
+        <br>
+        <h2>{{operador.nombre}} {{operador.apellido}}</h2>
+      </div>
+      <div class="container">
+        <br/>
+        <div class="panel panel-default">
+              
+              <div class="panel-heading">Datos a cambiar</div>
+              <div class="panel-body">
+                    
+                    <fieldset class="col-md-12">    	
+                  <legend>Sucursal</legend>
+                  
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      
+                      <div *ngIf="sucursalCambio == true" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Aviso!</strong> se ha modificado la sucursal del usuario.
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-md-4">
+                          <input disabled [(ngModel)]="sucursal" class="form-control" type="test" value={{sucursal}}>
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" (change)="cambiarEstado($event.target.value)">
+                            <option disabled>--selecciona--</option>
+                            <option value="Burzaco">Burzaco</option>
+                            <option value="Guernica">Guernica</option>
+                            <option value="Longchamps">Longchamps</option>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button (click)="actualizarSucursal()" id="boton" type="button" class="btn">cambiar</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                </fieldset>	
+                <br>
+                <br>
+                <fieldset class="col-md-12">    	
+                  <legend>Perfil</legend>
+                  
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      
+                      <div *ngIf="perfilCambio == true" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Aviso!</strong> se ha modificado el perfil usuario.
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-md-4">
+                          <input disabled [(ngModel)]="perfil" class="form-control" type="test" value={{perfil}}>
+                        </div>
+                        <div class="col-md-4">
+                          <select class="form-control" (change)="cambiarEstadoPerfil($event.target.value)">
+                            <option disabled>--selecciona--</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Operador">Operador</option>
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <button (click)="actualizarPerfil()" id="boton" type="button" class="btn">cambiar</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                </fieldset>	
+                
+                <div class="clearfix"></div>
+                    </div>
+                        
+        </div>
+        </div>
+
+  </div>
+
+  <div class="col-md-6">
+    
+    <div style="padding-top: 80px;" class="container">
+      <div style="width: 500px; height: 500px;" class="chart">
+        <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [colors]="pieChartColors"
+          [legend]="pieChartLegend">
+        </canvas>
+      </div>
+    </div>
+
+    
+  
+  
+  </div>
+
+</div>
+
+
+
+
+
+  
+

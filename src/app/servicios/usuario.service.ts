@@ -7,9 +7,12 @@ import * as crypt from 'crypto-js';
   providedIn: 'root'
 })
 export class UsuarioService {
+ 
+  
 
   repass$ = new EventEmitter<any>();
   usuarioLogueado$ = new EventEmitter<any>();
+  
   constructor(private _fire: AngularFirestore) { }
 
 
@@ -45,6 +48,10 @@ export class UsuarioService {
 
   getUsuariosPorSucursal(sucursales:string[]){
     return this._fire.collection('usuarios', resp=>resp.where('sucursal','in', sucursales)).valueChanges();
+  }
+
+  getUsuariosPorSucursalOrdenados(sucursal:string){
+    return this._fire.collection('usuarios', resp=>resp.where('sucursal','==', sucursal).orderBy('nombre')).valueChanges();
   }
 
   getUsuario(uid:string){
@@ -88,6 +95,19 @@ export class UsuarioService {
       password:password
     });
 
+  }
+
+  actualizarSucursal(uid: any, sucursal: string) {
+    this._fire.collection('usuarios').doc(uid).update({
+      sucursal:sucursal
+    });
+  }
+
+
+  actualizarPerfil(uid: any, flag: any) {
+    this._fire.collection('usuarios').doc(uid).update({
+      perfil:flag
+    });
   }
 
 }

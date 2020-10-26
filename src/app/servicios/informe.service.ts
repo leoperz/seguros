@@ -46,4 +46,9 @@ export class InformeService {
     this._firestore.collection('informe').doc(uid).delete().then();
   }
 
+  estadisticaInforme(uid:string, estado:string){
+   return this._firestore.collection('informe', resp=>resp.where("usuario.uid" ,'==', uid).where("estado","==",estado)).valueChanges();
+  }
+
+
 }

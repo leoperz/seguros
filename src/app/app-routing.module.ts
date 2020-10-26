@@ -8,6 +8,7 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 import { OperadoresComponent } from './componentes/operadores/operadores.component';
 import { RegistrarComponent } from './componentes/registrar/registrar.component';
 import { RepasswordComponent } from './componentes/repassword/repassword.component';
+import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { TablaInformeComponent } from './componentes/tabla-informe/tabla-informe.component';
 import { AdmService } from './servicios/adm.service';
 import { GuardService } from './servicios/guard.service';
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'verinformes', component:TablaInformeComponent, canActivate:[GuardService]},
   {path:'repass', component:RepasswordComponent},
   {path:'historial', component:HistorialMensajesComponent, canActivate:[GuardService]},
-  {path:'operadores', component:OperadoresComponent, canActivate:[GuardService, AdmService]},
+  {path:'operadores', component:OperadoresComponent, canActivate:[GuardService]},
+  {path:'reportes', component:ReportesComponent, canActivate:[GuardService]},
   {path:'', pathMatch:'full', redirectTo:'inicio'}
 ];
 
