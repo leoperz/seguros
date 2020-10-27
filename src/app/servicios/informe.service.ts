@@ -20,7 +20,7 @@ export class InformeService {
   }
 
   getInformes(){
-    return this._firestore.collection('informe').valueChanges();
+    return this._firestore.collection('informe', resp=>resp.orderBy('fechaAlta')).valueChanges();
   }
 
   guardarInforme(payload:any){
