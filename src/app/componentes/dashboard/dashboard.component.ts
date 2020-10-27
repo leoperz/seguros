@@ -26,9 +26,9 @@ export class DashboardComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81], label: 'Burzaco' },
-    { data: [28, 48, 40, 19], label: 'Guernica' },
-    { data: [28, 48, 40, 19], label: 'Longchamps' }
+    { data: [0, 0, 0, 0], label: 'Burzaco' },
+    { data: [0, 0, 0, 0], label: 'Guernica' },
+    { data: [0, 0, 0, 0], label: 'Longchamps' }
   ];
 
   usuario:any={};
@@ -56,7 +56,14 @@ export class DashboardComponent implements OnInit {
   constructor(private _storage : StorageService, private _info : InformeService ) { }
 
   ngOnInit() {
+
+
     this.usuario=this._storage.getLocalStorage();
+
+
+
+    if(this.usuario.perfil=='adm'){
+
     
     this._info.getInformesSucursal('Burzaco').subscribe((resp:any[])=>{
     
@@ -86,8 +93,8 @@ export class DashboardComponent implements OnInit {
 
       this.barChartData = [
         { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob], label: 'Burzaco' },
-        { data: [28, 48, 40, 19], label: 'Guernica' },
-        { data: [28, 48, 40, 19], label: 'Longchamps' }
+        { data: [0, 0, 0, 0], label: 'Guernica' },
+        { data: [0, 0, 0, 0], label: 'Longchamps' }
       ];
 
     });
@@ -108,7 +115,7 @@ export class DashboardComponent implements OnInit {
       this.barChartData = [
         { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob], label: 'Burzaco' },
         { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog], label: 'Guernica' },
-        { data: [28, 48, 40, 19], label: 'Longchamps' }
+        { data: [0, 0, 0, 0], label: 'Longchamps' }
       ];
 
     });
@@ -138,6 +145,7 @@ export class DashboardComponent implements OnInit {
     
     
 
+  }
 
 
   }
