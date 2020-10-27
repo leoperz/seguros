@@ -8,7 +8,11 @@ export class InformeService {
 
   constructor(private _firestore: AngularFirestore) { }
 
+
  
+  getInformeSucursalEstado(sucursal:string){
+    return this._firestore.collection('informe', resp=>resp.where('usuario.sucursal','==',sucursal)).valueChanges();
+  }
 
 
   getInformesSucursal(sucursal:string){
@@ -49,6 +53,9 @@ export class InformeService {
   estadisticaInforme(uid:string, estado:string){
    return this._firestore.collection('informe', resp=>resp.where("usuario.uid" ,'==', uid).where("estado","==",estado)).valueChanges();
   }
+
+
+
 
 
 }
