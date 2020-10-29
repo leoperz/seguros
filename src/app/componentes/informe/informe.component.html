@@ -4,13 +4,13 @@
   
   
     
-  <fieldset>
+  <fieldset >
     <legend>Alta de siniestro:</legend>
     
-   <!-- <div style="padding-top: 10px;">
+   <div style="padding-top: 10px;">
     <input [(ngModel)]="fechaAlta" id="my-input" placeholder="Fecha de alta" class="form-control col-md-2" type="text" 
           data-datedropper data-dd-theme="leaf" data-dd-format="d/m/Y" data-dd-lang="es" data-dd-large="true">
-    </div> -->
+    </div> 
     <input class="form-control" placeholder="yyyy-mm-dd"
              name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
              <div class="input-group-append">
@@ -30,15 +30,43 @@
   
  
   <div style="padding-top: 10px">
-      <div class="row">
-        <div class="col-md-4">
-          <input [(ngModel)]="nombreCompleto" placeholder="Nombre completo" class="form-control">
+      <div [formGroup]="informeForm" class="row"  >
+        <div class="col-md-4" >
+          <input [(ngModel)]="nombreCompleto" placeholder="Nombre completo" class="form-control" formControlName="nombreCompleto">
+
+          <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert-danger">
+            <div *ngIf="nombre.errors.required"class="container-error-message" >
+              El nombre es requerido.
+            </div>
+            <div *ngIf="nombre.errors.minlength" class="container-error-message">
+              Tiene que ser mayor a 5 caracteres.
+            </div>
+          </div>
         </div>
         <div class="col-md-4">
-          <input [(ngModel)]="apellido" placeholder="Apellido" class="form-control">
+          <input [(ngModel)]="apellido" placeholder="Apellido" class="form-control" formControlName="apellido" >
+          <div *ngIf="Apellido.invalid && (Apellido.dirty || Apellido.touched)" class="alert-danger">
+            <div *ngIf="Apellido.errors.required"class="container-error-message" >
+              El apellido es requerido.
+            </div>
+            <div *ngIf="Apellido.errors.minlength" class="container-error-message">
+              Tiene que ser mayor a 5 caracteres.
+            </div>
+          </div>
         </div>
         <div class="col-md-4">
-          <input [(ngModel)]="documento" placeholder="Documento" class="form-control">
+          <input type="number" [(ngModel)]="documento" placeholder="Documento" class="form-control" formControlName="documento">
+          <div *ngIf="Documento.invalid && (Documento.dirty || Documento.touched)" class="alert-danger">
+            <div *ngIf="Documento.errors.required"class="container-error-message" >
+              El DNI es requerido.
+            </div>
+            <div *ngIf="Documento.errors.min" class="container-error-message">
+              Tiene que ser mayor a 7 numeros.
+            </div>
+            <div *ngIf="Documento.errors.max" class="container-error-message">
+              Documento invalido, excedio la cantidad de numeros permitidos.
+            </div>
+          </div>
         </div>
       </div>
 
@@ -120,7 +148,7 @@
     </label>
     </div>
     <div class="col-md-3">
-      <button (click)="altaSiniestro()" type="button" class="btn btn-dark"><i class="fas fa-arrow-right"></i>Enviar formulario</button>
+      <button (click)="altaSiniestro()" type="submit" class="btn btn-dark" [disabled]="!informeForm.valid" ><i class="fas fa-arrow-right"></i>Enviar formulario</button>
     </div>
     
   </div>

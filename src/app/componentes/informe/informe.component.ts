@@ -23,6 +23,7 @@ export class InformeComponent  {
   public porcentaje = 0;
   public finalizado = false;
   public nombresURL:any[]=[];
+  public informeForm: FormGroup;
   compania="";
   nombreCompleto="";
   apellido="";
@@ -38,11 +39,26 @@ export class InformeComponent  {
   constructor(private _fireStorage: FirestorageService, private _infor :InformeService, 
               private _stor : StorageService,
               private _noti : NotificacionService
-              ) { }
+              ) {
+                this.informeForm = this.createInformeForm();
+               }
+
 
   public archivoForm = new FormGroup({
     archivo: new FormControl(null, Validators.required),
   });
+
+  createInformeForm() {
+         return  new FormGroup({
+          nombreCompleto: new FormControl('', [Validators.required, Validators.minLength(5)]),
+          apellido: new FormControl('', [Validators.required, Validators.minLength(5)]),
+          documento: new FormControl('', [Validators.required, Validators.min(9999999),Validators.max(99999999)])
+        });       
+  }
+
+  onResetForm(): void {
+    this.informeForm.reset();
+  }
 
 
   public cambioArchivo(event) {
@@ -127,9 +143,11 @@ export class InformeComponent  {
         estado:"Pendiente"
       }
 
+
       console.log(payload);
       
-      this._infor.guardarInforme(payload);
+      if (this.informeForm.valid){
+        this._infor.guardarInforme(payload);
         (document.getElementById('my-input') as HTMLInputElement).value="";
         (document.getElementById('importe') as HTMLInputElement).value="$ 0,00";
         this.compania="";
@@ -151,11 +169,17 @@ export class InformeComponent  {
         fecha: moment().format('DD/MM/yyyy')
       }
       this._noti.guardarNotificacion(variable);
-      
+
+      this.onResetForm();
+    } else{
+      console.log("Error en el alta de informe");
+    }
+    
     }
 
-    
-  
+        get nombre() { return this.informeForm.get('nombreCompleto'); }
+        get Documento() { return this.informeForm.get('documento'); }
+        get Apellido() { return this.informeForm.get('apellido'); }
 
 
 }
