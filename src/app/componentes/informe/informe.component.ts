@@ -102,7 +102,7 @@ export class InformeComponent  {
           modelo: new FormControl('', [Validators.required]),
           dominio: new FormControl('', [Validators.required]),
           nombreCompleto: new FormControl('', [Validators.required, Validators.minLength(5)]),
-          apellido: new FormControl('', [Validators.required, Validators.minLength(5)]),
+          apellido: new FormControl('', [Validators.required]),
           documento: new FormControl('', [Validators.required, Validators.min(9999999),Validators.max(99999999)]),
           importe: new FormControl('', [Validators.required])
         });       
