@@ -122,20 +122,20 @@
         </div>  
       </div>
       <div class="col-md-4">
-        <input type="text" [(ngModel)]="modelo" placeholder="Modelo" class="form-control"  maxlength="4" formControlName="modelo" >
-        <div *ngIf="Modelo.invalid && (Modelo.dirty || Modelo.touched)" class="alert-danger">
-          <div *ngIf="Modelo.errors.required"class="container-error-message" >
-            El campo Modelo es requerido.
-          </div>
-        </div>  
-      </div>
-      <div class="col-md-4">
         <input type="text" (keyup)="mayusMarca($event.target.value)" [(ngModel)]="marca" placeholder="Marca" class="form-control" formControlName="marca">
         <div *ngIf="Marca.invalid && (Marca.dirty || Marca.touched)" class="alert-danger">
           <div *ngIf="Marca.errors.required" class="container-error-message" >
             El campo Marca es requerido.
           </div>
-        </div>  
+        </div> 
+      </div>
+      <div class="col-md-4">
+        <input type="text" (keyup)="mayusModelo($event.target.value)" [(ngModel)]="modelo" placeholder="Modelo" class="form-control" formControlName="modelo" >
+        <div *ngIf="Modelo.invalid && (Modelo.dirty || Modelo.touched)" class="alert-danger">
+          <div *ngIf="Modelo.errors.required"class="container-error-message" >
+            El campo Modelo es requerido.
+          </div>
+        </div>
       </div>
     </div>  
 

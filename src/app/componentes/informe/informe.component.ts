@@ -95,7 +95,7 @@ export class InformeComponent  {
          return  new FormGroup({
           //fechaAlta: new FormControl(null, [Validators.required]),
           compania: new FormControl(null, [Validators.required]),
-          date: new FormControl('', [Validators.required]),
+          fechaAlta: new FormControl('', [Validators.required]),
           telefono: new FormControl(null, [Validators.required]),
           domicilio: new FormControl('', [Validators.required]),
           marca:  new FormControl('', [Validators.required]),
@@ -196,7 +196,7 @@ export class InformeComponent  {
         domicilio:this.domicilio,
         archivos:this.nombresURL,
         usuario:this._stor.getLocalStorage(),
-        indemnizacion:"",
+        indemnizacion: (document.getElementById("importe") as HTMLInputElement).value,
         estado:"Pendiente"
       }
 
@@ -243,7 +243,7 @@ export class InformeComponent  {
         get Modelo() { return this.informeForm.get('modelo'); }
         get Marca() { return this.informeForm.get('marca'); }
         get Domicilio() { return this.informeForm.get('domicilio'); }
-        get Date() { return this.informeForm.get('date'); }
+        get FechaAlta() { return this.informeForm.get('fechaAlta'); }
         get Importe() { return this.informeForm.get('importe'); }
 
 
@@ -253,6 +253,10 @@ export class InformeComponent  {
 
     mayusMarca(value){
       this.marca = value.toUpperCase();
+    }
+
+    mayusModelo(value){
+      this.modelo = value.toUpperCase();
     }
 
     
