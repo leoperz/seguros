@@ -93,9 +93,8 @@ export class InformeComponent  {
 
   createInformeForm() {
          return  new FormGroup({
-          //fechaAlta: new FormControl(null, [Validators.required]),
+          fechaAlta: new FormControl(null, [Validators.required]),
           compania: new FormControl(null, [Validators.required]),
-          fechaAlta: new FormControl('', [Validators.required]),
           telefono: new FormControl(null, [Validators.required]),
           domicilio: new FormControl('', [Validators.required]),
           marca:  new FormControl('', [Validators.required]),
@@ -183,7 +182,7 @@ export class InformeComponent  {
     
       let payload={
         
-        fechaAlta : "",//(document.getElementById('my-input') as HTMLInputElement).value,
+        fechaAlta : (document.getElementById('my-input') as HTMLInputElement).value,
         compania: this.compania,
         nombreCompleto:this.nombreCompleto,
         apellido:this.apellido,
@@ -196,7 +195,7 @@ export class InformeComponent  {
         domicilio:this.domicilio,
         archivos:this.nombresURL,
         usuario:this._stor.getLocalStorage(),
-        indemnizacion: (document.getElementById("importe") as HTMLInputElement).value,
+        indemnizacion:"",
         estado:"Pendiente"
       }
 

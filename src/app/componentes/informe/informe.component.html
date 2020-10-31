@@ -8,10 +8,10 @@
     <legend>Alta de siniestro:</legend>
     
             <div [formGroup]="informeForm" class="row">
-              <div id="my-input" class="col-md-4">
-                <input [(ngModel)]="fechaAlta" class="form-control" type="date" formControlName="date">
-                <div *ngIf="Date.invalid && (Date.dirty || Date.touched)" class="alert-danger">
-                  <div *ngIf="Date.errors.required"class="container-error-message" >
+              <div class="col-md-4">
+                <input  id="my-input" class="form-control" type="date" formControlName="fechaAlta">
+                <div *ngIf="FechaAlta.invalid && (FechaAlta.dirty || FechaAlta.touched)" class="alert-danger">
+                  <div *ngIf="FechaAlta.errors.required"class="container-error-message" >
                     El campo Fecha es requerido.
                   </div>
                 </div> 
