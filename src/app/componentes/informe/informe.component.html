@@ -114,7 +114,7 @@
       
     <div [formGroup]="informeForm" class="row">
       <div class="col-md-4">
-        <input type="text" style="text-transform:uppercase"  [(ngModel)]="dominio" placeholder="Dominio" class="form-control" maxlength="8"  formControlName="dominio">
+        <input type="text" (keyup)="mayusDominio($event.target.value)" [(ngModel)]="dominio" placeholder="Dominio" class="form-control" maxlength="8"  formControlName="dominio">
         <div *ngIf="Dominio.invalid && (Dominio.dirty || Dominio.touched)" class="alert-danger">
           <div *ngIf="Dominio.errors.required"class="container-error-message" >
             El campo Dominio es requerido.
@@ -130,7 +130,7 @@
         </div>  
       </div>
       <div class="col-md-4">
-        <input  style="text-transform:uppercase" [(ngModel)]="marca" placeholder="Marca" class="form-control" formControlName="marca">
+        <input type="text" (keyup)="mayusMarca($event.target.value)" [(ngModel)]="marca" placeholder="Marca" class="form-control" formControlName="marca">
         <div *ngIf="Marca.invalid && (Marca.dirty || Marca.touched)" class="alert-danger">
           <div *ngIf="Marca.errors.required" class="container-error-message" >
             El campo Marca es requerido.

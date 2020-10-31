@@ -245,4 +245,15 @@ export class InformeComponent  {
         get Domicilio() { return this.informeForm.get('domicilio'); }
         get Date() { return this.informeForm.get('date'); }
         get Importe() { return this.informeForm.get('importe'); }
-}
+
+
+    mayusDominio(value){
+      this.dominio = value.toUpperCase();
+    }
+
+    mayusMarca(value){
+      this.marca = value.toUpperCase();
+    }
+
+    
+ }
