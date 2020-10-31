@@ -4,9 +4,29 @@
 
 
 <div *ngFor="let item of mensajes ; index as i" class="accordion" id="accordionExample">
+  
+
+  <div *ngIf="usuario.perfil == 'adm'" class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]=" '#informes'+i" aria-expanded="false" aria-controls="collapseThree">
+          <strong>Asunto: </strong>{{item.asunto}} <strong>Fecha: </strong>{{item.fecha}}
+        </button>
+      </h5>
+    </div>
+    <div [id]="'informes'+i" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div style="height: 700px;" class="card-body">
+        {{item.cuerpo}}
+      </div>
+    </div>
+  </div>
+
+
+
+
+
      
-     
-  <div class="card">
+  <div *ngIf="usuario.perfil !='adm'" class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
         <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]=" '#informes'+i" aria-expanded="false" aria-controls="collapseThree">
@@ -20,6 +40,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 </div>

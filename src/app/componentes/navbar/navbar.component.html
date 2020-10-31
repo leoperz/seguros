@@ -46,16 +46,16 @@
   </ul>
 
     <ul style="padding-top: 20px; list-style: none;">
-      <li class="nav-item dropdown">
+      
+      
+      
+      <li *ngIf="usuario.perfil != 'adm'" class="nav-item dropdown">
         
         <a  data-toggle="dropdown">
           <i style="font-size: 25px; cursor: pointer;" class="far fa-envelope"></i>
           <span *ngIf="mensajes.length!=0" class="badge badge-danger">{{mensajes.length}}</span>
           
         </a>
-        
-        
-        
         <div style="background-color: rgb(255,243,205) ;" class="dropdown-menu dropdown-menu-right text-center">
             <a *ngIf="mensajes.length > 0"><strong>Nuevos mensajes</strong></a>
             <a *ngIf="mensajes.length == 0"><strong>No hay mensajes nuevos</strong></a>
@@ -68,6 +68,8 @@
             </div>
           <a routerLink="/historial" class="dropdown-item">Ver Historial <i class="fas fa-comment-dots"></i></a>
         </div>
+      
+      
       </li>
   </ul>
 

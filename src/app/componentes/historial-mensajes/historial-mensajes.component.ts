@@ -15,13 +15,27 @@ export class HistorialMensajesComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = this._storage.getLocalStorage();
-    this._mens.getMensajes(this.usuario.uid).subscribe(resp=>{
-      this.mensajes=[];
-      for(let i of resp){
-        this.mensajes.push(i);
-      }
-      console.log(this.mensajes);
-    });
+
+    if(this.usuario.perfil == 'adm'){
+      this._mens.getMensajesEnviados().subscribe(resp=>{
+        this.mensajes=[];
+        for(let i of resp){
+          this.mensajes.push(i);
+        }
+      });
+    }
+    else{
+      this._mens.getMensajes(this.usuario.uid).subscribe(resp=>{
+        this.mensajes=[];
+        for(let i of resp){
+          this.mensajes.push(i);
+        }
+        console.log(this.mensajes);
+      });
+    }
+
+
+  
   }
 
 }

@@ -40,6 +40,10 @@ export class MensajeService {
 
   }
 
+  getMensajesEnviados(){
+    return this._fire.collection('mensajes').valueChanges();
+  }
+
   getMensajes(uid:string){
     
     return this._fire.collection('usuarioMensaje', (resp:any)=>resp.where('usuario.uid','==',uid)).valueChanges();
