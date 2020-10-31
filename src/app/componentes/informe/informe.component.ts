@@ -157,7 +157,7 @@ export class InformeComponent  {
     
       let payload={
         
-        fechaAlta : (document.getElementById('my-input') as HTMLInputElement).value,
+        fechaAlta : "",//(document.getElementById('my-input') as HTMLInputElement).value,
         compania: this.compania,
         nombreCompleto:this.nombreCompleto,
         apellido:this.apellido,
@@ -174,7 +174,7 @@ export class InformeComponent  {
         estado:"Pendiente"
       }
 
-      console.log(payload);
+      
       
       this._infor.guardarInforme(payload);
         (document.getElementById('my-input') as HTMLInputElement).value="";

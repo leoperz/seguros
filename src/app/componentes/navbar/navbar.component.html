@@ -16,7 +16,8 @@
       <li class="nav-item dropdown">
         
         <a  data-toggle="dropdown">
-          <i style="font-size: 25px; cursor: pointer;" class="far fa-bell animate__animated animate__swing animate__infinite	infinite"></i>
+          <i *ngIf="notificaciones.length > 0" style="font-size: 25px; cursor: pointer;" class="far fa-bell animate__animated animate__swing animate__infinite	infinite"></i>
+          <i *ngIf="notificaciones.length==0" style="font-size: 25px; cursor: pointer;" class="far fa-bell"></i>
           <span *ngIf="notificaciones.length > 0"  class="badge badge-success">{{notificaciones.length}}</span>
           
         </a>
@@ -77,10 +78,9 @@
               <a *ngIf="usuario!=null">{{usuario.nombre}}</a>
               <p *ngIf="usuario!=null" style=" text-align: center; font-size: small;">{{usuario.mail}}</p>
               <div class="dropdown-divider"></div>
-              <a id="lista" href="#" class="dropdown-item">Reportes <i class="fas fa-clipboard-list"></i></a>
-              <a (click)="configuracion()" id="lista"  class="dropdown-item">Configuracion <i class="fab fa-whmcs"></i></a>
+              <a style="cursor: pointer;" (click)="configuracion()" id="lista"  class="dropdown-item">Configuracion <i class="fab fa-whmcs"></i></a>
               <div id="lista" class="dropdown-divider"></div>
-              <a  (click)="cerrarSesion()"  id="lista" class="dropdown-item">Salir <i class="fas fa-door-open"></i></a>
+              <a style="cursor: pointer;"  (click)="cerrarSesion()"  id="lista" class="dropdown-item">Salir <i class="fas fa-door-open"></i></a>
           </div>
       </li>
   </ul>

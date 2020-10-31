@@ -8,12 +8,16 @@
     <legend>Alta de siniestro:</legend>
     
             <div class="row">
-              <div style="padding-right: 0px;" class="col-md-4">
+              <div class="col-md-4">
+                <input [(ngModel)]="fechaAlta" class="form-control" type="date">
+              </div>
+              
+              <!--<div id="my-input" style="padding-right: 0px;" class="col-md-4">
                 <input type="text" class="form-control" placeholder="Fecha de alta" name="dp" [(ngModel)]="fechaAlta" ngbDatepicker #d="ngbDatepicker">
               </div>
               <div style="padding-left: 0px;" class="col-md-2">
                 <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i style="font-size: 20px;" class="far fa-calendar-alt"></i></button>
-              </div>  
+              </div> --> 
             </div>
             
             
