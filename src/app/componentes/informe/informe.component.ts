@@ -89,12 +89,22 @@ export class InformeComponent  {
   public archivoForm = new FormGroup({
     archivo: new FormControl(null, Validators.required),
   });
+  
 
   createInformeForm() {
          return  new FormGroup({
+          //fechaAlta: new FormControl(null, [Validators.required]),
+          compania: new FormControl(null, [Validators.required]),
+          date: new FormControl('', [Validators.required]),
+          telefono: new FormControl(null, [Validators.required]),
+          domicilio: new FormControl('', [Validators.required]),
+          marca:  new FormControl('', [Validators.required]),
+          modelo: new FormControl('', [Validators.required]),
+          dominio: new FormControl('', [Validators.required]),
           nombreCompleto: new FormControl('', [Validators.required, Validators.minLength(5)]),
           apellido: new FormControl('', [Validators.required, Validators.minLength(5)]),
-          documento: new FormControl('', [Validators.required, Validators.min(9999999),Validators.max(99999999)])
+          documento: new FormControl('', [Validators.required, Validators.min(9999999),Validators.max(99999999)]),
+          importe: new FormControl('', [Validators.required])
         });       
   }
 
@@ -224,9 +234,15 @@ export class InformeComponent  {
     
     }
 
+        get Compania() { return this.informeForm.get('compania'); }
         get nombre() { return this.informeForm.get('nombreCompleto'); }
         get Documento() { return this.informeForm.get('documento'); }
         get Apellido() { return this.informeForm.get('apellido'); }
-
-
+        get Telefono() { return this.informeForm.get('telefono'); }
+        get Dominio() { return this.informeForm.get('dominio'); }
+        get Modelo() { return this.informeForm.get('modelo'); }
+        get Marca() { return this.informeForm.get('marca'); }
+        get Domicilio() { return this.informeForm.get('domicilio'); }
+        get Date() { return this.informeForm.get('date'); }
+        get Importe() { return this.informeForm.get('importe'); }
 }

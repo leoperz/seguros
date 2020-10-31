@@ -7,9 +7,14 @@
   <fieldset >
     <legend>Alta de siniestro:</legend>
     
-            <div class="row">
+            <div [formGroup]="informeForm" class="row">
               <div id="my-input" class="col-md-4">
-                <input [(ngModel)]="fechaAlta" class="form-control" type="date">
+                <input [(ngModel)]="fechaAlta" class="form-control" type="date" formControlName="date">
+                <div *ngIf="Date.invalid && (Date.dirty || Date.touched)" class="alert-danger">
+                  <div *ngIf="Date.errors.required"class="container-error-message" >
+                    El campo Fecha es requerido.
+                  </div>
+                </div> 
               </div>
               
               <!--<div " style="padding-right: 0px;" class="col-md-4">
@@ -23,11 +28,15 @@
             
             
  
-    <div style="padding-top: 20px;" class="form-group">
+    <div [formGroup]="informeForm" style="padding-top: 20px;" class="form-group">
      
-      <input [(ngModel)]="compania" placeholder="Compañia del tercero" type="text" class="form-control" />
-      
- </div>
+      <input [(ngModel)]="compania" placeholder="Compañia del tercero" type="text" class="form-control" formControlName="compania" />
+      <div *ngIf="Compania.invalid && (Compania.dirty || Compania.touched)" class="alert-danger">
+        <div *ngIf="Compania.errors.required"class="container-error-message" >
+          El campo Compania es requerido.
+        </div>
+      </div> 
+    </div>
 
   <div>
     <h4 class="text-center">Datos del reclamante</h4>
@@ -42,7 +51,7 @@
 
           <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert-danger">
             <div *ngIf="nombre.errors.required"class="container-error-message" >
-              El nombre es requerido.
+              El campo nombre es requerido.
             </div>
             <div *ngIf="nombre.errors.minlength" class="container-error-message">
               Tiene que ser mayor a 5 caracteres.
@@ -53,7 +62,7 @@
           <input [(ngModel)]="apellido" placeholder="Apellido" class="form-control" formControlName="apellido" >
           <div *ngIf="Apellido.invalid && (Apellido.dirty || Apellido.touched)" class="alert-danger">
             <div *ngIf="Apellido.errors.required"class="container-error-message" >
-              El apellido es requerido.
+              El campo apellido es requerido.
             </div>
             <div *ngIf="Apellido.errors.minlength" class="container-error-message">
               Tiene que ser mayor a 5 caracteres.
@@ -61,10 +70,10 @@
           </div>
         </div>
         <div class="col-md-4">
-          <input type="number" [(ngModel)]="documento" placeholder="Documento" class="form-control" formControlName="documento">
+          <input type="text" [(ngModel)]="documento" placeholder="Documento" class="form-control" maxlength="8" formControlName="documento">
           <div *ngIf="Documento.invalid && (Documento.dirty || Documento.touched)" class="alert-danger">
             <div *ngIf="Documento.errors.required"class="container-error-message" >
-              El DNI es requerido.
+              El campo DNI es requerido.
             </div>
             <div *ngIf="Documento.errors.min" class="container-error-message">
               Tiene que ser mayor a 7 numeros.
@@ -77,16 +86,25 @@
       </div>
 
       <!--Telefono-->
-      <div style="padding-top: 20px;" class="form-group">
+      <div [formGroup]="informeForm" style="padding-top: 20px;" class="form-group">
       
-        <input [(ngModel)]="telefono" placeholder="Telefono" type="number" class="form-control"/>
-        
+        <input [(ngModel)]="telefono" placeholder="Telefono" type="number" class="form-control" formControlName="telefono"/>
+        <div *ngIf="Telefono.invalid && (Telefono.dirty || Telefono.touched)" class="alert-danger">
+          <div *ngIf="Telefono.errors.required"class="container-error-message" >
+            El campo Telefono es requerido.
+          </div>
+        </div>  
     </div>
     
   
-    <div style="padding-top: 10px;" class="form-group">
+    <div [formGroup]="informeForm" style="padding-top: 10px;" class="form-group">
         
-      <input [(ngModel)]="domicilio" placeholder="Domicilio" type="text" class="form-control" />
+      <input [(ngModel)]="domicilio" placeholder="Domicilio" type="text" class="form-control" formControlName="domicilio" />
+      <div *ngIf="Domicilio.invalid && (Domicilio.dirty || Domicilio.touched)" class="alert-danger">
+        <div *ngIf="Domicilio.errors.required"class="container-error-message" >
+          El campo Domicilio es requerido.
+        </div>
+      </div>  
       
     </div>
       
@@ -97,15 +115,30 @@
   <h4 class="text-center">Datos del vehículo</h4>
   <div style="padding-top: 10px;">
       
-    <div class="row">
+    <div [formGroup]="informeForm" class="row">
       <div class="col-md-4">
-        <input [(ngModel)]="dominio" placeholder="Dominio" class="form-control">
+        <input type="text" style="text-transform:uppercase"  [(ngModel)]="dominio" placeholder="Dominio" class="form-control" maxlength="8"  formControlName="dominio">
+        <div *ngIf="Dominio.invalid && (Dominio.dirty || Dominio.touched)" class="alert-danger">
+          <div *ngIf="Dominio.errors.required"class="container-error-message" >
+            El campo Dominio es requerido.
+          </div>
+        </div>  
       </div>
       <div class="col-md-4">
-        <input [(ngModel)]="modelo" placeholder="Marca" class="form-control">
+        <input type="text" [(ngModel)]="modelo" placeholder="Modelo" class="form-control"  maxlength="4" formControlName="modelo" >
+        <div *ngIf="Modelo.invalid && (Modelo.dirty || Modelo.touched)" class="alert-danger">
+          <div *ngIf="Modelo.errors.required"class="container-error-message" >
+            El campo Modelo es requerido.
+          </div>
+        </div>  
       </div>
       <div class="col-md-4">
-        <input [(ngModel)]="marca" placeholder="Modelo" class="form-control">
+        <input  style="text-transform:uppercase" [(ngModel)]="marca" placeholder="Marca" class="form-control" formControlName="marca">
+        <div *ngIf="Marca.invalid && (Marca.dirty || Marca.touched)" class="alert-danger">
+          <div *ngIf="Marca.errors.required" class="container-error-message" >
+            El campo Marca es requerido.
+          </div>
+        </div>  
       </div>
     </div>  
 
@@ -117,12 +150,17 @@
   
   <br>
   <div style="padding-top: 10px;">
-    <div style="margin-left: 0px;" class="row">
+    <div  [formGroup]="informeForm" style="margin-left: 0px;" class="row">
       <div>
         <p style="margin-top: 6px;">Importe a reclamar:</p>
       </div>
       <div style="width: 200px;">
-        <input id="importe" class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }"/>
+        <input id="importe" class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe"/>
+        <div *ngIf="Importe.invalid && (Importe.dirty || Importe.touched)" class="alert-danger">
+          <div *ngIf="Importe.errors.required" class="container-error-message" >
+            El campo Importe es requerido.
+          </div>
+        </div>  
       </div>
     </div>
     
