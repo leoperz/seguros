@@ -53,7 +53,7 @@
                     
                     
                       <li>
-                          <a (click)="mensajes()">
+                          <a style="cursor: pointer;"  routerLink="/mensaje">
                             <img src="../../../assets/imagenes/enviar.png">
                             Enviar mensaje
                           </a>
@@ -70,12 +70,12 @@
   
   </div>
 
-  <div class="col-md-8">
+  <div id="col-der" class="col-md-8">
 
     <div class="accordion" id="accordionExample">
      
      
-      <div class="card">
+      <div  class="card">
         <div class="card-header" id="headingThree">
           <h5 class="mb-0">
             <button (click)="test()" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#informes" aria-expanded="false" aria-controls="collapseThree">
@@ -83,8 +83,8 @@
             </button>
           </h5>
         </div>
-        <div id="informes" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-          <div style="height: 700px;" class="card-body">
+        <div  id="informes" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div  style="height: auto;" class="card-body">
             <app-tabla-informe></app-tabla-informe>
           </div>
         </div>
@@ -109,10 +109,86 @@
         </div>
       </div>
     </div>
-</div>
+    
+    <div *ngIf="usuario.perfil=='adm'" style="padding-top: 40px;" class="row">
+      <div class="col-md-6">
+        <div class="col-md-7 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Sucursal Burzaco</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{burzaco}}</div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Sucursal Guernica</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{guernica}}</div>
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+          <div class="col-md-7 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+              <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Sucursal Longchamps</div>
+                    <div class="row no-gutters align-items-center">
+                      <div class="col-auto">
+                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{long}}</div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+      <div class="col-md-6">
 
-  
+        <div>
+          <div>
+            <div style="display: block">
+              <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+            </div>  
+          </div>
+        </div>
+
+
+      </div>
+    </div>
     
-    
-  
+
+
+
+
+
+    </div>
 </div>
