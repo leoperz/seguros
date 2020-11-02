@@ -9,7 +9,7 @@
     
             <div [formGroup]="informeForm" class="row">
               <div class="col-md-4">
-                <input  id="my-input" class="form-control" type="date" formControlName="fechaAlta">
+                <input id="my-input" [(ngModel)]="test" class="form-control" type="date" formControlName="fechaAlta">
                 <div *ngIf="FechaAlta.invalid && (FechaAlta.dirty || FechaAlta.touched)" class="alert-danger">
                   <div *ngIf="FechaAlta.errors.required"class="container-error-message" >
                     El campo Fecha es requerido.
