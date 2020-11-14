@@ -41,7 +41,10 @@ export class InformeComponent  {
   dominio="";
   modelo="";
   marca="";
+  anio="";
   telefono="";
+  mail="";
+  companiaAseguradora="";
   domicilio="";
   test="";
 
@@ -65,8 +68,11 @@ export class InformeComponent  {
           fechaAlta: new FormControl(null, [Validators.required]),
           compania: new FormControl(null, [Validators.required]),
           telefono: new FormControl(null, [Validators.required]),
+          mail: new FormControl(null, [Validators.required]),
+          companiaAseguradora: new FormControl(null, [Validators.required]),
           domicilio: new FormControl('', [Validators.required]),
           marca:  new FormControl('', [Validators.required]),
+          anio:  new FormControl('', [Validators.required]),
           modelo: new FormControl('', [Validators.required]),
           dominio: new FormControl('', [Validators.required]),
           nombreCompleto: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -160,8 +166,11 @@ export class InformeComponent  {
         dominio:this.dominio,
         modelo:this.modelo,
         marca:this.marca,
+        anio:this.anio,
         importe: (document.getElementById('importe') as HTMLInputElement).value,
         telefono:this.telefono,
+        mail:this.mail,
+        companiaAseguradora:this.companiaAseguradora,
         domicilio:this.domicilio,
         archivos:this.nombresURL,
         usuario:this._stor.getLocalStorage(),
@@ -183,7 +192,10 @@ export class InformeComponent  {
         this.dominio="";
         this.modelo="";
         this.marca="";
+        this.anio="";
         this.telefono="";
+        this.mail="";
+        this.companiaAseguradora="";
         this.domicilio="";
         this.nombresURL=[];
         this.nombresArch =[];
@@ -208,12 +220,16 @@ export class InformeComponent  {
         get Documento() { return this.informeForm.get('documento'); }
         get Apellido() { return this.informeForm.get('apellido'); }
         get Telefono() { return this.informeForm.get('telefono'); }
+        get Mail() { return this.informeForm.get('mail'); }
+        get CompaniaAseguradora() { return this.informeForm.get('companiaAseguradora'); }
         get Dominio() { return this.informeForm.get('dominio'); }
         get Modelo() { return this.informeForm.get('modelo'); }
         get Marca() { return this.informeForm.get('marca'); }
+        get Anio() { return this.informeForm.get('anio'); }
         get Domicilio() { return this.informeForm.get('domicilio'); }
         get FechaAlta() { return this.informeForm.get('fechaAlta'); }
         get Importe() { return this.informeForm.get('importe'); }
+        
 
 
     mayusDominio(value){
