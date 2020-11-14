@@ -244,5 +244,20 @@ export class InformeComponent  {
       this.modelo = value.toUpperCase();
     }
 
+    mayusApellido(value){
+      this.apellido = value.toUpperCase();
+    }
+    mayusNombreCompleto(value){
+      this.nombreCompleto = value.toUpperCase();
+    }
+    mayusDomicilio(value){
+      this.domicilio = value.toUpperCase();
+    }
+    mayusCompania(value){
+      this.compania = value.toUpperCase();
+    }
+    mayusCompaniaAseguradora(value){
+      this.companiaAseguradora = value.toUpperCase();
+    }
     
  }

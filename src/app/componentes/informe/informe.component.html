@@ -30,7 +30,7 @@
  
     <div [formGroup]="informeForm" style="padding-top: 20px;" class="form-group">
      
-      <input [(ngModel)]="compania" placeholder="Compañia del tercero" type="text" class="form-control" formControlName="compania" />
+      <input (keyup)="mayusCompania($event.target.value)" [(ngModel)]="compania" placeholder="Compañia del tercero" type="text" class="form-control" formControlName="compania" />
       <div *ngIf="Compania.invalid && (Compania.dirty || Compania.touched)" class="alert-danger">
         <div *ngIf="Compania.errors.required"class="container-error-message" >
           El campo Compania es requerido.
@@ -45,7 +45,7 @@
   <div style="padding-top: 10px">
       <div [formGroup]="informeForm" class="row"  >
         <div class="col-md-4" >
-          <input [(ngModel)]="nombreCompleto" placeholder="Nombre completo" class="form-control" formControlName="nombreCompleto">
+          <input (keyup)="mayusNombreCompleto($event.target.value)" [(ngModel)]="nombreCompleto" placeholder="Nombre completo" class="form-control" formControlName="nombreCompleto">
 
           <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert-danger">
             <div *ngIf="nombre.errors.required"class="container-error-message" >
@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <input [(ngModel)]="apellido" placeholder="Apellido" class="form-control" formControlName="apellido" >
+          <input  (keyup)="mayusApellido($event.target.value)"[(ngModel)]="apellido" placeholder="Apellido" class="form-control" formControlName="apellido" >
           <div *ngIf="Apellido.invalid && (Apellido.dirty || Apellido.touched)" class="alert-danger">
             <div *ngIf="Apellido.errors.required"class="container-error-message" >
               El campo apellido es requerido.
@@ -101,7 +101,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <input type="text" [(ngModel)]="companiaAseguradora" placeholder="Compañia Aseguradora" class="form-control" maxlength="8" formControlName="companiaAseguradora">
+        <input (keyup)="mayusCompaniaAseguradora($event.target.value)" type="text" [(ngModel)]="companiaAseguradora" placeholder="Compañia Aseguradora" class="form-control" formControlName="companiaAseguradora">
         <div *ngIf="CompaniaAseguradora.invalid && (CompaniaAseguradora.dirty || CompaniaAseguradora.touched)" class="alert-danger">
           <div *ngIf="CompaniaAseguradora.errors.required"class="container-error-message" >
             El campo Compañia aseguradora es requerido.
@@ -114,7 +114,7 @@
   
     <div [formGroup]="informeForm" style="padding-top: 10px;" class="form-group">
         
-      <input [(ngModel)]="domicilio" placeholder="Domicilio" type="text" class="form-control" formControlName="domicilio" />
+      <input (keyup)="mayusDomicilio($event.target.value)" [(ngModel)]="domicilio" placeholder="Domicilio" type="text" class="form-control" formControlName="domicilio" />
       <div *ngIf="Domicilio.invalid && (Domicilio.dirty || Domicilio.touched)" class="alert-danger">
         <div *ngIf="Domicilio.errors.required"class="container-error-message" >
           El campo Domicilio es requerido.
