@@ -213,15 +213,15 @@
   <div class="row">
     <div class="col-md-3">
       <label class="custom-file">
-    
-        <button class="btn btn-primary" data-toggle="modal" data-target="#cargaDoc" type="button"><i class="fas fa-file-upload"></i> cargar documentos</button>
-      
+       <button class="btn btn-primary" data-toggle="modal" data-target="#cargaDoc" type="button"><i class="fas fa-file-upload"></i> cargar documentos</button>
     </label>
     </div>
     <div class="col-md-3">
       <button (click)="altaSiniestro()" type="submit" class="btn btn-dark" [disabled]="!informeForm.valid" ><i class="fas fa-arrow-right"></i>Enviar formulario</button>
     </div>
-    
+    <div class="col-md-3">
+    <i class="fa fa-question-circle fa-2x" type="button" data-toggle="modal" data-target="#exampleModal" style="color:#708be4; width:100; height:100;"></i>
+  </div>
   </div>
 
   
@@ -231,12 +231,7 @@
 </fieldset>
                   
 
-
-
-
-
 </div>
-
 <button id="btnMensajeFormulario" hidden=true type="button" data-toggle="modal" data-target="#mensajeFormulario"></button>
 <div class="modal fade" id="mensajeFormulario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -257,6 +252,30 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Ayuda -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cargar los siguientes Documentos: </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><i class="fa fa-check-circle"></i> Fotocopia de DNI</p>
+        <p><i class="fa fa-check-circle"></i> Fotos del auto</p>
+        <p><i class="fa fa-check-circle"></i> Registro de conducir</p>
+        <p><i class="fa fa-check-circle"></i> Reclamo Extrajudicial</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal"> Entendido!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -293,7 +312,7 @@
 
     <div class="modal-footer">
       <button (click)="cancelar()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <button data-dismiss="modal" (click)="getUrls()" type="button" class="btn btn-primary">Guardar archivos</button>
+      <button data-dismiss="modal" (click)="getUrls()" type="button" class="btn btn-primary">Guardar archivos</button>      
     </div>
   </div>
   </div>
