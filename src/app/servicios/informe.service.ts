@@ -41,7 +41,7 @@ export class InformeService {
 
   updateEstado2(value:string, uid:string){
     this._firestore.collection('informe').doc(uid).update({
-      estado:"Cerrado",
+      estado:"Resuelto",
       indemnizacion:value
     });
   }

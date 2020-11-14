@@ -22,13 +22,13 @@ export class DashboardComponent implements OnInit {
     }
   };
 
-  public barChartLabels: Label[] = ['Pendiente', 'En tramite', 'Resuelto', 'Cerrado'];
+  public barChartLabels: Label[] = ['Pendiente', 'En tramite', 'Resuelto', 'Cerrado','Rechazado'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartData: ChartDataSets[] = [
-    { data: [0, 0, 0, 0], label: 'Burzaco' },
-    { data: [0, 0, 0, 0], label: 'Guernica' },
-    { data: [0, 0, 0, 0], label: 'Longchamps' }
+    { data: [0, 0, 0, 0, 0], label: 'Burzaco' },
+    { data: [0, 0, 0, 0, 0], label: 'Guernica' },
+    { data: [0, 0, 0, 0, 0], label: 'Longchamps' }
   ];
 
   usuario:any={};
@@ -43,14 +43,17 @@ export class DashboardComponent implements OnInit {
   cerradob:number;
   tramiteb:number;
   resueltob:number;
+  rechazadob:number;
   pendienteg:number;
   cerradog:number;
   tramiteg:number;
   resueltog:number;
+  rechazadog:number;
   pendientel:number;
   cerradol:number;
   tramitel:number;
   resueltol:number;
+  rechazadol:number;
  
 
   constructor(private _storage : StorageService, private _info : InformeService ) { }
@@ -83,18 +86,20 @@ export class DashboardComponent implements OnInit {
       this.tramiteb=0;
       this.resueltob=0;
       this.cerradob=0;
+      this.rechazadob=0;
       
       for(let  i of resp){
         if (i.estado == "Pendiente")this.pendienteb+=1;
         if(i.estado == "En tramite")this.tramiteb+=1;
         if(i.estado == "Resuelto")this.resueltob+=1;
         if(i.estado == "Cerrado")this.cerradob+=1;
+        if(i.estado == "Rechazado")this.rechazadob+=1;
       }
 
       this.barChartData = [
         { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob], label: 'Burzaco' },
-        { data: [0, 0, 0, 0], label: 'Guernica' },
-        { data: [0, 0, 0, 0], label: 'Longchamps' }
+        { data: [0, 0, 0, 0, 0], label: 'Guernica' },
+        { data: [0, 0, 0, 0, 0], label: 'Longchamps' }
       ];
 
     });
@@ -104,18 +109,20 @@ export class DashboardComponent implements OnInit {
       this.tramiteg=0;
       this.resueltog=0;
       this.cerradog=0;
+      this.rechazadog=0;
       
       for(let  i of resp){
         if (i.estado == "Pendiente")this.pendienteg+=1;
         if(i.estado == "En tramite")this.tramiteg+=1;
         if(i.estado == "Resuelto")this.resueltog+=1;
         if(i.estado == "Cerrado")this.cerradog+=1;
+        if(i.estado == "Rechazado")this.rechazadog+=1;
       }
 
       this.barChartData = [
-        { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob], label: 'Burzaco' },
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog], label: 'Guernica' },
-        { data: [0, 0, 0, 0], label: 'Longchamps' }
+        { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob, this.rechazadob], label: 'Burzaco' },
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guernica' },
+        { data: [0, 0, 0, ,0, 0], label: 'Longchamps' }
       ];
 
     });
@@ -127,18 +134,20 @@ export class DashboardComponent implements OnInit {
       this.tramitel=0;
       this.resueltol=0;
       this.cerradol=0;
+      this.rechazadol=0;
       
       for(let  i of resp){
         if (i.estado == "Pendiente")this.pendientel+=1;
         if(i.estado == "En tramite")this.tramitel+=1;
         if(i.estado == "Resuelto")this.resueltol+=1;
         if(i.estado == "Cerrado")this.cerradol+=1;
+        if(i.estado == "Rechazado")this.rechazadol+=1;
       }
 
       this.barChartData = [
-        { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob], label: 'Burzaco' },
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog], label: 'Guernica' },
-        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol], label: 'Longchamps' }
+        { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob, this.rechazadob], label: 'Burzaco' },
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guernica' },
+        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Longchamps' }
       ];
 
     });
