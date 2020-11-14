@@ -47,6 +47,7 @@ export class InformeComponent  {
   companiaAseguradora="";
   domicilio="";
   test="";
+  ancho =0;
 
   referencia:any;
 
@@ -110,6 +111,7 @@ export class InformeComponent  {
     //Cambia el porcentaje
     tarea.percentageChanges().subscribe((porcentaje) => {
       this.porcentaje = Math.round(porcentaje);
+      this.ancho = Math.round(porcentaje);
       if (this.porcentaje == 100) {
         this.finalizado = true;
         this.nombresArch.push(this.nombreArchivo);
@@ -199,6 +201,7 @@ export class InformeComponent  {
         this.domicilio="";
         this.nombresURL=[];
         this.nombresArch =[];
+        this.ancho=0;
         document.getElementById('btnMensajeFormulario').click();
       
       let variable ={

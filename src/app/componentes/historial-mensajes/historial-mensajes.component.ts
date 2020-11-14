@@ -38,4 +38,14 @@ export class HistorialMensajesComponent implements OnInit {
   
   }
 
+  borrarMensaje(i:any){
+    this._mens.borrarMensaje(i.uid).then();
+  }
+
+
+  borrarUsuarioMensaje(i:any){
+    console.log(i);
+    this._mens.borrarUsuarioMensaje(i.uid).then();
+  }
+
 }

@@ -2,9 +2,16 @@
 
 <div style="padding-top: 20px;" class="container">
 
+  <div *ngIf="mensajes.length == 0">
+    <div style="text-align: center;" class="alert alert-warning" role="alert">
+      <h2><strong>No tiene mensajes.</strong></h2>
+    </div>
+  </div>
+
 
 <div *ngFor="let item of mensajes ; index as i" class="accordion" id="accordionExample">
   
+
 
   <div *ngIf="usuario.perfil == 'adm'" class="card">
     <div class="card-header" id="headingThree">
@@ -12,10 +19,11 @@
         <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]=" '#informes'+i" aria-expanded="false" aria-controls="collapseThree">
           <strong>Asunto: </strong>{{item.asunto}} <strong>Fecha: </strong>{{item.fecha}}
         </button>
+        <i (click)="borrarMensaje(item)"  style="margin-left: 30px; cursor: pointer;"   class="fas fa-trash-alt"></i>
       </h5>
     </div>
     <div [id]="'informes'+i" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div style="height: 700px;" class="card-body">
+      <div style="height: auto;" class="card-body">
         {{item.cuerpo}}
       </div>
     </div>
@@ -32,10 +40,11 @@
         <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]=" '#informes'+i" aria-expanded="false" aria-controls="collapseThree">
           <strong>Asunto: </strong>{{item.mensaje.asunto}} <strong>Fecha: </strong>{{item.mensaje.fecha}}
         </button>
+        <i (click)="borrarUsuarioMensaje(item)"  style="margin-left: 30px; cursor: pointer;"   class="fas fa-trash-alt"></i>
       </h5>
     </div>
     <div [id]="'informes'+i" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div style="height: 700px;" class="card-body">
+      <div style="height: auto;" class="card-body">
         {{item.mensaje.cuerpo}}
       </div>
     </div>

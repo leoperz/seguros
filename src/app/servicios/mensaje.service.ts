@@ -6,6 +6,7 @@ import { UsuarioService } from './usuario.service';
   providedIn: 'root'
 })
 export class MensajeService {
+  
 
   constructor(private _fire: AngularFirestore, private  _usuario:UsuarioService) { }
 
@@ -61,6 +62,14 @@ export class MensajeService {
     return this._fire.collection('informe', resp=>resp.where('usuario.sucursal','==',sucursal )).valueChanges();
   }
 
+
+  borrarMensaje(uid:string) {
+    return this._fire.collection('mensajes').doc(uid).delete();
+  }
+
+  borrarUsuarioMensaje(uid:string) {
+    return this._fire.collection('usuarioMensaje').doc(uid).delete();
+  }
 
 
 }
