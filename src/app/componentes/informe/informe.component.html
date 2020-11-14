@@ -37,13 +37,11 @@
         </div>
       </div> 
     </div>
-
+    <hr>
   <div>
     <h4 class="text-center">Datos del reclamante</h4>
   </div>
-  <hr>
-  
- 
+   
   <div style="padding-top: 10px">
       <div [formGroup]="informeForm" class="row"  >
         <div class="col-md-4" >
@@ -82,15 +80,35 @@
         </div>
       </div>
 
-      <!--Telefono-->
-      <div [formGroup]="informeForm" style="padding-top: 20px;" class="form-group">
-      
+    <!--Telefono-->
+    <div [formGroup]="informeForm" style="padding-top: 20px;" class="form-group">
+
+    <div [formGroup]="informeForm" class="row"  >
+      <div class="col-md-4" >
         <input [(ngModel)]="telefono" placeholder="Telefono" type="number" class="form-control" formControlName="telefono"/>
         <div *ngIf="Telefono.invalid && (Telefono.dirty || Telefono.touched)" class="alert-danger">
           <div *ngIf="Telefono.errors.required"class="container-error-message" >
             El campo Telefono es requerido.
           </div>
         </div>  
+      </div>
+      <div class="col-md-4">
+        <input [(ngModel)]="mail" placeholder="Mail" class="form-control" formControlName="mail" >
+        <div *ngIf="Mail.invalid && (Mail.dirty || Mail.touched)" class="alert-danger">
+          <div *ngIf="Mail.errors.required"class="container-error-message" >
+            El campo Mail es requerido.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <input type="text" [(ngModel)]="companiaAseguradora" placeholder="Compañia Aseguradora" class="form-control" maxlength="8" formControlName="companiaAseguradora">
+        <div *ngIf="CompaniaAseguradora.invalid && (CompaniaAseguradora.dirty || CompaniaAseguradora.touched)" class="alert-danger">
+          <div *ngIf="CompaniaAseguradora.errors.required"class="container-error-message" >
+            El campo Compañia aseguradora es requerido.
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
     
   
@@ -110,7 +128,7 @@
   <hr>
   <br>
   <h4 class="text-center">Datos del vehículo</h4>
-  <div style="padding-top: 10px;">
+  <div style="padding-top: 20px;">
       
     <div [formGroup]="informeForm" class="row">
       <div class="col-md-4">
@@ -136,6 +154,18 @@
             El campo Modelo es requerido.
           </div>
         </div>
+      </div>
+
+      <div [formGroup]="informeForm" style="padding-top: 20px;" class="form-group">
+        <div class="col-md-10">
+          <input [(ngModel)]="anio" placeholder="Año" type="number" class="form-control" formControlName="anio"/>
+          <div *ngIf="Anio.invalid && (Anio.dirty || Anio.touched)" class="alert-danger">
+            <div *ngIf="Anio.errors.required"class="container-error-message" >
+              El campo Año es requerido.
+            </div>
+          </div>  
+        </div>  
+        
       </div>
     </div>  
 
