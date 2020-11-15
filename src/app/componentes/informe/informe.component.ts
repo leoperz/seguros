@@ -5,7 +5,7 @@ import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import * as moment from 'moment';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
-
+import * as  jszip from 'jszip'; 
 
 
 
@@ -25,7 +25,7 @@ import { NotificacionService } from 'src/app/servicios/notificacion.service';
 
 export class InformeComponent  {
   
-  
+  zipp = new jszip();
   public mensajeArchivo = 'No hay un archivo seleccionado';
   public datosFormulario = new FormData();
   public nombreArchivo = '';
@@ -48,6 +48,8 @@ export class InformeComponent  {
   domicilio="";
   test="";
   ancho =0;
+  list:any[]=[]; 
+  
 
   referencia:any;
 
@@ -89,6 +91,9 @@ export class InformeComponent  {
 
 
   public cambioArchivo(event) {
+  
+    this.ancho=100;
+
     if (event.target.files.length > 0) {
       for (let i = 0; i < event.target.files.length; i++) {
         
@@ -102,14 +107,40 @@ export class InformeComponent  {
     this.subirArchivo();
   }
 
+
+
+
+
   public subirArchivo() {
+    
+    
+    
     let archivo = this.datosFormulario.get('archivo');
     
+    //probando el .zip
     
-    let tarea = this._fireStorage.tareaCloudStorage(this.nombreArchivo, archivo);
+    this.list.push({
+      nombre:this.nombreArchivo,
+      arch: archivo
+    });
+
+ 
+
+    
+   
+    
+    
+    
+
+
+
+    //probando el .zip
+    
+    
+    //let tarea = this._fireStorage.tareaCloudStorage(this.nombreArchivo, archivo);
     
     //Cambia el porcentaje
-    tarea.percentageChanges().subscribe((porcentaje) => {
+    /*tarea.percentageChanges().subscribe((porcentaje) => {
       this.porcentaje = Math.round(porcentaje);
       this.ancho = Math.round(porcentaje);
       if (this.porcentaje == 100) {
@@ -117,27 +148,41 @@ export class InformeComponent  {
         this.nombresArch.push(this.nombreArchivo);
       }
 
-    });
-
+    });*/
     
-   }
+
+    setTimeout(() => {
+      this.ancho=0;
+    }, 3000);
+}
 
   
    getUrls(){
-     
-     this.nombresURL=[];
-     for(let i of this.nombresArch){
-      this._fireStorage.referenciaCloudStorage(i).getDownloadURL().subscribe(resp=>{
-         
-      
-          
+
+    for(let i of this.list){
+      this.zipp.file(i.nombre,i.arch);
+    }
+    
+    let nombre = "documentos"+moment().format('hh-mm-ss')+".zip";
+    this.nombresArch.push(nombre);
+    
+    this.zipp.generateAsync({type:"blob"}).then((data)=>{
+    let tarea = this._fireStorage.tareaCloudStorage(nombre, data);
+    tarea.percentageChanges().subscribe(data=>{
+      if(Math.round(data)==100){
+        this.nombresURL=[];
+        for(let i of this.nombresArch){
+          this._fireStorage.referenciaCloudStorage(i).getDownloadURL().subscribe(resp=>{
           this.nombresURL.push(resp);
-        
-        
-      });
-     }
-    console.log(this.nombresURL);
-   }
+            });
+         }
+
+      }
+    });
+  
+    });
+    
+  }
     
 
    explorador(){
@@ -145,7 +190,9 @@ export class InformeComponent  {
    }
 
    cancelar(){
+     this.ancho=0;
      this.nombresURL=[];
+     this.list=[];
    }
     
     
