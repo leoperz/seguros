@@ -33,6 +33,7 @@
       <td *ngIf="item.estado == 'En tramite' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'Resuelto' "><span  class="badge badge-pill badge-warning">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'Cerrado' "><span  class="badge badge-pill badge-success  ">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Rechazado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
       <td> {{item.fechaAlta}}</td>
       <td> {{item.usuario.sucursal}}</td>
       <td>{{item.compania}}</td>
@@ -51,6 +52,7 @@
           <option value="" disabled selected>---Selecciona---</option>
           <option value="En tramite">En tramite</option>
           <option value="Resuelto">Resuelto</option>
+          <option value="Rechazado">Rechazado</option>
           </select>
       </td>
       <td *ngIf="usuario.perfil == 'adm'"><i style="cursor: pointer;" (click)="borrarRegistro(item.uid)" class="fas fa-trash"></i></td>
