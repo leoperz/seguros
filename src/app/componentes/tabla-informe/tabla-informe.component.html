@@ -6,7 +6,9 @@
 <label>Items por página:  <select (change)="cambiarItems($event.target.value)">
   <option value="5">5</option>
   <option value="10">10</option>
-  <option value="15">15</option>
+  <option value="20">20</option>
+  <option value="30">30</option>
+  <option value="50">50</option>
 </select> </label>
 
 <table class="table table-bordered table-dark table-responsive">
@@ -109,7 +111,7 @@
           <div class="col-md-3">
             <label>Nombre:</label>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label>{{reclamante.nombreCompleto}} {{reclamante.apellido}}</label>
           </div>
         </div>
@@ -118,7 +120,7 @@
           <div class="col-md-3">
             <label>Documento:</label>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label>{{reclamante.documento}}</label>
           </div>
         </div>
@@ -127,8 +129,26 @@
           <div class="col-md-3">
             <label>Telefono:</label>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label>{{reclamante.telefono}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Mail:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.mail}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Compañia:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.companiaAseguradora}}</label>
           </div>
         </div>
         <hr>
@@ -136,7 +156,7 @@
           <div class="col-md-3">
             <label>Domicilio:</label>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <label>{{reclamante.domicilio}}</label>
           </div>
         </div>
@@ -186,6 +206,15 @@
           </div>
           <div class="col-md-3">
             <label>{{reclamante.modelo}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Año:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.anio}}</label>
           </div>
         </div>
 
