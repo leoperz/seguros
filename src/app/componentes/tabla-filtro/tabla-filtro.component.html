@@ -1,0 +1,344 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <input class="form-control" type="date" placeholder="Desde" [(ngModel)]="desde">
+    </div>
+    <div class="col-md-3">
+      <input class="form-control" type="date" placeholder="Hasta" [(ngModel)]="hasta" [min]="desde">
+    </div>
+    <div class="col-md-3">
+      <button disabled *ngIf="desde=='' || hasta == ''" (click)="buscar()" class="btn btn-primary" type="button">Buscar</button>
+      <button  *ngIf="desde!='' && hasta != ''" (click)="buscar()" class="btn btn-primary" type="button">Buscar</button>
+    </div>
+  </div>
+  
+</div>
+<div class="container main"  style="padding-top: 45px;">
+
+  <div style="text-align: right;">
+    <button (click)="exportar()" class="btn btn-success">Exportar <i class="far fa-file-pdf"></i><i style="padding-left: 5px;" class="fas fa-arrow-down"></i></button>
+  </div>
+  
+  <br>
+  
+  <input type="text" [(ngModel)]="search" class="form-control" placeholder="Ingrese su busqueda...">
+<br>
+<label>Items por página:  <select (change)="cambiarItems($event.target.value)">
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="20">20</option>
+  <option value="30">30</option>
+  <option value="50">50</option>
+</select> </label>
+
+<table class="table table-bordered table-dark table-responsive">
+  <thead class="thead-dark text-center">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ESTADO</th>
+      <th scope="col">FECHA DE ALTA</th>
+      <th scope="col">FECHA DE CIERRE</th>
+      <th scope="col">SUCURSAL</th>
+      <th scope="col">COMPAÑIA DE TERCEROS</th>
+      <th scope="col">DATOS DEL RECLAMANTE</th>
+      <th scope="col">DATOS DEL VEHICULO</th>
+      <th scope="col">ADJUNTOS</th>
+      <th scope="col">IMPORTE</th>
+      <th scope="col">MONTO DE INDEMNIZACION</th>
+      <th scope="col">OBSERVACIONES</th>
+      <th scope="col">ACCION</th>
+      <th *ngIf="usuario.perfil == 'adm'" scope="col">BORRAR REGISTRO</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+    <tr *ngFor="let item of lista | filter:search |  paginate: {itemsPerPage:page, currentPage: p } ; index as i">
+      <th scope="row">{{i+1}}</th>
+      <td *ngIf="item.estado == 'Pendiente' "><span  class="badge badge-pill badge-danger">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'En tramite' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Resuelto' "><span  class="badge badge-pill badge-warning">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Cerrado' "><span  class="badge badge-pill badge-success  ">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Rechazado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Observado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
+      <td> {{item.fechaAlta}}</td>
+      <td>{{item.fechaCierre}}</td>
+      <td> {{item.usuario.sucursal}}</td>
+      <td>{{item.compania}}</td>
+      <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
+      <td > <i (click)="verVehiculo(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
+      <td><i *ngIf="item.archivos.length > 0" (click)="test(item.archivos)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
+      <td>{{item.importe}}</td>
+      <td>{{item.indemnizacion}}</td>
+      <td *ngIf="item.notas.length>0"><span (click)="verNotas(item.notas)" style="font-size: 28px; cursor: pointer;"><i class="far fa-clipboard"></i></span></td>
+      <td *ngIf="item.notas.length==0"></td>
+      <td>
+        <select *ngIf="usuario.perfil == 'operador' || usuario.perfil == 'adm' " (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
+        <option value="" disabled selected>---Selecciona---</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="Cerrado">Cerrado</option>
+        </select>
+        <select *ngIf="usuario.perfil == 'abogado'" (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
+          <option value="" disabled selected>---Selecciona---</option>
+          <option value="En tramite">En tramite</option>
+          <option value="Resuelto">Resuelto</option>
+          <option value="Rechazado">Rechazado</option>
+          <option value="Observado">Observado</option>
+          </select>
+      </td>
+      <td *ngIf="usuario.perfil == 'adm'"><i style="cursor: pointer;" (click)="borrarRegistro(item.uid)" class="fas fa-trash"></i></td>
+     
+    </tr>
+   
+  </tbody>
+  
+</table>
+<pagination-controls 
+                      (pageChange)="p=$event" 
+                      previousLabel="Anterior" 
+                      nextLabel="Siguiente" 
+                      responsive= "true">
+                      
+</pagination-controls>
+</div>
+
+
+
+<div id="excel">
+<div style="text-align: center;"  id="htmlData">
+  <h2>Lista de cerrados desde:{{desde}} hasta: {{hasta}} </h2>
+  <table class="table table-bordered mt-4">
+    <tr class="table-primary">
+      <th>SUCURSAL</th>
+      <th>COMPAÑIA DE TERCEROS</th>
+      <th>DATOS DEL RECLAMANTE</th>
+      <th>DATOS DEL VEHICULO</th>
+      <th>MONTO DE INDEMNIZACION</th>
+    </tr>
+    <tr *ngFor="let item of lista">
+      <th *ngIf="item.estado == 'Cerrado'">{{item.usuario.sucursal}}</th>
+      <td *ngIf="item.estado == 'Cerrado'">{{item.compania}}</td>
+      <td *ngIf="item.estado == 'Cerrado'">{{item.nombreCompleto}} {{item.apellido}}</td>
+      <td *ngIf="item.estado == 'Cerrado'">{{item.dominio}}</td>
+      <td *ngIf="item.estado == 'Cerrado'">{{item.indemnizacion}}</td>
+    </tr>
+  </table>
+</div>
+</div>
+
+
+
+
+<button hidden=true id="btnIndemnizacion" type="button" data-toggle="modal" data-target="#indemnizacion"></button>
+
+<div class="modal fade" id="indemnizacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        <div class="row">
+          <div class="col-md-2">
+            <label style="margin-top: 6px;">Importe:</label>
+          </div>
+          <div class="col-md-6">
+            <input id="importe" class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button data-dismiss="modal" (click)="guardarIndemnizacion()" type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<button hidden=true id="btnReclamante" type="button" data-toggle="modal" data-target="#reclamante"></button>
+
+
+<div class="modal fade" id="reclamante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label>Nombre:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.nombreCompleto}} {{reclamante.apellido}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Documento:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.documento}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Telefono:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.telefono}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Mail:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.mail}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Compañia:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.companiaAseguradora}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Domicilio:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.domicilio}}</label>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<button hidden=true id="btnVehiculo" type="button" data-toggle="modal" data-target="#vehiculo"></button>
+
+
+<div class="modal fade" id="vehiculo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label>Dominio:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.dominio}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Marca:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.marca}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Modelo:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.modelo}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Año:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.anio}}</label>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<button hidden=true id="btnObservacion" type="button" data-toggle="modal" data-target="#observacion"></button>
+
+<div class="modal fade" id="observacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        <div class="row">
+          <div class="col-md-2">
+            <label style="margin-top: 6px;">Nota:</label>
+          </div>
+          <div class="col-md-10">
+            <textarea [(ngModel)]="obser" class="form-control" rows="4"></textarea>
+          </div>
+          
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button data-dismiss="modal"  (click)="guardarNota()" type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<button hidden=true id="btnNotas" type="button" data-toggle="modal" data-target="#notas"></button>
+
+<div class="modal fade" id="notas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     <div class="modal-body">
+        <div *ngFor="let item of notas ; index as i"  class="accordion" id="accordionExample">
+         
+          <div  class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]=" '#informes'+i" aria-expanded="false" aria-controls="collapseThree">
+                  <strong>Fecha: </strong>{{item.fecha}}
+                </button>
+                
+              </h5>
+            </div>
+            <div [id]="'informes'+i" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div style="height: auto;" class="card-body">
+                {{item.nota}}
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <hr>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>

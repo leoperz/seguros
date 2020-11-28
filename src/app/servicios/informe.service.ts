@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,9 +32,13 @@ export class InformeService {
     })
   }
 
+  buscarInforme(desde:any, hasta:any){
+    return this._firestore.collection('informe', resp=>resp.orderBy('fechaAlta').startAt(desde).endAt(hasta)).valueChanges();
+  }
+
 
   updateEstado(value:string, uid:string){
-    this._firestore.collection('informe').doc(uid).update({
+    return this._firestore.collection('informe').doc(uid).update({
       estado:value
     });
   }
@@ -55,7 +60,30 @@ export class InformeService {
   }
 
 
-
-
-
+  
+guardarNotas(uid:string, payload:any){
+  this._firestore.collection('informe').doc(uid).update({
+    notas:payload
+  });
 }
+
+
+  getNotas(uid:string){
+    let array=[];
+    this._firestore.collection('informe').doc(uid).valueChanges().subscribe((data:any)=>{
+      for(let i of data){
+        array.push(i);
+      }
+
+    });
+    return array;
+  }
+
+    
+    
+  }
+
+
+
+
+

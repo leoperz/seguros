@@ -1,0 +1,45 @@
+<div class="container">
+  <table class="table table-bordered table-dark table-responsive">
+    <thead class="thead-dark text-center">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">MODIFICAR</th>
+        <th scope="col">ESTADO</th>
+        <th scope="col">FECHA DE ALTA</th>
+        <th scope="col">SUCURSAL</th>
+        <th scope="col">COMPAÑIA DE TERCEROS</th>
+        <th scope="col">DATOS DEL RECLAMANTE</th>
+        <th scope="col">DATOS DEL VEHICULO</th>
+        <th scope="col">ADJUNTOS</th>
+        <th scope="col">IMPORTE</th>
+        <th scope="col">MONTO DE INDEMNIZACION</th>
+   
+        
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let item of informes | filter:search |  paginate: {itemsPerPage:page, currentPage: p } ; index as i">
+        <th scope="row">{{i+1}}</th>
+        <th><i (click)="modificarItem(item)" style="cursor: pointer;" class="fas fa-edit"></i></th>
+        <td *ngIf="item.estado == 'Pendiente' "><span  class="badge badge-pill badge-danger">{{item.estado}}</span></td>
+        <td *ngIf="item.estado == 'En tramite' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
+        <td *ngIf="item.estado == 'Resuelto' "><span  class="badge badge-pill badge-warning">{{item.estado}}</span></td>
+        <td *ngIf="item.estado == 'Cerrado' "><span  class="badge badge-pill badge-success  ">{{item.estado}}</span></td>
+        <td *ngIf="item.estado == 'Rechazado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
+        <td> {{item.fechaAlta}}</td>
+        <td> {{item.usuario.sucursal}}</td>
+        <td>{{item.compania}}</td>
+        <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
+        <td > <i (click)="verVehiculo(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
+        <td><i *ngIf="item.archivos.length > 0" (click)="test(item.archivos)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
+        <td>{{item.importe}}</td>
+        <td>{{item.indemnizacion}}</td>
+     
+        
+       
+      </tr>
+     
+    </tbody>
+    
+  </table>
+</div>

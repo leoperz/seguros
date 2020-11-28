@@ -49,6 +49,7 @@ export class InformeComponent  {
   test="";
   ancho =0;
   list:any[]=[]; 
+  cargando=false;
   
 
   referencia:any;
@@ -158,7 +159,8 @@ export class InformeComponent  {
 
   
    getUrls(){
-
+    if(this.list.length > 0){
+      this.cargando=true;
     for(let i of this.list){
       this.zipp.file(i.nombre,i.arch);
     }
@@ -171,16 +173,25 @@ export class InformeComponent  {
     tarea.percentageChanges().subscribe(data=>{
       if(Math.round(data)==100){
         this.nombresURL=[];
-        for(let i of this.nombresArch){
-          this._fireStorage.referenciaCloudStorage(i).getDownloadURL().subscribe(resp=>{
-          this.nombresURL.push(resp);
-            });
-         }
-
+        setTimeout(() => {
+          for(let i of this.nombresArch){
+            
+            this._fireStorage.referenciaCloudStorage(i).getDownloadURL().subscribe(resp=>{
+            this.nombresURL.push(resp);
+              });
+           }
+           
+           document.getElementById('cerrarModal').click();
+           this.cargando=false;
+        }, 3000);
+      
+       
       }
     });
   
     });
+    }
+    
     
   }
     
@@ -208,6 +219,7 @@ export class InformeComponent  {
       let payload={
         
         fechaAlta : f[2]+"/"+f[1]+"/"+f[0],
+        fechaCierre:"",
         compania: this.compania,
         nombreCompleto:this.nombreCompleto,
         apellido:this.apellido,
@@ -224,7 +236,8 @@ export class InformeComponent  {
         archivos:this.nombresURL,
         usuario:this._stor.getLocalStorage(),
         indemnizacion:"",
-        estado:"Pendiente"
+        estado:"Pendiente",
+        notas:[]
       }
 
 

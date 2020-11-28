@@ -12,6 +12,8 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { TablaInformeComponent } from './componentes/tabla-informe/tabla-informe.component';
 import {MensajeComponent} from './componentes/mensaje/mensaje.component'
 import { GuardService } from './servicios/guard.service';
+import { TablaFiltroComponent } from './componentes/tabla-filtro/tabla-filtro.component';
+import { ModificarInformeComponent } from './componentes/modificar-informe/modificar-informe.component';
 
 const routes: Routes = [
   {path:'inicio', component:InicioComponent},
@@ -19,12 +21,14 @@ const routes: Routes = [
   {path:'dashboard', component:DashboardComponent, canActivate:[GuardService]},
   {path:'agenda', component:AgendaComponent, canActivate:[GuardService]},
   {path:'informe', component:InformeComponent, canActivate:[GuardService]},
-  {path:'verinformes', component:TablaInformeComponent, canActivate:[GuardService]},
+  //{path:'verinformes', component:TablaInformeComponent, canActivate:[GuardService]},
+  {path:'verinformes', component:TablaFiltroComponent, canActivate:[GuardService]},
   {path:'repass', component:RepasswordComponent},
   {path:'historial', component:HistorialMensajesComponent, canActivate:[GuardService]},
   {path:'operadores', component:OperadoresComponent, canActivate:[GuardService]},
   {path:'reportes', component:ReportesComponent, canActivate:[GuardService]},
   {path:'mensaje', component:MensajeComponent, canActivate:[GuardService]},
+  {path:'modificarinformes', component:ModificarInformeComponent, canActivate:[GuardService]},
   {path:'', pathMatch:'full', redirectTo:'inicio'}
 ];
 

@@ -25,6 +25,9 @@ import { OperadoresComponent } from './componentes/operadores/operadores.compone
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { ChartsModule } from 'ng2-charts';
+import { TablaFiltroComponent } from './componentes/tabla-filtro/tabla-filtro.component';
+import { ModificarInformeComponent } from './componentes/modificar-informe/modificar-informe.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { ChartsModule } from 'ng2-charts';
     HistorialMensajesComponent,
     OperadoresComponent,
     ReportesComponent,
-    
+    TablaFiltroComponent,
+    ModificarInformeComponent  
   ],
   imports: [
     BrowserModule,

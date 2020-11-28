@@ -85,7 +85,7 @@ export class TablaInformeComponent implements OnInit {
 
 
   test(archivos:[]){
-    console.log("estos son los archivos-->",archivos);
+    console.log("estos son los ar",archivos);
     for(let i of archivos){
     let a = document.createElement('a');
     a.href = i;

@@ -313,8 +313,15 @@
 
 
     <div class="modal-footer">
+      <button id="cerrarModal" hidden type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       <button (click)="cancelar()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-      <button data-dismiss="modal" (click)="getUrls()" type="button" class="btn btn-primary">Guardar archivos</button>      
+      <button *ngIf="cargando==false" (click)="getUrls()" type="button" class="btn btn-primary">Guardar archivos</button>
+        
+      <button *ngIf="cargando==true" class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Cargando...
+      </button>
+   
     </div>
   </div>
   </div>
