@@ -175,12 +175,13 @@
       
     <hr>
 
-
+    <h2 class="text-center">Importe</h2>
     <div style="padding-top: 10px;" class="form-group">
-                   
-      <input [(ngModel)]="importe"  class="form-control"  formControlName="importe"/>
-      
-      </div>
+    <div style="width: 200px;">
+      <input  class="form-control"  currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe"/>
+    </div>               
+    </div>
+    
     
 
 
