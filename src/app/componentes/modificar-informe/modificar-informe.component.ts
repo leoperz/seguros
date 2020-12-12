@@ -38,6 +38,7 @@ export class ModificarInformeComponent implements OnInit {
   marca:any;
   modelo:any;
   anio:any;
+  importe:any;
 
 
 
@@ -59,7 +60,8 @@ export class ModificarInformeComponent implements OnInit {
       dominio:['', Validators.required],
       marca:['', Validators.required],
       modelo:['', Validators.required],
-      anio:['', Validators.required]
+      anio:['', Validators.required],
+      importe:['', Validators.required]
       
     });
    
@@ -91,6 +93,7 @@ export class ModificarInformeComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   modificarItem(item:any){
+      console.log(item);
       this.btnAgregar=item.uid;
       this._info.getInforme(item.uid).subscribe((resp:any)=>{
       //cargo los  campos del informe
@@ -107,8 +110,9 @@ export class ModificarInformeComponent implements OnInit {
       this.modelo = resp.modelo;
       this.marca = resp.marca;
       this.anio = resp.anio;
+      this.importe = resp.importe;
 
-      console.log("fechaAlta-->",this.fechaAlta);
+     
       this.imagenes=[];
       let nombre;
       let extension;
