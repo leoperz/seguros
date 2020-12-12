@@ -25,7 +25,7 @@ import * as  jszip from 'jszip';
 
 export class InformeComponent  {
   
-  zipp = new jszip();
+  //zipp = new jszip();
   public mensajeArchivo = 'No hay un archivo seleccionado';
   public datosFormulario = new FormData();
   public nombreArchivo = '';
@@ -126,22 +126,13 @@ export class InformeComponent  {
     });
 
  
-
-    
-   
-    
-    
-    
-
-
-
     //probando el .zip
     
     
-    //let tarea = this._fireStorage.tareaCloudStorage(this.nombreArchivo, archivo);
+    let tarea = this._fireStorage.tareaCloudStorage(this.nombreArchivo, archivo);
     
     //Cambia el porcentaje
-    /*tarea.percentageChanges().subscribe((porcentaje) => {
+    tarea.percentageChanges().subscribe((porcentaje) => {
       this.porcentaje = Math.round(porcentaje);
       this.ancho = Math.round(porcentaje);
       if (this.porcentaje == 100) {
@@ -149,7 +140,7 @@ export class InformeComponent  {
         this.nombresArch.push(this.nombreArchivo);
       }
 
-    });*/
+    });
     
 
     setTimeout(() => {
@@ -161,37 +152,22 @@ export class InformeComponent  {
    getUrls(){
     if(this.list.length > 0){
       this.cargando=true;
-    for(let i of this.list){
-      this.zipp.file(i.nombre,i.arch);
-    }
-    
-    let nombre = "documentos"+moment().format('hh-mm-ss')+".zip";
-    this.nombresArch.push(nombre);
-    
-    this.zipp.generateAsync({type:"blob"}).then((data)=>{
-    let tarea = this._fireStorage.tareaCloudStorage(nombre, data);
-    tarea.percentageChanges().subscribe(data=>{
-      if(Math.round(data)==100){
-        this.nombresURL=[];
-        setTimeout(() => {
-          for(let i of this.nombresArch){
-            
-            this._fireStorage.referenciaCloudStorage(i).getDownloadURL().subscribe(resp=>{
-            this.nombresURL.push(resp);
-              });
-           }
-           
-           document.getElementById('cerrarModal').click();
-           this.cargando=false;
-        }, 3000);
-      
+   
+    setTimeout(() => {
+      for(let i of this.nombresArch){
+        
+        this._fireStorage.referenciaCloudStorage(i).getDownloadURL().subscribe(resp=>{
+          
+        this.nombresURL.push(resp);
+          });
+       }
        
-      }
-    });
-  
-    });
+       document.getElementById('cerrarModal').click();
+       this.cargando=false;
+    }, 3000);
+
     }
-    
+    console.log("nombresURL-->",this.nombresURL);
     
   }
     
@@ -237,7 +213,8 @@ export class InformeComponent  {
         usuario:this._stor.getLocalStorage(),
         indemnizacion:"",
         estado:"Pendiente",
-        notas:[]
+        notas:[],
+        
       }
 
 
@@ -262,6 +239,7 @@ export class InformeComponent  {
         this.nombresURL=[];
         this.nombresArch =[];
         this.ancho=0;
+        this.list=[];
         document.getElementById('btnMensajeFormulario').click();
       
       let variable ={

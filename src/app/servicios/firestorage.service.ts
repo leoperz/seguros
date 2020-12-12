@@ -18,5 +18,9 @@ export class FirestorageService {
     return this._fireStorage.ref(nombreArchivo);
   }
 
+  public borrarImagen(nombreArchivo: string) {
+    return this._fireStorage.ref(nombreArchivo).delete();
+  }
+
 
 }

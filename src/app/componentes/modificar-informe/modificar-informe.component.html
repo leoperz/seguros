@@ -42,4 +42,147 @@
     </tbody>
     
   </table>
+
+  <button (click)="explorador()" *ngIf="btnAgregar != '' " type="button" class="btn btn-primary">Agregar imagen</button>
+  <span  hidden=true class="btn btn-primary btn-file">
+    <input id="file" type="file" (change)="cambioArchivo($event)">
+  </span>
+  
+  <div style="padding-top: 20px;" class="card-columns">
+    
+    <div *ngFor="let item of imagenes" class="card">
+      
+        <img *ngIf="item.extension == 'jpg' || item.extension == 'png' || item.extension == 'jpeg'; else sinimagen" src="{{item.imagen}}" class="card-img-top img-fluid">
+        <ng-template #sinimagen>
+          <img class="card-img-top img-fluid" src="../../../assets/imagenes/sinimagen.jpg">
+        </ng-template>
+        <div class="card-body text-center">
+          <h5 class="card-title">{{item.nombre}}</h5>
+          <p class="card-text text-center">
+            <span style="cursor: pointer;" (click)="borrarImagen(item)" class="badge badge-danger"><h6>Borrar imagen</h6></span>
+          </p>
+        </div>
+    </div>
+
+  </div>
+
+  <!--Informe cargado en la base-->
+  
+  <fieldset *ngIf="btnAgregar != ''">
+    <legend>Informe cargado:</legend>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div  class="row">
+        <div class="col-md-4">
+          <input disabled [(ngModel)]="fechaAlta" class="form-control" type="text" formControlName="fechaAlta">
+        </div> 
+      </div>
+      
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="compania"  type="text" formControlName="compania" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.compania.errors }" />
+        <div *ngIf="submitted && f.compania.errors" class="invalid-feedback">
+            <div *ngIf="f.compania.errors.required">compania</div>
+        </div>
+      </div>
+
+      <hr>
+      <h2 class="text-center">Datos del reclamante</h2>
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="nombreCompleto"  type="text" formControlName="nombreCompleto" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombreCompleto.errors }" />
+        <div *ngIf="submitted && f.nombreCompleto.errors" class="invalid-feedback">
+            <div *ngIf="f.nombreCompleto.errors.required">nombre completo</div>
+        </div>
+      </div>
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="apellido"  type="text" formControlName="apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+        <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+            <div *ngIf="f.apellido.errors.required">apellido</div>
+        </div>
+      </div>
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="documento"  type="text" formControlName="documento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documento.errors }" />
+        <div *ngIf="submitted && f.documento.errors" class="invalid-feedback">
+            <div *ngIf="f.documento.errors.required">documento</div>
+        </div>
+      </div>
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="telefono"  type="text" formControlName="telefono" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }" />
+        <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
+            <div *ngIf="f.telefono.errors.required">telefono</div>
+        </div>
+      </div>
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="mail"  type="text" formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" />
+        <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+            <div *ngIf="f.mail.errors.required">mail</div>
+        </div>
+      </div>
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="companiaAseguradora"  type="text" formControlName="companiaAseguradora" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companiaAseguradora.errors }" />
+        <div *ngIf="submitted && f.companiaAseguradora.errors" class="invalid-feedback">
+            <div *ngIf="f.companiaAseguradora.errors.required">compania aseguradora</div>
+        </div>
+      </div>
+
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="domicilio"  type="text" formControlName="domicilio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.domicilio.errors }" />
+        <div *ngIf="submitted && f.domicilio.errors" class="invalid-feedback">
+            <div *ngIf="f.domicilio.errors.required">compania aseguradora</div>
+        </div>
+      </div>
+
+      <hr>
+      <h2 class="text-center">Datos del vehiculo</h2>
+      
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="dominio"  type="text" formControlName="dominio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dominio.errors }" />
+        <div *ngIf="submitted && f.dominio.errors" class="invalid-feedback">
+            <div *ngIf="f.dominio.errors.required">dominio</div>
+        </div>
+      </div>
+
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="marca"  type="text" formControlName="marca" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.marca.errors }" />
+        <div *ngIf="submitted && f.marca.errors" class="invalid-feedback">
+            <div *ngIf="f.marca.errors.required">dominio</div>
+        </div>
+      </div>
+
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="modelo"  type="text" formControlName="modelo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.modelo.errors }" />
+        <div *ngIf="submitted && f.modelo.errors" class="invalid-feedback">
+            <div *ngIf="f.modelo.errors.required">dominio</div>
+        </div>
+      </div>
+
+      <div style="padding-top: 10px;" class="form-group">
+                   
+        <input [(ngModel)]="anio"  type="text" formControlName="anio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.anio.errors }" />
+        <div *ngIf="submitted && f.anio.errors" class="invalid-feedback">
+            <div *ngIf="f.anio.errors.required">dominio</div>
+        </div>
+      </div>
+      
+      
+      
+      <hr>
+
+        
+      
+    </form>
+    
+  </fieldset>
+ 
+
+
 </div>

@@ -24,6 +24,10 @@ export class InformeService {
     return this._firestore.collection('informe', resp=>resp.orderBy('fechaAlta')).valueChanges();
   }
 
+  getInforme(uid:string){
+    return this._firestore.collection('informe').doc(uid).valueChanges();
+  }
+
   guardarInforme(payload:any){
     this._firestore.collection('informe').add(payload).then(resp=>{
       this._firestore.collection('informe').doc(resp.id).update({
@@ -79,6 +83,14 @@ guardarNotas(uid:string, payload:any){
     return array;
   }
 
+
+  actualizarArchivos(archivos:any[],uid:string){
+    console.log("entra en actualizarArchivos");
+    console.log("archivos firestore-->",archivos);
+    this._firestore.collection('informe').doc(uid).update({
+      archivos:archivos
+    });
+  }
     
     
   }
