@@ -3,6 +3,9 @@ import { FirestorageService } from 'src/app/servicios/firestorage.service';
 import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NotificacionService } from 'src/app/servicios/notificacion.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-modificar-informe',
@@ -11,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ModificarInformeComponent implements OnInit {
 
+  submitted = false;
   p:number=1;
   page:number=5;
   informes:any[]=[];
@@ -39,11 +43,16 @@ export class ModificarInformeComponent implements OnInit {
   modelo:any;
   anio:any;
   importe:any;
+  modificarImporte=false;
+  notas:any[]=[];
 
 
 
 
-  constructor(private _info:InformeService,private _stor :StorageService, private _fireStorage: FirestorageService, private formBuilder: FormBuilder) { }
+  constructor(private _info:InformeService,private _stor :StorageService, 
+              private _fireStorage: FirestorageService, 
+              private formBuilder: FormBuilder, private _r: Router,
+              private _noti: NotificacionService) { }
 
   ngOnInit() {
     
@@ -87,6 +96,7 @@ export class ModificarInformeComponent implements OnInit {
         }
       );
     }
+  
     
   }
 
@@ -186,6 +196,84 @@ export class ModificarInformeComponent implements OnInit {
       }
     });
   }
+
+  modifImporte(){
+    this.modificarImporte=true;
+  }
+
+  salir(){
+    this._r.navigateByUrl('dashboard');
+  }
+
+  onSubmit(){
+    this.submitted=true;
+    if(this.registerForm.invalid){
+      console.log("es invalido",this.registerForm.controls.compania.value);
+      return;
+    }else{
+      this.imagenes=[];
+      let payload={
+        fechaAlta:this.fechaAlta,
+        compania:this.compania,
+        nombreCompleto: this.nombreCompleto,
+        apellido:this.apellido,
+        documento:this.documento,
+        telefono:this.telefono,
+        mail:this.mail,
+        companiaAseguradora:this.companiaAseguradora,
+        domicilio:this.domicilio,
+        dominio:this.dominio,
+        modelo:this.modelo,
+        marca:this.marca,
+        anio:this.anio, 
+        importe:this.importe,
+  
+      }
+      this._info.actualizarInforme(payload,this.btnAgregar);
+      document.getElementById('btnmodificar').click();
+      this.btnAgregar="";
+    }
+    
+    
+    
+  }
+
+  verReclamante(item:any){
+    
+    this.reclamante=item;
+    document.getElementById('btnReclamante').click();
+  }
+
+  verVehiculo(item:any){
+    
+    this.reclamante=item;
+    document.getElementById('btnVehiculo').click();
+  }
+
+
+  verNotas(notas:[]){
+    this.notas=[];
+    document.getElementById('btnNotas').click();
+    for(let i of notas){
+      this.notas.push(i);
+    }
+  }
+
+
+  cambiarEstado(value:string, uid:string){
+    
+    this._info.updateEstado(value, uid).then(data=>{});
+    let payload = {
+      fecha: moment().format('DD/MM/yyyy'),
+      motivo:"Se ha cambiado el estado de un informe observado",
+      sucursal: this.usuario.sucursal
+    };
+    this._noti.guardarNotificacion(payload);
+  }
+
+
+  
+
 
 
 }

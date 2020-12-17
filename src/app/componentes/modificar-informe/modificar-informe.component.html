@@ -10,9 +10,10 @@
         <th scope="col">COMPAÑIA DE TERCEROS</th>
         <th scope="col">DATOS DEL RECLAMANTE</th>
         <th scope="col">DATOS DEL VEHICULO</th>
-        <th scope="col">ADJUNTOS</th>
         <th scope="col">IMPORTE</th>
         <th scope="col">MONTO DE INDEMNIZACION</th>
+        <th scope="col">OBSERVACIONES</th>
+        <th scope="col">ACCION</th>
    
         
       </tr>
@@ -26,16 +27,20 @@
         <td *ngIf="item.estado == 'Resuelto' "><span  class="badge badge-pill badge-warning">{{item.estado}}</span></td>
         <td *ngIf="item.estado == 'Cerrado' "><span  class="badge badge-pill badge-success  ">{{item.estado}}</span></td>
         <td *ngIf="item.estado == 'Rechazado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
+        <td *ngIf="item.estado == 'Observado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
         <td> {{item.fechaAlta}}</td>
         <td> {{item.usuario.sucursal}}</td>
         <td>{{item.compania}}</td>
         <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
         <td > <i (click)="verVehiculo(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
-        <td><i *ngIf="item.archivos.length > 0" (click)="test(item.archivos)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
         <td>{{item.importe}}</td>
         <td>{{item.indemnizacion}}</td>
-     
-        
+        <td *ngIf="item.notas.length>0"><span (click)="verNotas(item.notas)" style="font-size: 28px; cursor: pointer;"><i class="far fa-clipboard"></i></span></td>
+        <td *ngIf="item.notas.length==0"></td>
+        <select (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
+          <option value="" disabled selected>---Selecciona---</option>
+          <option value="Pendiente">Pendiente</option>
+        </select>
        
       </tr>
      
@@ -71,70 +76,72 @@
   <fieldset *ngIf="btnAgregar != ''">
     <legend>Informe cargado:</legend>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      
       <div  class="row">
         <div class="col-md-4">
-          <input disabled [(ngModel)]="fechaAlta" class="form-control" type="text" formControlName="fechaAlta">
+          <input disabled=true [(ngModel)]="fechaAlta" ngbTooltip="fecha de alta"  class="form-control" type="text" formControlName="fechaAlta">
         </div> 
       </div>
       
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="compania"  type="text" formControlName="compania" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.compania.errors }" />
+        <input [(ngModel)]="compania" oninput="this.value = this.value.toUpperCase()" ngbTooltip="compañia del tercero" type="text" formControlName="compania" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.compania.errors }"  />
         <div *ngIf="submitted && f.compania.errors" class="invalid-feedback">
-            <div *ngIf="f.compania.errors.required">compania</div>
+          <div *ngIf="f.compania.errors.required">campo obligatorio</div>
         </div>
       </div>
+      
 
       <hr>
       <h2 class="text-center">Datos del reclamante</h2>
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="nombreCompleto"  type="text" formControlName="nombreCompleto" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombreCompleto.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()"gbTooltip="Nombre completo" [(ngModel)]="nombreCompleto"  type="text" formControlName="nombreCompleto" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombreCompleto.errors }" />
         <div *ngIf="submitted && f.nombreCompleto.errors" class="invalid-feedback">
-            <div *ngIf="f.nombreCompleto.errors.required">nombre completo</div>
+            <div *ngIf="f.nombreCompleto.errors.required">campo obligatorio</div>
         </div>
       </div>
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="apellido"  type="text" formControlName="apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Apellido" [(ngModel)]="apellido"  type="text" formControlName="apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
         <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
-            <div *ngIf="f.apellido.errors.required">apellido</div>
+            <div *ngIf="f.apellido.errors.required">campo obligatorio</div>
         </div>
       </div>
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="documento"  type="text" formControlName="documento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documento.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Documento" [(ngModel)]="documento"  type="text" formControlName="documento" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.documento.errors }" />
         <div *ngIf="submitted && f.documento.errors" class="invalid-feedback">
-            <div *ngIf="f.documento.errors.required">documento</div>
+            <div *ngIf="f.documento.errors.required">campo obligatorio</div>
         </div>
       </div>
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="telefono"  type="text" formControlName="telefono" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Telefono" [(ngModel)]="telefono"  type="text" formControlName="telefono" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }" />
         <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
-            <div *ngIf="f.telefono.errors.required">telefono</div>
+            <div *ngIf="f.telefono.errors.required">campo obligatorio</div>
         </div>
       </div>
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="mail"  type="text" formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" />
+        <input  ngbTooltip="Mail" [(ngModel)]="mail"  type="text" formControlName="mail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" />
         <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
-            <div *ngIf="f.mail.errors.required">mail</div>
+            <div *ngIf="f.mail.errors.required">campo obligatorio</div>
         </div>
       </div>
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="companiaAseguradora"  type="text" formControlName="companiaAseguradora" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companiaAseguradora.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Compañia aseguradora" [(ngModel)]="companiaAseguradora"  type="text" formControlName="companiaAseguradora" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companiaAseguradora.errors }" />
         <div *ngIf="submitted && f.companiaAseguradora.errors" class="invalid-feedback">
-            <div *ngIf="f.companiaAseguradora.errors.required">compania aseguradora</div>
+            <div *ngIf="f.companiaAseguradora.errors.required">campo obligatorio</div>
         </div>
       </div>
 
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="domicilio"  type="text" formControlName="domicilio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.domicilio.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Domicilio" [(ngModel)]="domicilio"  type="text" formControlName="domicilio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.domicilio.errors }" />
         <div *ngIf="submitted && f.domicilio.errors" class="invalid-feedback">
-            <div *ngIf="f.domicilio.errors.required">compania aseguradora</div>
+            <div *ngIf="f.domicilio.errors.required">campo obligatorio</div>
         </div>
       </div>
 
@@ -143,49 +150,60 @@
       
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="dominio"  type="text" formControlName="dominio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dominio.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Dominio" [(ngModel)]="dominio"  type="text" formControlName="dominio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dominio.errors }" />
         <div *ngIf="submitted && f.dominio.errors" class="invalid-feedback">
-            <div *ngIf="f.dominio.errors.required">dominio</div>
+            <div *ngIf="f.dominio.errors.required">campo obligatorio</div>
         </div>
       </div>
 
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="marca"  type="text" formControlName="marca" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.marca.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Marca" [(ngModel)]="marca"  type="text" formControlName="marca" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.marca.errors }" />
         <div *ngIf="submitted && f.marca.errors" class="invalid-feedback">
-            <div *ngIf="f.marca.errors.required">dominio</div>
+            <div *ngIf="f.marca.errors.required">campo obligatorio</div>
         </div>
       </div>
 
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="modelo"  type="text" formControlName="modelo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.modelo.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Modelo" [(ngModel)]="modelo"  type="text" formControlName="modelo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.modelo.errors }" />
         <div *ngIf="submitted && f.modelo.errors" class="invalid-feedback">
-            <div *ngIf="f.modelo.errors.required">dominio</div>
+            <div *ngIf="f.modelo.errors.required">campo obligatorio</div>
         </div>
       </div>
 
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input [(ngModel)]="anio"  type="text" formControlName="anio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.anio.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Año" [(ngModel)]="anio"  type="text" formControlName="anio" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.anio.errors }" />
         <div *ngIf="submitted && f.anio.errors" class="invalid-feedback">
-            <div *ngIf="f.anio.errors.required">dominio</div>
+            <div *ngIf="f.anio.errors.required">campo obligatorio</div>
         </div>
       </div>
       
     <hr>
 
     <h2 class="text-center">Importe</h2>
-    <div style="padding-top: 10px;" class="form-group">
-    <div style="width: 200px;">
-      <input  class="form-control"  currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe"/>
-    </div>               
+    
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+         
+            <input ngbTooltip="Importe" *ngIf="modificarImporte == false" disabled [(ngModel)]="importe"  class="form-control" formControlName="importe"/>
+            <input ngbTooltip="Importe" *ngIf="modificarImporte == true " class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe"/>           
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button (click)="modifImporte()" class="btn btn-primary">modificar importe</button>
+      </div>
     </div>
     
+    <hr>
+    <div style="padding-top: 10px;" class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">Guardar cambios</button>
+      <button style="margin-left: 10px;" (click)="salir()"  class="btn btn-danger">Salir</button>
+  </div>
     
-
-
-        
       
     </form>
     
@@ -193,4 +211,184 @@
  
 
 
+</div>
+
+
+
+<!-- Button trigger modal -->
+<button hidden=true id="btnmodificar" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      
+      <div class="modal-body">
+        Cambios realizados correctamente!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button hidden=true id="btnReclamante" type="button" data-toggle="modal" data-target="#reclamante"></button>
+<div class="modal fade" id="reclamante" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label>Nombre:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.nombreCompleto}} {{reclamante.apellido}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Documento:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.documento}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Telefono:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.telefono}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Mail:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.mail}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Compañia:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.companiaAseguradora}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Domicilio:</label>
+          </div>
+          <div class="col-md-4">
+            <label>{{reclamante.domicilio}}</label>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<button hidden=true id="btnVehiculo" type="button" data-toggle="modal" data-target="#vehiculo"></button>
+<div class="modal fade" id="vehiculo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label>Dominio:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.dominio}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Marca:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.marca}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Modelo:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.modelo}}</label>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <label>Año:</label>
+          </div>
+          <div class="col-md-3">
+            <label>{{reclamante.anio}}</label>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<button hidden=true id="btnNotas" type="button" data-toggle="modal" data-target="#notas"></button>
+
+<div class="modal fade" id="notas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     <div class="modal-body">
+        <div *ngFor="let item of notas ; index as i"  class="accordion" id="accordionExample">
+         
+          <div  class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]=" '#informes'+i" aria-expanded="false" aria-controls="collapseThree">
+                  <strong>Fecha: </strong>{{item.fecha}}
+                </button>
+                
+              </h5>
+            </div>
+            <div [id]="'informes'+i" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div style="height: auto;" class="card-body">
+                {{item.nota}}
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <hr>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
 </div>

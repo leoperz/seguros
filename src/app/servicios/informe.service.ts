@@ -85,10 +85,28 @@ guardarNotas(uid:string, payload:any){
 
 
   actualizarArchivos(archivos:any[],uid:string){
-    console.log("entra en actualizarArchivos");
-    console.log("archivos firestore-->",archivos);
+    
     this._firestore.collection('informe').doc(uid).update({
       archivos:archivos
+    });
+  }
+
+  actualizarInforme(payload:any,uid:string){
+    this._firestore.collection('informe').doc(uid).update({
+      anio:payload.anio,
+      apellido:payload.apellido,
+      compania:payload.compania,
+      companiaAseguradora:payload.companiaAseguradora,
+      documento:payload.documento,
+      domicilio:payload.domicilio,
+      dominio:payload.dominio,
+      fechaAlta:payload.fechaAlta,
+      importe:payload.importe,
+      mail:payload.mail,
+      marca:payload.marca,
+      modelo:payload.modelo,
+      nombreCompleto:payload.nombreCompleto,
+      telefono:payload.telefono
     });
   }
     
