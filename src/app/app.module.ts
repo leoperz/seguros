@@ -27,6 +27,7 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { ChartsModule } from 'ng2-charts';
 import { TablaFiltroComponent } from './componentes/tabla-filtro/tabla-filtro.component';
 import { ModificarInformeComponent } from './componentes/modificar-informe/modificar-informe.component';
+import { LiquidacionesComponent } from './componentes/liquidaciones/liquidaciones.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ModificarInformeComponent } from './componentes/modificar-informe/modif
     OperadoresComponent,
     ReportesComponent,
     TablaFiltroComponent,
-    ModificarInformeComponent  
+    ModificarInformeComponent,
+    LiquidacionesComponent  
   ],
   imports: [
     BrowserModule,

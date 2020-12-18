@@ -33,7 +33,7 @@ export class TablaFiltroComponent implements OnInit {
   obser="";
   estado="";
   sucursal="";
-
+  seleccion:string="Pendiente";
 
   constructor( private _info: InformeService, private _stor :StorageService, private _noti: NotificacionService) { }
 
@@ -87,6 +87,7 @@ export class TablaFiltroComponent implements OnInit {
   }
 
   cambiarEstado(value:string, uid:string, item:any){
+    console.log("este es el item-->",item);
     this.sucursal=item.usuario.sucursal;
     if(value=='Resuelto'){
       //abrir modal para ingreso de indemnizacion
@@ -181,18 +182,25 @@ export class TablaFiltroComponent implements OnInit {
     }
   }
 
+  onItemChange(item:any){
+    console.log(item);
+    this.seleccion=item;
+
+  }
 
   exportar(){
+
     let body:any[]=[];
     let aux:string[];
     for(let i of this.lista){
       aux=[];
-      if(i.estado=="Cerrado"){
+      if(i.estado== this.seleccion){
         aux[0]=i.usuario.sucursal;
         aux[1]=i.compania;
         aux[2]=i.nombreCompleto +" "+i.apellido;
         aux[3]=i.dominio;
         aux[4]=i.indemnizacion;
+        aux[5]=i.estado;
         body.push(aux);
       }
       
@@ -202,7 +210,7 @@ export class TablaFiltroComponent implements OnInit {
     const doc = new jsPDF('portrait','px','a4') as jsPDFWithPlugin;
     doc.autoTable({
       head:[
-        ['SUCURSAL','COMPAÑIA DE TERCEROS','DATOS DEL RECLAMANTE','DATOS DEL VEHICULO','MONTO DE INDEMNIZACION']
+        ['SUCURSAL','COMPAÑIA DE TERCEROS','DATOS DEL RECLAMANTE','DATOS DEL VEHICULO','MONTO DE INDEMNIZACION','ESTADO']
       ],
       body:body
       
@@ -235,6 +243,9 @@ export class TablaFiltroComponent implements OnInit {
     });*/
   }
 
+  abrirSeleccion(){
+    document.getElementById('btnSeleccion').click();
+  }
 
 
   }

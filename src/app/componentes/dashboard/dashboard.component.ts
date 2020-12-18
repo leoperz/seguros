@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     }
   };
 
-  public barChartLabels: Label[] = ['Pendiente', 'En tramite', 'Resuelto', 'Cerrado','Rechazado'];
+  public barChartLabels: Label[] = ['Pendiente', 'En tramite', 'Resuelto', 'Cerrado','Rechazado','Observado'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartData: ChartDataSets[] = [
@@ -44,16 +44,19 @@ export class DashboardComponent implements OnInit {
   tramiteb:number;
   resueltob:number;
   rechazadob:number;
+  observadob:number;
   pendienteg:number;
   cerradog:number;
   tramiteg:number;
   resueltog:number;
   rechazadog:number;
+  observadog:number;
   pendientel:number;
   cerradol:number;
   tramitel:number;
   resueltol:number;
   rechazadol:number;
+  observadol:number;
  
 
   constructor(private _storage : StorageService, private _info : InformeService ) { }
@@ -87,6 +90,7 @@ export class DashboardComponent implements OnInit {
       this.resueltob=0;
       this.cerradob=0;
       this.rechazadob=0;
+      this.observadob=0;
       
       for(let  i of resp){
         if (i.estado == "Pendiente")this.pendienteb+=1;
@@ -94,6 +98,7 @@ export class DashboardComponent implements OnInit {
         if(i.estado == "Resuelto")this.resueltob+=1;
         if(i.estado == "Cerrado")this.cerradob+=1;
         if(i.estado == "Rechazado")this.rechazadob+=1;
+        if(i.estado == "Observado")this.observadob+=1;
       }
 
       this.barChartData = [
@@ -110,6 +115,7 @@ export class DashboardComponent implements OnInit {
       this.resueltog=0;
       this.cerradog=0;
       this.rechazadog=0;
+      this.observadog=0;
       
       for(let  i of resp){
         if (i.estado == "Pendiente")this.pendienteg+=1;
@@ -117,6 +123,7 @@ export class DashboardComponent implements OnInit {
         if(i.estado == "Resuelto")this.resueltog+=1;
         if(i.estado == "Cerrado")this.cerradog+=1;
         if(i.estado == "Rechazado")this.rechazadog+=1;
+        if(i.estado == "Observado")this.observadog+=1;
       }
 
       this.barChartData = [
@@ -135,6 +142,7 @@ export class DashboardComponent implements OnInit {
       this.resueltol=0;
       this.cerradol=0;
       this.rechazadol=0;
+      this.rechazadol=0;
       
       for(let  i of resp){
         if (i.estado == "Pendiente")this.pendientel+=1;
@@ -142,6 +150,7 @@ export class DashboardComponent implements OnInit {
         if(i.estado == "Resuelto")this.resueltol+=1;
         if(i.estado == "Cerrado")this.cerradol+=1;
         if(i.estado == "Rechazado")this.rechazadol+=1;
+        if(i.estado == "Observado")this.observadol+=1;
       }
 
       this.barChartData = [

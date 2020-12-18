@@ -9,11 +9,11 @@ import { OperadoresComponent } from './componentes/operadores/operadores.compone
 import { RegistrarComponent } from './componentes/registrar/registrar.component';
 import { RepasswordComponent } from './componentes/repassword/repassword.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
-import { TablaInformeComponent } from './componentes/tabla-informe/tabla-informe.component';
 import {MensajeComponent} from './componentes/mensaje/mensaje.component'
 import { GuardService } from './servicios/guard.service';
 import { TablaFiltroComponent } from './componentes/tabla-filtro/tabla-filtro.component';
 import { ModificarInformeComponent } from './componentes/modificar-informe/modificar-informe.component';
+import { LiquidacionesComponent } from './componentes/liquidaciones/liquidaciones.component';
 
 const routes: Routes = [
   {path:'inicio', component:InicioComponent},
@@ -29,6 +29,7 @@ const routes: Routes = [
   {path:'reportes', component:ReportesComponent, canActivate:[GuardService]},
   {path:'mensaje', component:MensajeComponent, canActivate:[GuardService]},
   {path:'modificarinformes', component:ModificarInformeComponent, canActivate:[GuardService]},
+  {path:'liquidaciones', component:LiquidacionesComponent, canActivate:[GuardService]},
   {path:'', pathMatch:'full', redirectTo:'inicio'}
 ];
 

@@ -16,7 +16,7 @@
 <div class="container main"  style="padding-top: 45px;">
 
   <div style="text-align: right;">
-    <button (click)="exportar()" class="btn btn-success">Exportar <i class="far fa-file-pdf"></i><i style="padding-left: 5px;" class="fas fa-arrow-down"></i></button>
+    <button (click)="abrirSeleccion()" class="btn btn-success">Exportar <i class="far fa-file-pdf"></i><i style="padding-left: 5px;" class="fas fa-arrow-down"></i></button>
   </div>
   
   <br>
@@ -71,7 +71,7 @@
       <td *ngIf="item.notas.length>0"><span (click)="verNotas(item.notas)" style="font-size: 28px; cursor: pointer;"><i class="far fa-clipboard"></i></span></td>
       <td *ngIf="item.notas.length==0"></td>
       <td>
-        <select *ngIf="usuario.perfil == 'operador' || usuario.perfil == 'adm' " (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
+        <select *ngIf="usuario.perfil == 'operador' || usuario.perfil == 'adm' " (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
         <option value="" disabled selected>---Selecciona---</option>
         <option value="Pendiente">Pendiente</option>
         <option value="Cerrado">Cerrado</option>
@@ -338,6 +338,70 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<button hidden=true id="btnSeleccion" type="button" data-toggle="modal" data-target="#seleccion"></button>
+
+<div class="modal fade" id="seleccion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+      <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Estado:</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input (change)="onItemChange($event.target.value)" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Pendiente" checked>
+              <label class="form-check-label" for="gridRadios1">
+                Pendiente
+              </label>
+            </div>
+            <div class="form-check">
+              <input (change)="onItemChange($event.target.value)" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="En tramite">
+              <label class="form-check-label" for="gridRadios2">
+                En tramite
+              </label>
+            </div>
+            <div class="form-check">
+              <input (change)="onItemChange($event.target.value)" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Resuelto">
+              <label class="form-check-label" for="gridRadios1">
+                Resuelto
+              </label>
+            </div>
+            <div class="form-check">
+              <input (change)="onItemChange($event.target.value)" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Cerrado">
+              <label class="form-check-label" for="gridRadios1">
+                Cerrado
+              </label>
+            </div>
+            <div class="form-check">
+              <input (change)="onItemChange($event.target.value)" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Rechazado">
+              <label class="form-check-label" for="gridRadios1">
+                Rechazado
+              </label>
+            </div>
+            <div class="form-check">
+              <input (change)="onItemChange($event.target.value)" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Observado">
+              <label class="form-check-label" for="gridRadios1">
+                Observado
+              </label>
+            </div>
+           
+          </div>
+        </div>
+      </fieldset>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button (click)="exportar()" type="button" class="btn btn-primary">Aceptar</button>
       </div>
     </div>
   </div>

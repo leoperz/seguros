@@ -1,0 +1,15 @@
+<div style="padding-top: 20px;" class="container">
+  <fieldset>
+    <legend>Cálculo de indemnizaciones</legend>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-2">
+        <label style="margin-top: 6px;">Porcentaje:</label>
+      </div>
+      <div class="col-md-2">
+        <input class="form-control"  currencyMask  [options]="{ prefix: '% '  ,thousands: '.', decimal: ',' , precision:'1'  }">
+      </div>
+    </div>
+  </fieldset>
+</div>
