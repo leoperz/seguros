@@ -28,6 +28,7 @@ import { ChartsModule } from 'ng2-charts';
 import { TablaFiltroComponent } from './componentes/tabla-filtro/tabla-filtro.component';
 import { ModificarInformeComponent } from './componentes/modificar-informe/modificar-informe.component';
 import { LiquidacionesComponent } from './componentes/liquidaciones/liquidaciones.component';
+import { NumberFormatPipe }     from './pipes/numer';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { LiquidacionesComponent } from './componentes/liquidaciones/liquidacione
     ReportesComponent,
     TablaFiltroComponent,
     ModificarInformeComponent,
-    LiquidacionesComponent  
+    LiquidacionesComponent,
+    NumberFormatPipe 
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { LiquidacionesComponent } from './componentes/liquidaciones/liquidacione
     NgbModule,
     ChartsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [NumberFormatPipe],
+  bootstrap: [AppComponent],
+  exports: [ NumberFormatPipe]
 })
 export class AppModule { }

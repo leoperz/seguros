@@ -3,13 +3,89 @@
     <legend>Cálculo de indemnizaciones</legend>
     <br>
     <br>
-    <div class="row">
-      <div class="col-md-2">
-        <label style="margin-top: 6px;">Porcentaje:</label>
+    <table class="table table-bordered table-dark table-responsive">
+      <thead class="thead-dark text-center">
+        <tr>
+          <th>SUCURSAL</th>
+          <th>PORCENTAJE(%)</th>
+          <th>ACCION</th>
+        </tr>
+        
+      </thead>
+      <tbody class="text-center">
+        <tr *ngFor="let item of sucursales">
+          <td>{{item.nombre}}</td>
+          <td *ngIf="item.nombre != nombre ">{{item.porcentaje}}</td>
+          <td *ngIf="item.nombre == nombre "><input style="width: 120px;" [(ngModel)]="porcentaje" class="form-control"  currencyMask  [options]="{ prefix: '% '  ,thousands: '.', decimal: ',' , precision:'1'  }"></td>
+          <td *ngIf="item.nombre != nombre "><button (click)="cambiar(item.nombre)" class="btn btn-warning">cambiar</button></td>
+          <td *ngIf="item.nombre == nombre" ><button (click)="aceptar(item.uid)" class="btn btn-warning">aceptar</button></td>
+        
+        </tr>
+      </tbody>
+    </table>
+    
+    
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-3">
+          <input class="form-control" type="date" placeholder="Desde" [(ngModel)]="desde">
+        </div>
+        <div class="col-md-3">
+          <input class="form-control" type="date" placeholder="Hasta" [(ngModel)]="hasta" [min]="desde">
+        </div>
+        <div class="col-md-3">
+          <button disabled *ngIf="desde=='' || hasta == ''" (click)="buscar()" class="btn btn-primary" type="button">Buscar</button>
+          <button  *ngIf="desde!='' && hasta != ''" (click)="buscar()" class="btn btn-primary" type="button">Buscar</button>
+        </div>
       </div>
-      <div class="col-md-2">
-        <input class="form-control"  currencyMask  [options]="{ prefix: '% '  ,thousands: '.', decimal: ',' , precision:'1'  }">
+      
+  </fieldset>
+</div>
+
+
+<button id="totalesbtn"  hidden type="button" data-toggle="modal" data-target="#totales"></button>
+<div class="modal fade" id="totales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     
+        <table class="table table-bordered table-responsive">
+          <thead class="thead-dark text-center">
+            <tr>
+              <th>SUCURSAL</th>
+              <th>TOTAL</th>
+             </tr>
+            
+          </thead>
+          <tbody class="text-center">
+            <tr>
+              <td>Burzaco</td>
+              <td>{{burzacoFront | number}}</td>
+            </tr>
+            <tr>
+              <td>Guernica</td>
+              <td>{{guernicaFront}}</td>
+            </tr>
+            <tr>
+              <td>Longchamps</td>
+              <td>{{longchampsFront}}</td>
+            </tr>
+          
+          </tbody>
+        </table>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
-  </fieldset>
+  </div>
 </div>
