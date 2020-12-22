@@ -25,8 +25,9 @@ export class LiquidacionesComponent implements OnInit {
   burzaco:number=0;
   longchamps:number=0;
   guernicaFront:number;
-  burzacoFront:string="";
-  longchampsFront:string="";
+  burzacoFront:number;
+  longchampsFront:number;
+  total:number=0;
 
   constructor(private _sucu : SucursalService, private _info: InformeService, private formatPipe: NumberFormatPipe) { }
 
@@ -106,8 +107,12 @@ export class LiquidacionesComponent implements OnInit {
       
       
       if(i.nombre == "Burzaco"){
-        this.burzaco = ((this.burzaco * i.porcentaje)/100)
-        this.burzacoFront = (this.burzaco.toFixed(2));
+      
+        this.burzaco = (this.burzaco * i.porcentaje)/100;
+        this.total += this.burzaco;
+        this.burzacoFront=this.formatPipe.transform(this.burzaco.toFixed(2));
+        
+
       
       }
       
@@ -115,17 +120,22 @@ export class LiquidacionesComponent implements OnInit {
       
         if(i.nombre == "Guernica"){
           this.guernica = (this.guernica * i.porcentaje)/100;
+          this.total += this.guernica;
           this.guernicaFront = this.formatPipe.transform(this.guernica.toFixed(2));
           
         }
           
         if(i.nombre == "Longchamps"){
           this.longchamps = (this.longchamps * i.porcentaje)/100;
-          this.longchampsFront = this.longchamps.toFixed(2);
+          this.total += this.longchamps;
+          this.longchampsFront = this.formatPipe.transform(this.longchamps.toFixed(2));
+          
     }
+
 
   }
     
+    this.total = this.formatPipe.transform(this.total.toFixed(2));
     document.getElementById('totalesbtn').click();
 
     

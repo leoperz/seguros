@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  })
 export class NumberFormatPipe implements PipeTransform {
     transform(value: any): number {
+        console.log("asi entra el valor",value);
         return this.localeString(value);
     }
 
