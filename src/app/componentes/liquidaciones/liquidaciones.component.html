@@ -3,7 +3,7 @@
     <legend>Cálculo de indemnizaciones</legend>
     <br>
     <br>
-    <table  class="table table-bordered table-dark">
+    <table class="table table-bordered table-dark">
       <thead class="thead-dark text-center">
         <tr>
           <th>SUCURSAL</th>
@@ -16,7 +16,7 @@
         <tr *ngFor="let item of sucursales">
           <td>{{item.nombre}}</td>
           <td *ngIf="item.nombre != nombre ">{{item.porcentaje}}</td>
-          <td *ngIf="item.nombre == nombre "><input style="width: 120px;" [(ngModel)]="porcentaje" class="form-control"  currencyMask  [options]="{ prefix: '% '  ,thousands: '.', decimal: ',' , precision:'1'  }"></td>
+          <td *ngIf="item.nombre == nombre "><input [(ngModel)]="porcentaje" class="form-control"  currencyMask  [options]="{ prefix: '% '  ,thousands: '.', decimal: ',' , precision:'1'  }"></td>
           <td *ngIf="item.nombre != nombre "><button (click)="cambiar(item.nombre)" class="btn btn-warning">cambiar</button></td>
           <td *ngIf="item.nombre == nombre" ><button (click)="aceptar(item.uid)" class="btn btn-warning">aceptar</button></td>
         
@@ -49,6 +49,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <button (click)="exportar()" class="btn btn-success">Exportar <i class="far fa-file-pdf"></i><i style="padding-left: 5px;" class="fas fa-arrow-down"></i></button>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

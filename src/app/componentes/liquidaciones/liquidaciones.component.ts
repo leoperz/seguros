@@ -3,7 +3,14 @@ import { SucursalService } from 'src/app/servicios/sucursal.service';
 import * as moment from 'moment';
 import { InformeService } from 'src/app/servicios/informe.service';
 import { NumberFormatPipe } from '../../pipes/numer';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import {UserOptions}   from 'jspdf-autotable'
 
+interface jsPDFWithPlugin extends jsPDF{
+  [x: string]: any;
+  autotable:(options: UserOptions)=>jsPDF;
+}
 
 @Component({
   selector: 'app-liquidaciones',
@@ -69,7 +76,15 @@ export class LiquidacionesComponent implements OnInit {
   }
 
   buscar(){
+    this.total=0;
+    this.guernica=0;
+    this.longchamps=0;
+    this.burzaco=0;
+    this.longchampsFront=0;
+    this.burzacoFront=0;
+    this.guernicaFront=0;
     
+    console.log(this.desde, this.hasta);
     this.lista=[];
     let aux;
     for(let i of this.array){
@@ -138,10 +153,55 @@ export class LiquidacionesComponent implements OnInit {
     this.total = this.formatPipe.transform(this.total.toFixed(2));
     document.getElementById('totalesbtn').click();
 
+  }
+
+  exportar(){
+    console.log(this.burzacoFront);
+    let body:any[]=[];
+    let aux:any[]=[];
     
-    
-   
-}
+    for(let i of this.sucursales){
+
+      if(i.nombre == "Burzaco"){
+        aux[0]= this.desde+" "+this.hasta;
+        aux[1]= "Burzaco";
+        aux[2]= i.porcentaje;
+        aux[3]=this.burzacoFront
+        body.push(aux);
+        aux=[];
+      }
+      if(i.nombre == "Guernica"){
+        aux[0]= this.desde+" "+this.hasta;
+        aux[1]= "Guernica";
+        aux[2]= i.porcentaje;
+        aux[3]=this.guernicaFront
+        body.push(aux);
+        aux=[];
+      }
+      if(i.nombre == "Longchamps"){
+        aux[0]= this.desde+" "+this.hasta;
+        aux[1]= "Longchamps";
+        aux[2]= i.porcentaje;
+        aux[3]=this.longchampsFront
+        body.push(aux);
+        aux=[];
+      }
+    }
+
+    console.log(body);
+    const doc = new jsPDF('portrait','px','a4') as jsPDFWithPlugin;
+    doc.autoTable({
+      head:[
+        ['FECHA','SUCURSAL','PORCENTAJE','TOTAL']
+      ],
+      body:body
+      
+    });    
+  
+    doc.save("documento.pdf"); 
+
+
+  }
 
 }
 

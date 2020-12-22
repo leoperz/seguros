@@ -205,7 +205,7 @@ export class TablaFiltroComponent implements OnInit {
       }
       
     }
-    console.log(body);
+    
 
     const doc = new jsPDF('portrait','px','a4') as jsPDFWithPlugin;
     doc.autoTable({
