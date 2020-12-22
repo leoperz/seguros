@@ -28,12 +28,18 @@ export class LiquidacionesComponent implements OnInit {
   hasta:string="";
   array:any[]=[];
   lista:any[]=[];
-  guernica:number=0;
-  burzaco:number=0;
+  guernica1:number=0;
+  guernica2:number=0;
+  guernica3:number=0;
+  guillon:number=0;
+  mercado:number=0;
   longchamps:number=0;
-  guernicaFront:number;
-  burzacoFront:number;
+  guernica1Front:number;
+  guernica2Front:number;
+  guernica3Front:number;
+  guillonFront:number;
   longchampsFront:number;
+  mercadoFront:number;
   total:number=0;
 
   constructor(private _sucu : SucursalService, private _info: InformeService, private formatPipe: NumberFormatPipe) { }
@@ -77,12 +83,17 @@ export class LiquidacionesComponent implements OnInit {
 
   buscar(){
     this.total=0;
-    this.guernica=0;
+    this.guernica1=0;
+    this.guernica2=0;
+    this.guernica3=0;
     this.longchamps=0;
-    this.burzaco=0;
+    this.guillon=0;
     this.longchampsFront=0;
-    this.burzacoFront=0;
-    this.guernicaFront=0;
+    this.guillonFront=0;
+    this.guernica1Front=0;
+    this.guernica2Front=0;
+    this.guernica3Front=0;
+    this.guillonFront = 0;
     
     console.log(this.desde, this.hasta);
     this.lista=[];
@@ -97,16 +108,28 @@ export class LiquidacionesComponent implements OnInit {
   
     for(let i of this.lista){
 
-      if(i.usuario.sucursal == "Guernica"){
+      if(i.usuario.sucursal == "Guernica1"){
         aux = (i.indemnizacion.slice(2,i.indemnizacion.length));
         aux = aux.replace('.','').replace(',','.');
-        this.guernica +=  parseFloat(aux);
+        this.guernica1 +=  parseFloat(aux);
       }
 
-      if(i.usuario.sucursal == "Burzaco"){
+      if(i.usuario.sucursal == "Guernica2"){
         aux = (i.indemnizacion.slice(2,i.indemnizacion.length));
         aux = aux.replace('.','').replace(',','.');
-        this.burzaco +=  parseFloat(aux);
+        this.guernica2 +=  parseFloat(aux);
+      }
+
+      if(i.usuario.sucursal == "Guernica3"){
+        aux = (i.indemnizacion.slice(2,i.indemnizacion.length));
+        aux = aux.replace('.','').replace(',','.');
+        this.guernica3 +=  parseFloat(aux);
+      }
+
+      if(i.usuario.sucursal == "Guillon"){
+        aux = (i.indemnizacion.slice(2,i.indemnizacion.length));
+        aux = aux.replace('.','').replace(',','.');
+        this.guillon +=  parseFloat(aux);
       }
 
       if(i.usuario.sucursal == "Longchamps"){
@@ -115,17 +138,23 @@ export class LiquidacionesComponent implements OnInit {
         this.longchamps +=  parseFloat(aux);
       }
 
+      if(i.usuario.sucursal == "Mercado central"){
+        aux = (i.indemnizacion.slice(2,i.indemnizacion.length));
+        aux = aux.replace('.','').replace(',','.');
+        this.mercado +=  parseFloat(aux);
+      }
+
       
     }
 
     for(let i of this.sucursales){
       
       
-      if(i.nombre == "Burzaco"){
+      if(i.nombre == "Guillon"){
       
-        this.burzaco = (this.burzaco * i.porcentaje)/100;
-        this.total += this.burzaco;
-        this.burzacoFront=this.formatPipe.transform(this.burzaco.toFixed(2));
+        this.guillon = (this.guillon * i.porcentaje)/100;
+        this.total += this.guillon;
+        this.guillonFront=this.formatPipe.transform(this.guillon.toFixed(2));
         
 
       
@@ -133,10 +162,24 @@ export class LiquidacionesComponent implements OnInit {
       
       
       
-        if(i.nombre == "Guernica"){
-          this.guernica = (this.guernica * i.porcentaje)/100;
-          this.total += this.guernica;
-          this.guernicaFront = this.formatPipe.transform(this.guernica.toFixed(2));
+        if(i.nombre == "Guernica1"){
+          this.guernica1 = (this.guernica1 * i.porcentaje)/100;
+          this.total += this.guernica1;
+          this.guernica1Front = this.formatPipe.transform(this.guernica1.toFixed(2));
+          
+        }
+
+        if(i.nombre == "Guernica2"){
+          this.guernica2 = (this.guernica2 * i.porcentaje)/100;
+          this.total += this.guernica2;
+          this.guernica2Front = this.formatPipe.transform(this.guernica2.toFixed(2));
+          
+        }
+
+        if(i.nombre == "Guernica3"){
+          this.guernica3 = (this.guernica3 * i.porcentaje)/100;
+          this.total += this.guernica3;
+          this.guernica3Front = this.formatPipe.transform(this.guernica3.toFixed(2));
           
         }
           
@@ -148,6 +191,14 @@ export class LiquidacionesComponent implements OnInit {
     }
 
 
+      if(i.nombre == "Mercado central"){
+        this.mercado = (this.mercado * i.porcentaje)/100;
+        this.total += this.mercado;
+        this.mercadoFront = this.formatPipe.transform(this.mercado.toFixed(2));
+      
+}
+
+
   }
     
     this.total = this.formatPipe.transform(this.total.toFixed(2));
@@ -156,33 +207,63 @@ export class LiquidacionesComponent implements OnInit {
   }
 
   exportar(){
-    console.log(this.burzacoFront);
+    
     let body:any[]=[];
     let aux:any[]=[];
     
     for(let i of this.sucursales){
 
-      if(i.nombre == "Burzaco"){
+      if(i.nombre == "Guillon"){
         aux[0]= this.desde+" "+this.hasta;
-        aux[1]= "Burzaco";
+        aux[1]= "Guillon";
         aux[2]= i.porcentaje;
-        aux[3]=this.burzacoFront
+        aux[3]=this.guillonFront
         body.push(aux);
         aux=[];
       }
-      if(i.nombre == "Guernica"){
+      if(i.nombre == "Guernica1"){
         aux[0]= this.desde+" "+this.hasta;
-        aux[1]= "Guernica";
+        aux[1]= "Guernica1";
         aux[2]= i.porcentaje;
-        aux[3]=this.guernicaFront
+        aux[3]=this.guernica1Front
         body.push(aux);
         aux=[];
       }
+
+      if(i.nombre == "Guernica2"){
+        aux[0]= this.desde+" "+this.hasta;
+        aux[1]= "Guernica2";
+        aux[2]= i.porcentaje;
+        aux[3]=this.guernica2Front
+        body.push(aux);
+        aux=[];
+      }
+
+      if(i.nombre == "Guernica3"){
+        aux[0]= this.desde+" "+this.hasta;
+        aux[1]= "Guernica3";
+        aux[2]= i.porcentaje;
+        aux[3]=this.guernica3Front
+        body.push(aux);
+        aux=[];
+      }
+
+
+
       if(i.nombre == "Longchamps"){
         aux[0]= this.desde+" "+this.hasta;
         aux[1]= "Longchamps";
         aux[2]= i.porcentaje;
         aux[3]=this.longchampsFront
+        body.push(aux);
+        aux=[];
+      }
+
+      if(i.nombre == "Mercado central"){
+        aux[0]= this.desde+" "+this.hasta;
+        aux[1]= "Mercado central";
+        aux[2]= i.porcentaje;
+        aux[3]=this.mercadoFront
         body.push(aux);
         aux=[];
       }

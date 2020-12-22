@@ -1,8 +1,7 @@
 <div style="padding-top: 20px;" class="container">
   <fieldset>
     <legend>Cálculo de indemnizaciones</legend>
-    <br>
-    <br>
+    
     <table class="table table-bordered table-dark">
       <thead class="thead-dark text-center">
         <tr>
@@ -24,9 +23,9 @@
       </tbody>
     </table>
     
-    
-      <br>
-      <br>
+    <div class="alert alert-info" role="alert">
+      Ingrese una fecha desde hasta, para calcular la liquidación por sucursal.
+    </div>
       <div class="row">
         <div class="col-md-3">
           <input class="form-control" type="date" placeholder="Desde" [(ngModel)]="desde">
@@ -39,6 +38,7 @@
           <button  *ngIf="desde!='' && hasta != ''" (click)="buscar()" class="btn btn-primary" type="button">Buscar</button>
         </div>
       </div>
+      <br>
       
   </fieldset>
 </div>
@@ -67,18 +67,34 @@
           <tbody class="text-center">
             <tr>
               <th scope="row">1</th>
-              <td>Burzaco</td>
-              <td>${{burzacoFront}}</td>
+              <td>Guillon</td>
+              <td>${{guillonFront}}</td>
             </tr>
             <tr>
               <th scope="row">2</th>
-              <td>Guernica</td>
-              <td>${{guernicaFront}}</td>
+              <td>Guernica1</td>
+              <td>${{guernica1Front}}</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Guernica2</td>
+              <td>${{guernica2Front}}</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Guernica3</td>
+              <td>${{guernica3Front}}</td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>Longchamps</td>
               <td>${{longchampsFront}}</td>
+            </tr>
+
+            <tr>
+              <th scope="row">3</th>
+              <td>Mercado central</td>
+              <td>${{mercadoFront}}</td>
             </tr>
           
           </tbody>
