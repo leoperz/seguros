@@ -4,14 +4,14 @@
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#burzaco" aria-expanded="false" aria-controls="collapseThree">
-          Sucursal Burzaco <i data-toggle="collapse" data-target="#informes" *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i data-toggle="collapse" data-target="#informes" *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#guillon" aria-expanded="false" aria-controls="collapseThree">
+          Sucursal Guillon <i data-toggle="collapse" data-target="#informes" *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i data-toggle="collapse" data-target="#informes" *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
         </button>
       </h5>
     </div>
-    <div id="burzaco" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+    <div id="guillon" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div style="height: 700px;" class="card-body">
-        <div *ngFor="let item of burzaco">
+        <div *ngFor="let item of guillon">
           <div (click)="reportes(item)" id="operador" style="cursor: pointer;" class="row">
             <div class="col-md-2">
               <span style="font-size: 25px;" [class]="class">{{item.nombre[0]}}{{item.apellido[0]}}</span>
@@ -28,19 +28,71 @@
 </div>
 
 <div class="accordion" id="accordionExample">
-     
-     
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#guernica" aria-expanded="false" aria-controls="collapseThree">
-          Sucursal Guernica <i data-toggle="collapse" data-target="#informes" *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i data-toggle="collapse" data-target="#informes" *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#guernica1" aria-expanded="false" aria-controls="collapseThree">
+          Sucursal Guernica1 <i data-toggle="collapse" data-target="#informes" *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i data-toggle="collapse" data-target="#informes" *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
         </button>
       </h5>
     </div>
-    <div  id="guernica" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+    <div  id="guernica1" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div style="height: 700px;" class="card-body">
-        <div *ngFor="let item of guernica">
+        <div *ngFor="let item of guernica1">
+          <div (click)="reportes(item)" id="operador" style="cursor: pointer;"  class="row">
+            <div class="col-md-2">
+              <span style="font-size: 25px;" [class]="class">{{item.nombre[0]}}{{item.apellido[0]}}</span>
+            </div>
+            <div style="padding-top: 5px;" class="col-md-2">
+              <span>{{item.nombre}} {{item.apellido}} </span>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#guernica2" aria-expanded="false" aria-controls="collapseThree">
+          Sucursal Guernica2 <i data-toggle="collapse" data-target="#informes" *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i data-toggle="collapse" data-target="#informes" *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
+        </button>
+      </h5>
+    </div>
+    <div  id="guernica2" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div style="height: 700px;" class="card-body">
+        <div *ngFor="let item of guernica2">
+          <div (click)="reportes(item)" id="operador" style="cursor: pointer;"  class="row">
+            <div class="col-md-2">
+              <span style="font-size: 25px;" [class]="class">{{item.nombre[0]}}{{item.apellido[0]}}</span>
+            </div>
+            <div style="padding-top: 5px;" class="col-md-2">
+              <span>{{item.nombre}} {{item.apellido}} </span>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#guernica3" aria-expanded="false" aria-controls="collapseThree">
+          Sucursal Guernica3 <i data-toggle="collapse" data-target="#informes" *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i data-toggle="collapse" data-target="#informes" *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
+        </button>
+      </h5>
+    </div>
+    <div  id="guernica3" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div style="height: 700px;" class="card-body">
+        <div *ngFor="let item of guernica1">
           <div (click)="reportes(item)" id="operador" style="cursor: pointer;"  class="row">
             <div class="col-md-2">
               <span style="font-size: 25px;" [class]="class">{{item.nombre[0]}}{{item.apellido[0]}}</span>
@@ -71,6 +123,33 @@
       <div style="height: 700px;" class="card-body">
         <div *ngFor="let item of longchamps">
           <div (click)="reportes(item)"  id="operador" style="cursor: pointer;"  class="row">
+            <div class="col-md-2">
+              <span style="font-size: 25px;" [class]="class">{{item.nombre[0]}}{{item.apellido[0]}}</span>
+            </div>
+            <div style="padding-top: 5px;" class="col-md-2">
+              <span>{{item.nombre}} {{item.apellido}} </span>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#mercado" aria-expanded="false" aria-controls="collapseThree">
+          Sucursal Mercado central <i data-toggle="collapse" data-target="#informes" *ngIf="flecha == 'abajo'" class="fas fa-arrow-down"></i><i data-toggle="collapse" data-target="#informes" *ngIf=" flecha == 'arriba'" class="fas fa-arrow-up"></i>
+        </button>
+      </h5>
+    </div>
+    <div  id="mercado" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div style="height: 700px;" class="card-body">
+        <div *ngFor="let item of mercado">
+          <div (click)="reportes(item)" id="operador" style="cursor: pointer;"  class="row">
             <div class="col-md-2">
               <span style="font-size: 25px;" [class]="class">{{item.nombre[0]}}{{item.apellido[0]}}</span>
             </div>
