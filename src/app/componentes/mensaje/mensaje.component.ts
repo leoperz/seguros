@@ -24,10 +24,13 @@ export class MensajeComponent implements OnInit {
 
   ngOnInit() {
     this.dropdownList = [
-      { item_id: 1, item_text: 'Burzaco' },
-      { item_id: 2, item_text: 'Guernica' },
-      { item_id: 3, item_text: 'Longchamps' },
-      { item_id: 4, item_text: 'Estudio de abogados' }
+      { item_id: 1, item_text: 'Guillon' },
+      { item_id: 2, item_text: 'Guernica1' },
+      { item_id: 3, item_text: 'Guernica2' },
+      { item_id: 4, item_text: 'Guernica3' },
+      { item_id: 5, item_text: 'Longchamps' },
+      { item_id: 6, item_text: 'Mercado central' },
+      { item_id: 7, item_text: 'Estudio de abogados' }
     ];
 
     this.dropdownSettings = {
