@@ -26,9 +26,12 @@ export class DashboardComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartData: ChartDataSets[] = [
-    { data: [0, 0, 0, 0, 0], label: 'Burzaco' },
-    { data: [0, 0, 0, 0, 0], label: 'Guernica' },
-    { data: [0, 0, 0, 0, 0], label: 'Longchamps' }
+    { data: [0, 0, 0, 0, 0], label: 'Guillon' },
+    { data: [0, 0, 0, 0, 0], label: 'Guernica1' },
+    { data: [0, 0, 0, 0, 0], label: 'Guernica2' },
+    { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
+    { data: [0, 0, 0, 0, 0], label: 'Longchamps' },
+    { data: [0, 0, 0, 0, 0], label: 'Mercado central' }
   ];
 
   usuario:any={};
@@ -36,27 +39,48 @@ export class DashboardComponent implements OnInit {
   informes=false;
   flecha:string="abajo";
   flechamsn:string="abajo";
-  burzaco:number=0;
-  guernica:number=0;
+  guillon:number=0;
+  guernica1:number=0;
+  guernica2:number=0;
+  guernica3:number=0;
+  mercado:number=0;
   long:number=0;
-  pendienteb:number;
-  cerradob:number;
-  tramiteb:number;
-  resueltob:number;
-  rechazadob:number;
-  observadob:number;
   pendienteg:number;
   cerradog:number;
   tramiteg:number;
   resueltog:number;
   rechazadog:number;
   observadog:number;
+  pendienteg1:number;
+  cerradog1:number;
+  tramiteg1:number;
+  resueltog1:number;
+  rechazadog1:number;
+  observadog1:number;
+  pendienteg2:number;
+  cerradog2:number;
+  tramiteg2:number;
+  resueltog2:number;
+  rechazadog2:number;
+  observadog2:number;
+  pendienteg3:number;
+  cerradog3:number;
+  tramiteg3:number;
+  resueltog3:number;
+  rechazadog3:number;
+  observadog3:number;
   pendientel:number;
   cerradol:number;
   tramitel:number;
   resueltol:number;
   rechazadol:number;
   observadol:number;
+  pendientem:number;
+  cerradom:number;
+  tramitem:number;
+  resueltom:number;
+  rechazadom:number;
+  observadom:number;
  
 
   constructor(private _storage : StorageService, private _info : InformeService ) { }
@@ -71,45 +95,33 @@ export class DashboardComponent implements OnInit {
     if(this.usuario.perfil=='adm'){
 
     
-    this._info.getInformesSucursal('Burzaco').subscribe((resp:any[])=>{
+    this._info.getInformesSucursal('Guillon').subscribe((resp:any[])=>{
     
-      this.burzaco= resp.length;
+      this.guillon= resp.length;
     });
-    this._info.getInformesSucursal('Guernica').subscribe((resp:any[])=>{
+    this._info.getInformesSucursal('Guernica1').subscribe((resp:any[])=>{
       
-      this.guernica= resp.length;
+      this.guernica1= resp.length;
+    });
+    this._info.getInformesSucursal('Guernica2').subscribe((resp:any[])=>{
+      
+      this.guernica2= resp.length;
+    });
+    this._info.getInformesSucursal('Guernica3').subscribe((resp:any[])=>{
+      
+      this.guernica3= resp.length;
     });
     this._info.getInformesSucursal('Longchamps').subscribe((resp:any[])=>{
       
       this.long= resp.length;
     });
 
-    this._info.getInformeSucursalEstado("Burzaco").subscribe((resp:any[])=>{
-      this.pendienteb=0;
-      this.tramiteb=0;
-      this.resueltob=0;
-      this.cerradob=0;
-      this.rechazadob=0;
-      this.observadob=0;
+    this._info.getInformesSucursal('Mercado central').subscribe((resp:any[])=>{
       
-      for(let  i of resp){
-        if (i.estado == "Pendiente")this.pendienteb+=1;
-        if(i.estado == "En tramite")this.tramiteb+=1;
-        if(i.estado == "Resuelto")this.resueltob+=1;
-        if(i.estado == "Cerrado")this.cerradob+=1;
-        if(i.estado == "Rechazado")this.rechazadob+=1;
-        if(i.estado == "Observado")this.observadob+=1;
-      }
-
-      this.barChartData = [
-        { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob], label: 'Burzaco' },
-        { data: [0, 0, 0, 0, 0], label: 'Guernica' },
-        { data: [0, 0, 0, 0, 0], label: 'Longchamps' }
-      ];
-
+      this.mercado= resp.length;
     });
 
-    this._info.getInformeSucursalEstado("Guernica").subscribe((resp:any[])=>{
+    this._info.getInformeSucursalEstado("Guillon").subscribe((resp:any[])=>{
       this.pendienteg=0;
       this.tramiteg=0;
       this.resueltog=0;
@@ -127,14 +139,104 @@ export class DashboardComponent implements OnInit {
       }
 
       this.barChartData = [
-        { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob, this.rechazadob], label: 'Burzaco' },
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guernica' },
-        { data: [0, 0, 0, ,0, 0], label: 'Longchamps' }
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog], label: 'Guillon' },
+        { data: [0, 0, 0, 0, 0], label: 'Guernica1' },
+        { data: [0, 0, 0, 0, 0], label: 'Guernica2' },
+        { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
+        { data: [0, 0, 0, 0, 0], label: 'Longchamps' },
+        { data: [0, 0, 0, 0, 0], label: 'Mercado central' },
+      ];
+
+    });
+
+    this._info.getInformeSucursalEstado("Guernica1").subscribe((resp:any[])=>{
+      this.pendienteg1=0;
+      this.tramiteg1=0;
+      this.resueltog1=0;
+      this.cerradog1=0;
+      this.rechazadog1=0;
+      this.observadog1=0;
+      
+      for(let  i of resp){
+        if (i.estado == "Pendiente")this.pendienteg1+=1;
+        if(i.estado == "En tramite")this.tramiteg1+=1;
+        if(i.estado == "Resuelto")this.resueltog1+=1;
+        if(i.estado == "Cerrado")this.cerradog1+=1;
+        if(i.estado == "Rechazado")this.rechazadog1+=1;
+        if(i.estado == "Observado")this.observadog1+=1;
+      }
+
+      this.barChartData = [
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
+        { data: [0, 0, 0, 0, 0], label: 'Guernica2' },
+        { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
+        { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+
+      ];
+
+    });
+
+    this._info.getInformeSucursalEstado("Guernica2").subscribe((resp:any[])=>{
+      this.pendienteg2=0;
+      this.tramiteg2=0;
+      this.resueltog2=0;
+      this.cerradog2=0;
+      this.rechazadog2=0;
+      this.observadog2=0;
+      
+      for(let  i of resp){
+        if (i.estado == "Pendiente")this.pendienteg2+=1;
+        if(i.estado == "En tramite")this.tramiteg2+=1;
+        if(i.estado == "Resuelto")this.resueltog2+=1;
+        if(i.estado == "Cerrado")this.cerradog2+=1;
+        if(i.estado == "Rechazado")this.rechazadog2+=1;
+        if(i.estado == "Observado")this.observadog2+=1;
+      }
+
+      this.barChartData = [
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
+        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
+        { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
+        { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+
       ];
 
     });
 
 
+    this._info.getInformeSucursalEstado("Guernica3").subscribe((resp:any[])=>{
+      this.pendienteg3=0;
+      this.tramiteg3=0;
+      this.resueltog3=0;
+      this.cerradog3=0;
+      this.rechazadog3=0;
+      this.observadog3=0;
+      
+      for(let  i of resp){
+        if (i.estado == "Pendiente")this.pendienteg3+=1;
+        if(i.estado == "En tramite")this.tramiteg3+=1;
+        if(i.estado == "Resuelto")this.resueltog3+=1;
+        if(i.estado == "Cerrado")this.cerradog3+=1;
+        if(i.estado == "Rechazado")this.rechazadog3+=1;
+        if(i.estado == "Observado")this.observadog3+=1;
+      }
+
+      this.barChartData = [
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
+        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
+        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
+        { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+
+      ];
+
+    });
+    
 
     this._info.getInformeSucursalEstado("Longchamps").subscribe((resp:any[])=>{
       this.pendientel=0;
@@ -154,14 +256,46 @@ export class DashboardComponent implements OnInit {
       }
 
       this.barChartData = [
-        { data: [this.pendienteb, this.tramiteb, this.resueltob, this.cerradob, this.rechazadob], label: 'Burzaco' },
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guernica' },
-        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Longchamps' }
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
+        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
+        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
+        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Guernica3' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+
       ];
 
     });
     
     
+    this._info.getInformeSucursalEstado("Mercado central").subscribe((resp:any[])=>{
+      this.pendientem=0;
+      this.tramitem=0;
+      this.resueltom=0;
+      this.cerradom=0;
+      this.rechazadom=0;
+      this.rechazadom=0;
+      
+      for(let  i of resp){
+        if (i.estado == "Pendiente")this.pendientem+=1;
+        if(i.estado == "En tramite")this.tramitem+=1;
+        if(i.estado == "Resuelto")this.resueltom+=1;
+        if(i.estado == "Cerrado")this.cerradom+=1;
+        if(i.estado == "Rechazado")this.rechazadom+=1;
+        if(i.estado == "Observado")this.observadom+=1;
+      }
+
+      this.barChartData = [
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
+        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
+        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
+        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Guernica3' },
+        { data: [this.pendientem, this.tramitem, this.resueltom, this.cerradom, this.rechazadom], label: 'Guernica3' },
+
+      ];
+
+    });
 
   }
 
