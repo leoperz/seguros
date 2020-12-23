@@ -29,9 +29,12 @@
                    
                     <select  class="form-control" (change)="cambiarEstado($event.target.value)" [ngClass]="{ 'is-invalid': flag==1 }">
                         <option value="" disabled selected>Selecciona una sucursal de trabajo</option>
-                        <option value="Burzaco">Burzaco</option>
-                        <option value="Guernica">Guernica</option>
+                        <option value="Guillon">Guillon</option>
+                        <option value="Guernica1">Guernica1</option>
+                        <option value="Guernica2">Guernica2</option>
+                        <option value="Guernica3">Guernica3</option>
                         <option value="Longchamps">Longchamps</option>
+                        <option value="Longchamps">Mercado central</option>
                         <option value="Estudio de abogados">Estudio de abogados</option>
                     </select>
                     <div *ngIf="flag==1" class="invalid-feedback">
