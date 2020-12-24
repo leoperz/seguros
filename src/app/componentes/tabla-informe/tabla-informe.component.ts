@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-tabla-informe',
@@ -16,7 +16,10 @@ export class TablaInformeComponent implements OnInit {
   usuario:any={};
   flag:any="";
   reclamante:any={};
-  
+  notas:any[]=[];
+  obser="";
+  estado="";
+  sucursal="";
 
   constructor(private _info:InformeService, private _stor :StorageService) { }
 
@@ -54,12 +57,51 @@ export class TablaInformeComponent implements OnInit {
   }
 
 
+  guardarNota(){
+    
+    if(this.obser!=""){
+      let payload={
+        fecha: moment().format('DD/MM/YYYY'),
+        nota:this.obser
+      }
+      this.notas.push(payload);
+      this._info.guardarNotas(this.flag,this.notas);
+      this.obser="";
+      this.notas=[];
+      
+    }
+    
+    this._info.updateEstado(this.estado, this.flag).then(data=>{
+      
+    });
 
-  cambiarEstado(value:string, uid:string){
+    let variable ={
+      motivo:"Se ha cambiado el estado de un informe",
+      sucursal: this.sucursal,
+      fecha: moment().format('DD/MM/yyyy')
+    }
+    this._noti.guardarNotificacion(variable);
+    
+  }
+
+
+
+  cambiarEstado(value:string, uid:string,item:any){
+    this.sucursal=item.usuario.sucursal;
     if(value=='Resuelto'){
       //abrir modal para ingreso de indemnizacion
       this.flag=uid;
       document.getElementById('btnIndemnizacion').click();
+    }
+    if(value=="Observado"){
+      this.estado=value;
+      this.flag=uid;
+      this.notas=[];
+      for(let i of item.notas){
+        this.notas.push(i);
+      }
+      document.getElementById('btnObservacion').click();
+      return;
     }
 
     this._info.updateEstado(value, uid);
@@ -81,6 +123,14 @@ export class TablaInformeComponent implements OnInit {
     
     this.reclamante=item;
     document.getElementById('btnVehiculo').click();
+  }
+
+  verNotas(notas:[]){
+    this.notas=[];
+    document.getElementById('btnNotas').click();
+    for(let i of notas){
+      this.notas.push(i);
+    }
   }
 
 

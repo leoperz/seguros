@@ -17,6 +17,7 @@
       <th scope="col">#</th>
       <th scope="col">ESTADO</th>
       <th scope="col">FECHA DE ALTA</th>
+      <th scope="col">FECHA DE CIERRE</th>
       <th scope="col">SUCURSAL</th>
       <th scope="col">COMPAÑIA DE TERCEROS</th>
       <th scope="col">DATOS DEL RECLAMANTE</th>
@@ -24,9 +25,11 @@
       <th scope="col">ADJUNTOS</th>
       <th scope="col">IMPORTE</th>
       <th scope="col">MONTO DE INDEMNIZACION</th>
+      <th scope="col">OBSERVACIONES</th>
       <th scope="col">ACCION</th>
       <th *ngIf="usuario.perfil == 'adm'" scope="col">BORRAR REGISTRO</th>
     </tr>
+    
   </thead>
   <tbody class="text-center">
     <tr *ngFor="let item of informes | filter:search |  paginate: {itemsPerPage:page, currentPage: p } ; index as i">
@@ -36,7 +39,9 @@
       <td *ngIf="item.estado == 'Resuelto' "><span  class="badge badge-pill badge-warning">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'Cerrado' "><span  class="badge badge-pill badge-success  ">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'Rechazado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Observado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
       <td> {{item.fechaAlta}}</td>
+      <td>{{item.fechaCierre}}</td>
       <td> {{item.usuario.sucursal}}</td>
       <td>{{item.compania}}</td>
       <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
@@ -44,21 +49,23 @@
       <td><i *ngIf="item.archivos.length > 0" (click)="test(item.archivos)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
       <td>{{item.importe}}</td>
       <td>{{item.indemnizacion}}</td>
+      <td *ngIf="item.notas.length>0"><span (click)="verNotas(item.notas)" style="font-size: 28px; cursor: pointer;"><i class="far fa-clipboard"></i></span></td>
+      <td *ngIf="item.notas.length==0"></td>
       <td>
-        <select *ngIf="usuario.perfil == 'operador' || usuario.perfil == 'adm' " (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
+        <select *ngIf="usuario.perfil == 'operador' || usuario.perfil == 'adm' " (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
         <option value="" disabled selected>---Selecciona---</option>
         <option value="Pendiente">Pendiente</option>
         <option value="Cerrado">Cerrado</option>
         </select>
-        <select *ngIf="usuario.perfil == 'abogado'" (change)="cambiarEstado($event.target.value, item.uid)"  id="select">
+        <select *ngIf="usuario.perfil == 'abogado'" (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
           <option value="" disabled selected>---Selecciona---</option>
           <option value="En tramite">En tramite</option>
           <option value="Resuelto">Resuelto</option>
           <option value="Rechazado">Rechazado</option>
+          <option value="Observado">Observado</option>
           </select>
       </td>
       <td *ngIf="usuario.perfil == 'adm'"><i style="cursor: pointer;" (click)="borrarRegistro(item.uid)" class="fas fa-trash"></i></td>
-     
     </tr>
    
   </tbody>
@@ -228,4 +235,62 @@
   </div>
 </div>
 
+<button hidden=true id="btnObservacion" type="button" data-toggle="modal" data-target="#observacion"></button>
+<div class="modal fade" id="observacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-body">
+        <div class="row">
+          <div class="col-md-2">
+            <label style="margin-top: 6px;">Nota:</label>
+          </div>
+          <div class="col-md-10">
+            <textarea [(ngModel)]="obser" class="form-control" rows="4"></textarea>
+          </div>
+          
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button data-dismiss="modal"  (click)="guardarNota()" type="button" class="btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+<button hidden=true id="btnNotas" type="button" data-toggle="modal" data-target="#notas"></button>
+
+<div class="modal fade" id="notas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+     <div class="modal-body">
+        <div *ngFor="let item of notas ; index as i"  class="accordion" id="acordionejemplo">
+         
+          <div  class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]=" '#colapse'+i" aria-expanded="false" aria-controls="collapseThree">
+                  <strong>Fecha: </strong>{{item.fecha}}
+                </button>
+                
+              </h5>
+            </div>
+            <div [id]="'colapse'+i" class="collapse" aria-labelledby="headingThree" data-parent="#acordionejemplo">
+              <div style="height: auto;" class="card-body">
+                {{item.nota}}
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <hr>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
