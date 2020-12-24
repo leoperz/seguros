@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import * as moment from 'moment';
+import { NotificacionService } from 'src/app/servicios/notificacion.service';
 
 @Component({
   selector: 'app-tabla-informe',
@@ -21,7 +22,7 @@ export class TablaInformeComponent implements OnInit {
   estado="";
   sucursal="";
 
-  constructor(private _info:InformeService, private _stor :StorageService) { }
+  constructor(private _info:InformeService, private _stor :StorageService, private _noti: NotificacionService) { }
 
   ngOnInit() {
 
