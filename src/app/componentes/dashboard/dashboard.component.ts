@@ -139,7 +139,7 @@ export class DashboardComponent implements OnInit {
       }
 
       this.barChartData = [
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog], label: 'Guillon' },
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.observadog], label: 'Guillon' },
         { data: [0, 0, 0, 0, 0], label: 'Guernica1' },
         { data: [0, 0, 0, 0, 0], label: 'Guernica2' },
         { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
@@ -167,12 +167,12 @@ export class DashboardComponent implements OnInit {
       }
 
       this.barChartData = [
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
-        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog, this.observadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1, this.observadog1], label: 'Guernica1' },
         { data: [0, 0, 0, 0, 0], label: 'Guernica2' },
         { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
         { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
-        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado central' },
 
       ];
 
@@ -196,12 +196,12 @@ export class DashboardComponent implements OnInit {
       }
 
       this.barChartData = [
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
-        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
-        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog, this.observadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1, this.observadog1], label: 'Guernica1' },
+        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2, this.observadog2], label: 'Guernica2' },
         { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
         { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
-        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado central' },
 
       ];
 
@@ -226,12 +226,12 @@ export class DashboardComponent implements OnInit {
       }
 
       this.barChartData = [
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
-        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
-        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
-        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog, this.observadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1, this.observadog1], label: 'Guernica1' },
+        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2, this.observadog2], label: 'Guernica2' },
+        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3, this.observadog3], label: 'Guernica3' },
         { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
-        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado central' },
 
       ];
 
@@ -256,12 +256,12 @@ export class DashboardComponent implements OnInit {
       }
 
       this.barChartData = [
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
-        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
-        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
-        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
-        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Guernica3' },
-        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog, this.observadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1, this.observadog], label: 'Guernica1' },
+        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2, this.observadog2], label: 'Guernica2' },
+        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3, this.observadog3], label: 'Guernica3' },
+        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol, this.observadol], label: 'Longchamps' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado central' },
 
       ];
 
@@ -286,12 +286,12 @@ export class DashboardComponent implements OnInit {
       }
 
       this.barChartData = [
-        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog], label: 'Guillon' },
-        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
-        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
-        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
-        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Guernica3' },
-        { data: [this.pendientem, this.tramitem, this.resueltom, this.cerradom, this.rechazadom], label: 'Guernica3' },
+        { data: [this.pendienteg, this.tramiteg, this.resueltog, this.cerradog, this.rechazadog, this.observadog], label: 'Guillon' },
+        { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1, this.observadog1], label: 'Guernica1' },
+        { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2, this.observadog2], label: 'Guernica2' },
+        { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3, this.observadog3], label: 'Guernica3' },
+        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol, this.observadol], label: 'Longchamps' },
+        { data: [this.pendientem, this.tramitem, this.resueltom, this.cerradom, this.rechazadom ,this.observadom], label: 'Mercado central' },
 
       ];
 
