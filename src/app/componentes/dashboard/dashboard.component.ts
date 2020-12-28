@@ -172,7 +172,7 @@ export class DashboardComponent implements OnInit {
         { data: [0, 0, 0, 0, 0], label: 'Guernica2' },
         { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
         { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
-        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado central' },
 
       ];
 
@@ -201,7 +201,7 @@ export class DashboardComponent implements OnInit {
         { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
         { data: [0, 0, 0, 0, 0], label: 'Guernica3' },
         { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
-        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado central' },
 
       ];
 
@@ -231,7 +231,7 @@ export class DashboardComponent implements OnInit {
         { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
         { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
         { data: [0, 0, 0, ,0, 0], label: 'Longchamps' },
-        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado central' },
 
       ];
 
@@ -260,8 +260,8 @@ export class DashboardComponent implements OnInit {
         { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
         { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
         { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
-        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Guernica3' },
-        { data: [0, 0, 0, ,0, 0], label: 'Mercado' },
+        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Longchamps' },
+        { data: [0, 0, 0, ,0, 0], label: 'Mercado central' },
 
       ];
 
@@ -290,8 +290,8 @@ export class DashboardComponent implements OnInit {
         { data: [this.pendienteg1, this.tramiteg1, this.resueltog1, this.cerradog1, this.rechazadog1], label: 'Guernica1' },
         { data: [this.pendienteg2, this.tramiteg2, this.resueltog2, this.cerradog2, this.rechazadog2], label: 'Guernica2' },
         { data: [this.pendienteg3, this.tramiteg3, this.resueltog3, this.cerradog3, this.rechazadog3], label: 'Guernica3' },
-        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Guernica3' },
-        { data: [this.pendientem, this.tramitem, this.resueltom, this.cerradom, this.rechazadom], label: 'Guernica3' },
+        { data: [this.pendientel, this.tramitel, this.resueltol, this.cerradol, this.rechazadol], label: 'Longchamps' },
+        { data: [this.pendientem, this.tramitem, this.resueltom, this.cerradom, this.rechazadom], label: 'Mercado central' },
 
       ];
 
