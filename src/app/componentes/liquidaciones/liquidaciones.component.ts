@@ -68,6 +68,7 @@ export class LiquidacionesComponent implements OnInit {
   
     this.nombre=nombre;
     this.btncambiar=true;
+    this.porcentaje="";
   }
 
   aceptar(uid:any){
