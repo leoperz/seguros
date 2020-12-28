@@ -30,13 +30,13 @@ export class ReportesComponent implements OnInit {
     }
   };
 
-  public pieChartLabels: Label[] = [ ['Pendiente'], ['En tramite'], ['Resuelto'],'Cerrado'];
-  public pieChartData: number[] = [0 , 0, 0, 0];
+  public pieChartLabels: Label[] = [ ['Pendiente'], ['En tramite'], ['Resuelto'], ['Rechazado'],['Observado'],'Cerrado'];
+  public pieChartData: number[] = [0 , 0, 0, 0, 0, 0];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartColors = [
     {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)','rgba(0,255,255,0.3)' ],
+      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)','rgba(0,255,255,0.3)','rgba(255,255,0)','rgba(254,0,0)' ],
     },
   ];
 
@@ -49,6 +49,8 @@ export class ReportesComponent implements OnInit {
   resueltos:any[]=[];
   tramites:any[]=[];
   pendientes:any[]=[];
+  rechazados:any[]=[];
+  observados:any[]=[];
   
   constructor(private _repo: ReportesService, private _usu: UsuarioService, private _info : InformeService) { }
 
@@ -63,7 +65,7 @@ export class ReportesComponent implements OnInit {
       for(let i of resp){
         this.cerrados.push(i);
       }
-      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length]
+      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length,this.observados.length, this.rechazados.length]
     
     });
 
@@ -72,7 +74,7 @@ export class ReportesComponent implements OnInit {
       for(let i of resp){
         this.resueltos.push(i);
       }
-      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length]
+      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length,this.observados.length, this.rechazados.length]
        });
 
 
@@ -81,7 +83,26 @@ export class ReportesComponent implements OnInit {
       for(let i of resp){
         this.tramites.push(i);
       }
-      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length]
+      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length,this.observados.length, this.rechazados.length]
+      
+     
+    });
+    this._info.estadisticaInforme(this.operador.uid,'Observado').subscribe(resp=>{
+      this.tramites=[];
+      for(let i of resp){
+        this.tramites.push(i);
+      }
+      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length,this.observados.length, this.rechazados.length]
+      
+     
+    });
+
+    this._info.estadisticaInforme(this.operador.uid,'Rechazado').subscribe(resp=>{
+      this.tramites=[];
+      for(let i of resp){
+        this.tramites.push(i);
+      }
+      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length,this.observados.length, this.rechazados.length]
       
      
     });
@@ -91,11 +112,11 @@ export class ReportesComponent implements OnInit {
       for(let i of resp){
         this.pendientes.push(i);
       }
-      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length]
+      this.pieChartData=[this.pendientes.length,this.tramites.length, this.resueltos.length, this.cerrados.length,this.observados.length, this.rechazados.length]
     });
 
     setTimeout(() => {
-      this.pieChartData=[ this.pendientes.length, this.tramites.length, this.resueltos.length, this.cerrados.length]
+      this.pieChartData=[ this.pendientes.length, this.tramites.length, this.resueltos.length, this.cerrados.length,this.observados.length, this.rechazados.length]
     }, 3000);
 
 

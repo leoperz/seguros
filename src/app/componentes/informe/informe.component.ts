@@ -1,11 +1,11 @@
-import {Component, Injectable} from '@angular/core';
+import {Component} from '@angular/core';
 import { FirestorageService } from 'src/app/servicios/firestorage.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import * as moment from 'moment';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
-import * as  jszip from 'jszip'; 
+
 
 
 
@@ -25,7 +25,7 @@ import * as  jszip from 'jszip';
 
 export class InformeComponent  {
   
-  //zipp = new jszip();
+  
   public mensajeArchivo = 'No hay un archivo seleccionado';
   public datosFormulario = new FormData();
   public nombreArchivo = '';
@@ -79,7 +79,7 @@ export class InformeComponent  {
           anio:  new FormControl('', [Validators.required]),
           modelo: new FormControl('', [Validators.required]),
           dominio: new FormControl('', [Validators.required]),
-          nombreCompleto: new FormControl('', [Validators.required, Validators.minLength(5)]),
+          nombreCompleto: new FormControl('', [Validators.required]),
           apellido: new FormControl('', [Validators.required]),
           documento: new FormControl('', [Validators.required, Validators.min(9999999),Validators.max(99999999)]),
           importe: new FormControl('', [Validators.required])
