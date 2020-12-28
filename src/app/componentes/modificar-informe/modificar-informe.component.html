@@ -96,7 +96,7 @@
       <h2 class="text-center">Datos del reclamante</h2>
       <div style="padding-top: 10px;" class="form-group">
                    
-        <input oninput="this.value = this.value.toUpperCase()"gbTooltip="Nombre completo" [(ngModel)]="nombreCompleto"  type="text" formControlName="nombreCompleto" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombreCompleto.errors }" />
+        <input oninput="this.value = this.value.toUpperCase()" ngbTooltip="Nombre completo" [(ngModel)]="nombreCompleto"  type="text" formControlName="nombreCompleto" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombreCompleto.errors }" />
         <div *ngIf="submitted && f.nombreCompleto.errors" class="invalid-feedback">
             <div *ngIf="f.nombreCompleto.errors.required">campo obligatorio</div>
         </div>
