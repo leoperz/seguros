@@ -53,7 +53,7 @@
     <input id="file" type="file" (change)="cambioArchivo($event)">
   </span>
   
-  <div style="padding-top: 20px;" class="card-columns">
+  <div *ngIf="submitted == false" style="padding-top: 20px;" class="card-columns">
     
     <div *ngFor="let item of imagenes" class="card">
       
@@ -190,11 +190,12 @@
         <div class="form-group">
          
             <input ngbTooltip="Importe" *ngIf="modificarImporte == false" disabled [(ngModel)]="importe"  class="form-control" formControlName="importe"/>
-            <input ngbTooltip="Importe" *ngIf="modificarImporte == true " class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe"/>           
+            <input ngbTooltip="Importe" *ngIf="modificarImporte == true " class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe" [(ngModel)]="importe"/>           
         </div>
       </div>
       <div class="col-md-2">
-        <button (click)="modifImporte()" class="btn btn-primary">modificar importe</button>
+        <span  style="cursor: pointer; font-size: medium; " (click)="modifImporte()" class="badge badge-pill badge-primary">Modificar importe</span>
+       
       </div>
     </div>
     

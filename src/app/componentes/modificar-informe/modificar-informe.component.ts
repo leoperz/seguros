@@ -103,7 +103,7 @@ export class ModificarInformeComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   modificarItem(item:any){
-      console.log(item);
+      this.submitted=false;
       this.btnAgregar=item.uid;
       this._info.getInforme(item.uid).subscribe((resp:any)=>{
       //cargo los  campos del informe
@@ -206,12 +206,17 @@ export class ModificarInformeComponent implements OnInit {
   }
 
   onSubmit(){
+    
+    
+    this.modificarImporte=false;
     this.submitted=true;
     if(this.registerForm.invalid){
       console.log("es invalido",this.registerForm.controls.compania.value);
       return;
     }else{
-      this.imagenes=[];
+     
+
+      
       let payload={
         fechaAlta:this.fechaAlta,
         compania:this.compania,
@@ -227,11 +232,13 @@ export class ModificarInformeComponent implements OnInit {
         marca:this.marca,
         anio:this.anio, 
         importe:this.importe,
-  
       }
+
+
       this._info.actualizarInforme(payload,this.btnAgregar);
       document.getElementById('btnmodificar').click();
       this.btnAgregar="";
+      this.imagenes=[];
     }
     
     
