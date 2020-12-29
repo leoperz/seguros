@@ -1,4 +1,14 @@
 <div class="container">
+  <input type="text" [(ngModel)]="search" class="form-control" placeholder="Ingrese su busqueda...">
+<br>
+<label>Items por página:  <select (change)="cambiarItems($event.target.value)">
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="20">20</option>
+  <option value="30">30</option>
+  <option value="50">50</option>
+</select> </label>
+
   <table class="table table-bordered table-dark table-responsive">
     <thead class="thead-dark text-center">
       <tr>
@@ -47,6 +57,13 @@
     </tbody>
     
   </table>
+  <pagination-controls 
+                      (pageChange)="p=$event" 
+                      previousLabel="Anterior" 
+                      nextLabel="Siguiente" 
+                      responsive= "true">
+                      
+</pagination-controls>
 
   <button (click)="explorador()" *ngIf="btnAgregar != '' " type="button" class="btn btn-primary">Agregar imagen</button>
   <span  hidden=true class="btn btn-primary btn-file">

@@ -279,7 +279,9 @@ export class ModificarInformeComponent implements OnInit {
   }
 
 
-  
+  cambiarItems(number:any){
+    this.page=number;
+  }
 
 
 
