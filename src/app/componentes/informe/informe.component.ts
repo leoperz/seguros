@@ -34,6 +34,8 @@ export class InformeComponent  {
   public finalizado = false;
   public nombresURL:any[]=[];
   public informeForm: FormGroup;
+  
+  value='0.0'
   compania="";
   nombreCompleto="";
   apellido="";
@@ -184,12 +186,7 @@ export class InformeComponent  {
     
     
     altaSiniestro(){
-      //validar que los campos esten en la condicion requerida;
-
-      
-
-
-      //validar que los campos esten en la condicion requerida;
+     
     
       let f = this.test.split('-');
       let payload={
@@ -204,7 +201,7 @@ export class InformeComponent  {
         modelo:this.modelo,
         marca:this.marca,
         anio:this.anio,
-        importe: (document.getElementById('importe') as HTMLInputElement).value,
+        importe: this.value,
         telefono:this.telefono,
         mail:this.mail,
         companiaAseguradora:this.companiaAseguradora,
@@ -216,14 +213,11 @@ export class InformeComponent  {
         notas:[],
         
       }
-
-
-      console.log(payload);
       
       if (this.informeForm.valid){
         this._infor.guardarInforme(payload);
         (document.getElementById('my-input') as HTMLInputElement).value="";
-        (document.getElementById('importe') as HTMLInputElement).value="$ 0,00";
+        
         this.compania="";
         this.nombreCompleto="";
         this.apellido="";
@@ -240,8 +234,9 @@ export class InformeComponent  {
         this.nombresArch =[];
         this.ancho=0;
         this.list=[];
+        
         document.getElementById('btnMensajeFormulario').click();
-      
+        
       let variable ={
         motivo:"Se ha generado un nuevo informe",
         sucursal:payload.usuario.sucursal,
@@ -250,8 +245,9 @@ export class InformeComponent  {
       this._noti.guardarNotificacion(variable);
 
       this.onResetForm();
+      this.limpiarImporte();
     } else{
-      console.log("Error en el alta de informe");
+     
     }
     
     }
@@ -272,33 +268,10 @@ export class InformeComponent  {
         get Importe() { return this.informeForm.get('importe'); }
         
 
+        limpiarImporte(){
+          this.value='0';
+        }
 
-    mayusDominio(value){
-      this.dominio = value.toUpperCase();
-    }
-
-    mayusMarca(value){
-      this.marca = value.toUpperCase();
-    }
-
-    mayusModelo(value){
-      this.modelo = value.toUpperCase();
-    }
-
-    mayusApellido(value){
-      this.apellido = value.toUpperCase();
-    }
-    mayusNombreCompleto(value){
-      this.nombreCompleto = value.toUpperCase();
-    }
-    mayusDomicilio(value){
-      this.domicilio = value.toUpperCase();
-    }
-    mayusCompania(value){
-      this.compania = value.toUpperCase();
-    }
-    mayusCompaniaAseguradora(value){
-      this.companiaAseguradora = value.toUpperCase();
-    }
+    
     
  }

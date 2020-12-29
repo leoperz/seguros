@@ -16,13 +16,7 @@
                   </div>
                 </div> 
               </div>
-              
-              <!--<div " style="padding-right: 0px;" class="col-md-4">
-                <input type="text" class="form-control" placeholder="Fecha de alta" name="dp" [(ngModel)]="fechaAlta" ngbDatepicker #d="ngbDatepicker">
-              </div>
-              <div style="padding-left: 0px;" class="col-md-2">
-                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"><i style="font-size: 20px;" class="far fa-calendar-alt"></i></button>
-              </div> --> 
+            
             </div>
             
             
@@ -177,14 +171,11 @@
     <div  [formGroup]="informeForm" style="margin-left: 0px;" class="row">
       <div>
         <p style="margin-top: 6px;">Importe a reclamar:</p>
+        
       </div>
       <div style="width: 200px;">
-        <input id="importe" class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe"/>
-        <div *ngIf="Importe.invalid && (Importe.dirty || Importe.touched)" class="alert-danger">
-          <div *ngIf="Importe.errors.required" class="container-error-message" >
-            El campo Importe es requerido.
-          </div>
-        </div>  
+        <input  [(ngModel)]="value" class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe">
+        
       </div>
     </div>
     
