@@ -39,7 +39,11 @@
         <div class="row">
 
           
-            <div class="col-md"><input type="password" [(ngModel)]="password"class="form-control text-center" placeholder="Password"></div>
+            <div class="col-md">
+              <input id="contra"  type="password" [(ngModel)]="password"class="form-control text-center" placeholder="Password">
+              <span *ngIf="espiar == false" (click)="mostrarPassword()" style="right: 5px; cursor: pointer;" id="eye"><i class="far fa-eye"></i></span>
+              <span *ngIf="espiar == true" (click)="ocultarPassword()" style="right: 5px; cursor: pointer;" id="eye"><i class="far fa-eye-slash"></i></span>
+            </div>
             
 
         </div>

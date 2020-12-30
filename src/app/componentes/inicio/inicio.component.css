@@ -9,3 +9,12 @@
 }
 
 
+#eye{
+  float: right;
+  margin-left: -40px;
+  margin-top: -28px;
+  position: relative;
+  z-index: 2;
+}
+
+

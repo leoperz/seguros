@@ -18,7 +18,7 @@
                   <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Acciones</a>
                   <ul class="collapse list-unstyled" id="pageSubmenu">
 
-                    <li *ngIf="usuario.perfil !='abogado'">
+                    <li *ngIf="usuario.perfil == 'operador' ">
                       <a routerLink="/informe">
                         <img style="width: 30px; height: 30px;" src="../../../assets/imagenes/registrarse.png">
                         Generar informe

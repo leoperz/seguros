@@ -64,7 +64,9 @@
                 
                 <div style="padding-top: 10px;" class="form-group">
                     
-                    <input placeholder="Contraseña..." type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <input id="contra" placeholder="Contraseña..." type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <span *ngIf="espiar == false" (click)="mostrarPassword()" style="right: 5px; cursor: pointer;" id="eye"><i class="far fa-eye"></i></span>
+                    <span *ngIf="espiar == true" (click)="ocultarPassword()" style="right: 5px; cursor: pointer;" id="eye"><i class="far fa-eye-slash"></i></span>
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
                         <div *ngIf="f.password.errors.minlength">Como minimo 6 caracteres</div>
@@ -73,7 +75,9 @@
 
                 <div style="padding-top: 10px;" class="form-group">
                     
-                    <input placeholder="Reingrese la contraseña" type="password" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }" />
+                    <input id="recontra" placeholder="Reingrese la contraseña" type="password" formControlName="repassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.repassword.errors }" />
+                    <span *ngIf="respiar == false" (click)="remostrarPassword()" style="right: 5px; cursor: pointer;" id="eye"><i class="far fa-eye"></i></span>
+                    <span *ngIf="respiar == true" (click)="reocultarPassword()" style="right: 5px; cursor: pointer;" id="eye"><i class="far fa-eye-slash"></i></span>
                     <div *ngIf="submitted && f.repassword.errors" class="invalid-feedback">
                         <div *ngIf="f.repassword.errors.required">La contraseña es requerida</div>
                         <div *ngIf="f.repassword.errors.mustMatch">La contraseña no coincide</div>

@@ -15,6 +15,7 @@ export class InicioComponent implements OnInit {
   pass:any="";
   bandera=0;
   uid:string;
+  espiar = false;
   constructor(private _r : Router, private _usuario:UsuarioService, private _storage: StorageService) { }
 
   ngOnInit() {
@@ -78,6 +79,18 @@ export class InicioComponent implements OnInit {
     this._usuario.cambiarPass(this.pass, this.uid);
     document.getElementById('dismiss').click();
     this._r.navigateByUrl('/repass');
+  }
+
+
+  mostrarPassword(){
+    this.espiar=true;
+    (document.getElementById('contra') as HTMLInputElement).type = "text";
+  }
+
+
+  ocultarPassword(){
+    this.espiar = false;
+    (document.getElementById('contra') as HTMLInputElement).type = "password";
   }
 
 }

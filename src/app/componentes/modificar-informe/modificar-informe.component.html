@@ -206,7 +206,7 @@
       <div class="col-md-3">
         <div class="form-group">
          
-            <input ngbTooltip="Importe" *ngIf="modificarImporte == false" disabled [(ngModel)]="importe"  class="form-control" formControlName="importe"/>
+            <input style="cursor: not-allowed;" ngbTooltip="Importe" *ngIf="modificarImporte == false" disabled [(ngModel)]="importe"  class="form-control" formControlName="importe"/>
             <input ngbTooltip="Importe" *ngIf="modificarImporte == true " class="form-control" currencyMask  [options]="{thousands: '.', decimal: ',' }" formControlName="importe" [(ngModel)]="importe"/>           
         </div>
       </div>

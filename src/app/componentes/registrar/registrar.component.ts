@@ -38,6 +38,8 @@ export class RegistrarComponent implements OnInit {
   sucursal:string="";
   registerForm: FormGroup;
   submitted = false;
+  espiar = false;
+  respiar=false;
   constructor(private formBuilder: FormBuilder, private _usuario: UsuarioService, private _router: Router) { }
 
   ngOnInit() {
@@ -113,6 +115,29 @@ export class RegistrarComponent implements OnInit {
 redireccionar(){
   
     this._router.navigateByUrl('/inicio');
+}
+
+
+mostrarPassword(){
+  this.espiar=true;
+  (document.getElementById('contra') as HTMLInputElement).type = "text";
+}
+
+
+ocultarPassword(){
+  this.espiar = false;
+  (document.getElementById('contra') as HTMLInputElement).type = "password";
+}
+
+remostrarPassword(){
+  this.respiar=true;
+  (document.getElementById('recontra') as HTMLInputElement).type = "text";
+}
+
+
+reocultarPassword(){
+  this.respiar = false;
+  (document.getElementById('recontra') as HTMLInputElement).type = "password";
 }
 
 

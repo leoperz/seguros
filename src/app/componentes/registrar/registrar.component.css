@@ -8,3 +8,12 @@
  .modal { 
     background-color: rgb(43, 42, 42) !important; 
  }
+
+
+ #eye{
+   float: right;
+   margin-left: -40px;
+   margin-top: -28px;
+   position: relative;
+   z-index: 2;
+ }

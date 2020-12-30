@@ -35,6 +35,9 @@ export class RepasswordComponent implements OnInit {
   uid:string="";
   registerForm: FormGroup;
   submitted = false;
+  espiar=false;
+  espiarpass=false;
+  espiarrepass=false;
   constructor(private formBuilder: FormBuilder, private _usuario: UsuarioService, private _router: Router) { }
 
   ngOnInit() {
@@ -85,6 +88,41 @@ export class RepasswordComponent implements OnInit {
   
     
     
+}
+
+mostrarPassword(){
+  this.espiar=true;
+  (document.getElementById('contra') as HTMLInputElement).type = "text";
+}
+
+
+ocultarPassword(){
+  this.espiar = false;
+  (document.getElementById('contra') as HTMLInputElement).type = "password";
+}
+
+
+mostrarPasswordPass(){
+  this.espiarpass=true;
+  (document.getElementById('contrapass') as HTMLInputElement).type = "text";
+}
+
+
+ocultarPasswordPass(){
+  this.espiarpass = false;
+  (document.getElementById('contrapass') as HTMLInputElement).type = "password";
+}
+
+
+mostrarPasswordRepass(){
+  this.espiarrepass=true;
+  (document.getElementById('contrarepass') as HTMLInputElement).type = "text";
+}
+
+
+ocultarPasswordRepass(){
+  this.espiarrepass = false;
+  (document.getElementById('contrarepass') as HTMLInputElement).type = "password";
 }
 
 }
