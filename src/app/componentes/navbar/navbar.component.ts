@@ -132,6 +132,11 @@ export class NavbarComponent implements OnInit {
       });
 
 
+    }else{
+      
+      this.usuario = {
+        perfil : ""
+      }
     }
 
   

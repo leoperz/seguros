@@ -21,7 +21,6 @@ const routes: Routes = [
   {path:'dashboard', component:DashboardComponent, canActivate:[GuardService]},
   {path:'agenda', component:AgendaComponent, canActivate:[GuardService]},
   {path:'informe', component:InformeComponent, canActivate:[GuardService]},
-  //{path:'verinformes', component:TablaInformeComponent, canActivate:[GuardService]},
   {path:'verinformes', component:TablaFiltroComponent, canActivate:[GuardService]},
   {path:'repass', component:RepasswordComponent},
   {path:'historial', component:HistorialMensajesComponent, canActivate:[GuardService]},
