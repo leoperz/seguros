@@ -8,7 +8,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class FirestorageService {
 
-  urlBack:string = 'http://localhost:5500/';
+  urlBack:string = 'https://segurosalvarenga.herokuapp.com/';
+  //urlBack:string = 'http://localhost:5500/';
   constructor(private _fireStorage: AngularFireStorage,private _http: HttpClient) { }
 
 
