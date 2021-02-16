@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +28,9 @@ import { TablaFiltroComponent } from './componentes/tabla-filtro/tabla-filtro.co
 import { ModificarInformeComponent } from './componentes/modificar-informe/modificar-informe.component';
 import { LiquidacionesComponent } from './componentes/liquidaciones/liquidaciones.component';
 import { NumberFormatPipe }     from './pipes/numer';
+import { RouterModule } from '@angular/router';
+import {routes} from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -53,7 +55,6 @@ import { NumberFormatPipe }     from './pipes/numer';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -64,7 +65,9 @@ import { NumberFormatPipe }     from './pipes/numer';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     NgbModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes, {useHash:true}),
   ],
   providers: [NumberFormatPipe],
   bootstrap: [AppComponent],

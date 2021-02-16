@@ -12,8 +12,8 @@ export const environment = {
     projectId: "seguros-1d4ac",
     storageBucket: "seguros-1d4ac.appspot.com",
     messagingSenderId: "39040131789",
-    appId: "1:39040131789:web:22ead2913845596ec9bf84"
-  
+    appId: "1:39040131789:web:22ead2913845596ec9bf84",
+    measurementId: "G-F6CC50D1DH"
     }
 };
 

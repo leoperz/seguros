@@ -5,7 +5,8 @@ import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import * as moment from 'moment';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
-
+import * as JSZip from 'jszip';
+import * as FileSaver from 'file-saver';
 
 
 
@@ -95,54 +96,65 @@ export class InformeComponent  {
 
   public cambioArchivo(event) {
   
+    var zip = new JSZip();
+    zip.file("Title.txt", 'test');
+    var imgFolder = zip.folder("images");
+    for (let i = 0; i < event.target.length; i++) {
+      imgFolder.file(event.target[i].name, event.target[i], { base64: true });
+    }
+    zip.generateAsync({ type: "blob" })
+      .then(function (content) {
+        FileSaver.saveAs(content, "Sample.zip");
+      });
+
+
+
+
+
     this.ancho=100;
 
+    
     if (event.target.files.length > 0) {
       for (let i = 0; i < event.target.files.length; i++) {
         
-        this.nombreArchivo = event.target.files[i].name;
-        this.datosFormulario.delete('archivo');
-        this.datosFormulario.append('archivo', event.target.files[i], event.target.files[i].name);
+       
+        //this.datosFormulario.delete('archivo');
+        this.datosFormulario.append(event.target.files[i].name, event.target.files[i], event.target.files[i].name);
       }
     } else {
       this.mensajeArchivo = 'No hay un archivo seleccionado';
     }
-    this.subirArchivo();
+    this.subirArchivo(event.target.files);
   }
 
 
 
 
 
-  public subirArchivo() {
-    
-    
-    
-    let archivo = this.datosFormulario.get('archivo');
-    
-    //probando el .zip
-    
-    this.list.push({
-      nombre:this.nombreArchivo,
-      arch: archivo
-    });
-
- 
-    //probando el .zip
-    
-    
-    let tarea = this._fireStorage.tareaCloudStorage(this.nombreArchivo, archivo);
-    
-    //Cambia el porcentaje
-    tarea.percentageChanges().subscribe((porcentaje) => {
-      this.porcentaje = Math.round(porcentaje);
-      this.ancho = Math.round(porcentaje);
-      if (this.porcentaje == 100) {
-        this.finalizado = true;
-        this.nombresArch.push(this.nombreArchivo);
-      }
-
-    });
+  public  subirArchivo(nombres:any[]) {
+    let archivo;
+    for(let i of nombres){
+      console.log("que llega a nombres-->",i.name);
+      archivo = this.datosFormulario.get(i.name);
+      
+      this.list.push({
+        nombre:i.name,
+        arch: archivo
+      });
+      
+      
+      let tarea = this._fireStorage.tareaCloudStorage(i.name, archivo);
+      tarea.percentageChanges().subscribe((porcentaje) => {
+        this.porcentaje = Math.round(porcentaje);
+        this.ancho = Math.round(porcentaje);
+        
+        if (this.porcentaje == 100) {
+          this.finalizado = true;
+          this.nombresArch.push(this.nombreArchivo);
+        }
+  
+      });
+    }
     
 
     setTimeout(() => {
@@ -156,9 +168,9 @@ export class InformeComponent  {
       this.cargando=true;
    
     setTimeout(() => {
-      for(let i of this.nombresArch){
+      for(let i of this.list){
         
-        this._fireStorage.referenciaCloudStorage(i).getDownloadURL().subscribe(resp=>{
+        this._fireStorage.referenciaCloudStorage(i.nombre).getDownloadURL().subscribe(resp=>{
           
         this.nombresURL.push(resp);
           });

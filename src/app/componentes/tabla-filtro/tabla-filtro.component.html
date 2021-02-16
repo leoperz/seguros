@@ -65,7 +65,7 @@
       <td>{{item.compania}}</td>
       <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
       <td > <i (click)="verVehiculo(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
-      <td><i *ngIf="item.archivos.length > 0" (click)="test(item.archivos)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
+      <td><i *ngIf="item.archivos.length > 0" (click)="verAdjuntos(item.archivos)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
       <td>{{item.importe}}</td>
       <td>{{item.indemnizacion}}</td>
       <td *ngIf="item.notas.length>0"><span (click)="verNotas(item.notas)" style="font-size: 28px; cursor: pointer;"><i class="far fa-clipboard"></i></span></td>

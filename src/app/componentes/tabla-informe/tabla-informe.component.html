@@ -46,7 +46,7 @@
       <td>{{item.compania}}</td>
       <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
       <td > <i (click)="verVehiculo(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
-      <td><i *ngIf="item.archivos.length > 0" (click)="test(item.archivos)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
+      <td><i *ngIf="item.archivos.length > 0" (click)="test(item.archivos,item.usuario.sucursal)"  style="cursor: pointer;" class="fas fa-paperclip"></i></td>
       <td>{{item.importe}}</td>
       <td>{{item.indemnizacion}}</td>
       <td *ngIf="item.notas.length>0"><span (click)="verNotas(item.notas)" style="font-size: 28px; cursor: pointer;"><i class="far fa-clipboard"></i></span></td>
@@ -292,5 +292,18 @@
         
       </div>
     </div>
+  </div>
+</div>
+
+
+
+<button hidden id="load" type="button" data-toggle="modal" data-target="#loading"></button>
+
+<div  id="loading" class="modal fade bd-example-modal-lg spinner1" data-backdrop="static" data-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-sm spinner2">
+      <div class="modal-content spinner3" style="width: 48px">
+        <button id="dismiss" type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+          <span style="color: aliceblue;" class="fa fa-spinner fa-spin fa-3x"></span>
+      </div>
   </div>
 </div>

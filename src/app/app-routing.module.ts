@@ -15,7 +15,7 @@ import { TablaFiltroComponent } from './componentes/tabla-filtro/tabla-filtro.co
 import { ModificarInformeComponent } from './componentes/modificar-informe/modificar-informe.component';
 import { LiquidacionesComponent } from './componentes/liquidaciones/liquidaciones.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {path:'inicio', component:InicioComponent},
   {path:'registrarse', component:RegistrarComponent},
   {path:'dashboard', component:DashboardComponent, canActivate:[GuardService]},
@@ -32,8 +32,8 @@ const routes: Routes = [
   {path:'', pathMatch:'full', redirectTo:'inicio'}
 ];
 
-@NgModule({
+/*@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { }*/

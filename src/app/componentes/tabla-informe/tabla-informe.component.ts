@@ -3,6 +3,9 @@ import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import * as moment from 'moment';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
+import { FirestorageService } from 'src/app/servicios/firestorage.service.js';
+import saveAs from "file-saver";
+
 
 @Component({
   selector: 'app-tabla-informe',
@@ -22,7 +25,7 @@ export class TablaInformeComponent implements OnInit {
   estado="";
   sucursal="";
 
-  constructor(private _info:InformeService, private _stor :StorageService, private _noti: NotificacionService) { }
+  constructor(private _fire : FirestorageService,  private _info:InformeService, private _stor :StorageService, private _noti: NotificacionService) { }
 
   ngOnInit() {
 
@@ -134,23 +137,49 @@ export class TablaInformeComponent implements OnInit {
     }
   }
 
-
-  test(archivos:[]){
-    console.log("estos son los ar",archivos);
-    for(let i of archivos){
-    let a = document.createElement('a');
-    a.href = i;
-    a.download = "title";
-    document.body.appendChild(a);
-    a.target="_blank";
-    a.click();
-    a.remove();
-    }
-    
-  }
-
   borrarRegistro(uid:string){
     this._info.delete(uid);
   }
+
+
+
+  downloadUrlAsPromise(url) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.responseType = "arraybuffer";
+      xhr.onreadystatechange = function(evt) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(xhr.response);
+          } else {
+            reject(new Error("Error for " + url + ": " + xhr.status));
+          }
+        }
+      };
+      xhr.send();
+    });
+  }
+
+
+  
+  test(archivos:[],sucursal:string){
+    document.getElementById('load').click();
+    this._fire.generarZip(archivos,sucursal).subscribe(data=>{
+      saveAs(data,`${sucursal}.zip`);
+      document.getElementById('dismiss').click();
+    });
+    
+  }
+
+
+   
+    
+  
+
+ 
+ 
+ 
+
 
 }

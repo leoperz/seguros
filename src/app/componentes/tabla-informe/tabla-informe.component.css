@@ -6,3 +6,15 @@ hr{
 .main{
     background-color: rgba(128, 128, 128, 0.096);
 }
+
+.spinner1 .spinner2{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(30% - 60px);
+}
+
+.spinner1 .spinner2 .spinner3{
+    background-color: transparent;
+    border: none;
+}

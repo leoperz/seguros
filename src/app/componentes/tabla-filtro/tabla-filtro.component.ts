@@ -6,6 +6,12 @@ import { NotificacionService } from 'src/app/servicios/notificacion.service';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable'
 import {UserOptions}   from 'jspdf-autotable'
+import * as JSZip from 'jszip';
+import fileSaver from 'file-saver';
+
+
+
+import { FirestorageService } from 'src/app/servicios/firestorage.service';
 //import * as html2canvas from 'html2canvas';
 
 interface jsPDFWithPlugin extends jsPDF{
@@ -35,7 +41,8 @@ export class TablaFiltroComponent implements OnInit {
   sucursal="";
   seleccion:string="Pendiente";
 
-  constructor( private _info: InformeService, private _stor :StorageService, private _noti: NotificacionService) { }
+  constructor( private _info: InformeService, private _stor :StorageService, private _noti: NotificacionService,
+               private  _firestore: FirestorageService ) { }
 
   ngOnInit() {
     this.usuario = this._stor.getLocalStorage();
@@ -248,7 +255,17 @@ export class TablaFiltroComponent implements OnInit {
   }
 
 
+  verAdjuntos(archivos:[]){
+   
+     
+   
+   
+   
+
+
+  
   }
 
+}
 
 
