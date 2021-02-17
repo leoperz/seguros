@@ -5,8 +5,7 @@ import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import * as moment from 'moment';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
-import * as JSZip from 'jszip';
-import * as FileSaver from 'file-saver';
+
 
 
 
@@ -96,21 +95,6 @@ export class InformeComponent  {
 
   public cambioArchivo(event) {
   
-    var zip = new JSZip();
-    zip.file("Title.txt", 'test');
-    var imgFolder = zip.folder("images");
-    for (let i = 0; i < event.target.length; i++) {
-      imgFolder.file(event.target[i].name, event.target[i], { base64: true });
-    }
-    zip.generateAsync({ type: "blob" })
-      .then(function (content) {
-        FileSaver.saveAs(content, "Sample.zip");
-      });
-
-
-
-
-
     this.ancho=100;
 
     
