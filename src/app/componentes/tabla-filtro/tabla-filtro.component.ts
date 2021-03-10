@@ -5,14 +5,10 @@ import { StorageService } from 'src/app/servicios/storage.service';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable'
-import {UserOptions}   from 'jspdf-autotable'
-import * as JSZip from 'jszip';
-import fileSaver from 'file-saver';
-
-
-
+import {UserOptions}   from 'jspdf-autotable';
+import saveAs from "file-saver";
 import { FirestorageService } from 'src/app/servicios/firestorage.service';
-//import * as html2canvas from 'html2canvas';
+
 
 interface jsPDFWithPlugin extends jsPDF{
   [x: string]: any;
@@ -87,6 +83,16 @@ export class TablaFiltroComponent implements OnInit {
         }
     }
      
+  }
+
+  test(archivos:[],sucursal:string){
+    
+    document.getElementById('load').click();
+    this._firestore.generarZip(archivos,sucursal).subscribe(data=>{
+      saveAs(data,`${sucursal}.zip`);
+      document.getElementById('dismiss').click();
+    });
+    
   }
 
   cambiarItems(number:any){

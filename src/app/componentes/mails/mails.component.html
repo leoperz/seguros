@@ -1,0 +1,89 @@
+<div class="container">
+  <br>
+  <br>
+  <div class="panel panel-default">
+              
+    <div class="panel-heading">
+      <div class="alert alert-success" role="alert"><h3>Configuracíon del envio de mails</h3></div>
+    </div>
+    <br>
+    <div class="panel-body">
+          
+      <fieldset class="col-md-12">    	
+          <legend>Correo de la empresa</legend>
+        
+        <div class="panel panel-default">
+          <div class="panel-body">
+            
+            
+
+            <div class="row">
+              <div class="col-md-4">
+                <input autocomplete="off" [(ngModel)]="mailOrigen" id="mailDesde" class="form-control" type="text">
+              </div>
+              <div class="col-md-2">
+                <button *ngIf="deshabilitado == 0" id="boton"  (click)="guardarCorreo()" type="button" class="btn">Guardar</button>
+                <button *ngIf="deshabilitado == 1" id="boton"  (click)="modificarCorreo()" type="button" class="btn">Modificar</button>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <input placeholder="password"  class="form-control" type="password">
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+        
+      </fieldset>	
+      <br>
+      <br>
+      <br>
+
+      <fieldset class="col-md-12">    	
+          <legend>Correo Receptor</legend>
+        
+        <div class="panel panel-default">
+          <div class="panel-body">
+            
+            
+
+            <div class="row">
+              <div class="col-md-4">
+                <input autocomplete="off" [(ngModel)]="mailDestino" id="" class="form-control" type="text">
+              </div>
+              <div class="col-md-2">
+                <button  id="boton" (click)="agregarCorreo()" type="button" class="btn">Agregar</button>
+              </div>
+              <div class="col-md-4">
+                
+                  <select (change)="borrarMail($event.target.value)" class="form-control fa">
+                    <option selected>---Lista de correos---</option>
+                    <option  *ngFor="let item of list" class="fa"> &#xf056; {{item}} </option>
+                    
+                  </select>
+                  
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+      </fieldset>
+   
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-4">
+          <button (click)="aceptarSalir()" type="button" class="btn btn-lg btn-primary">Aceptar y salir</button>
+        </div>
+      </div>
+      
+
+      <div class="clearfix"></div>
+          </div>
+              
+</div>
+</div>

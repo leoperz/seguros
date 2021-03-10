@@ -52,7 +52,7 @@ export class InformeComponent  {
   ancho =0;
   list:any[]=[]; 
   cargando=false;
-  
+  mostrar=0;
 
   referencia:any;
 
@@ -102,7 +102,7 @@ export class InformeComponent  {
       for (let i = 0; i < event.target.files.length; i++) {
         
        
-        //this.datosFormulario.delete('archivo');
+        
         this.datosFormulario.append(event.target.files[i].name, event.target.files[i], event.target.files[i].name);
       }
     } else {
@@ -116,9 +116,12 @@ export class InformeComponent  {
 
 
   public  subirArchivo(nombres:any[]) {
+    this.mostrar = nombres.length;
+    
+    this.list=[]; // se agrega esta linea para corregir la incidencia;
     let archivo;
     for(let i of nombres){
-      console.log("que llega a nombres-->",i.name);
+      
       archivo = this.datosFormulario.get(i.name);
       
       this.list.push({
@@ -162,10 +165,12 @@ export class InformeComponent  {
        
        document.getElementById('cerrarModal').click();
        this.cargando=false;
+       this.mostrar=0;
     }, 3000);
 
     }
-    console.log("nombresURL-->",this.nombresURL);
+   
+    
     
   }
     
@@ -197,7 +202,7 @@ export class InformeComponent  {
         modelo:this.modelo,
         marca:this.marca,
         anio:this.anio,
-        importe: this.value,
+        importe: (document.getElementById('importe') as HTMLInputElement).value,
         telefono:this.telefono,
         mail:this.mail,
         companiaAseguradora:this.companiaAseguradora,

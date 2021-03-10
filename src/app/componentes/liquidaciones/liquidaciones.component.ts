@@ -269,16 +269,19 @@ export class LiquidacionesComponent implements OnInit {
         aux=[];
       }
     }
-
-    console.log(body);
     const doc = new jsPDF('portrait','px','a4') as jsPDFWithPlugin;
     doc.autoTable({
       head:[
-        ['FECHA','SUCURSAL','PORCENTAJE','TOTAL']
+        ['FECHA','SUCURSAL','PORCENTAJE','SUB-TOTAL']
       ],
       body:body
       
-    });    
+    }
+     
+    
+    
+    );   
+    doc.text(`Total: $${this.total}`, 35, doc.autoTable.previous.finalY + 20);
   
     doc.save("documento.pdf"); 
 

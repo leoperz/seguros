@@ -13,6 +13,7 @@ export class FirestorageService {
   constructor(private _fireStorage: AngularFireStorage,private _http: HttpClient) { }
 
 
+  /*Llamadas a servicios del back end de Heroku*/
 
   public generarZip(archivos:[],sucursal:string){
     
@@ -20,6 +21,13 @@ export class FirestorageService {
 
     return this._http.post(this.urlBack+'download',payload,{responseType:'blob'});
   }
+
+  public enviarMail(payload:any){
+
+  }
+
+
+   /*Llamadas a servicios del back end de Heroku*/
   
 
   public tareaCloudStorage(nombreArchivo: string, datos: any) {

@@ -31,6 +31,7 @@ import { NumberFormatPipe }     from './pipes/numer';
 import { RouterModule } from '@angular/router';
 import {routes} from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MailsComponent } from './componentes/mails/mails.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     TablaFiltroComponent,
     ModificarInformeComponent,
     LiquidacionesComponent,
-    NumberFormatPipe 
+    NumberFormatPipe,
+    MailsComponent 
   ],
   imports: [
     BrowserModule,

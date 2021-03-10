@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { AgendaComponent } from './componentes/agenda/agenda.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { HistorialMensajesComponent } from './componentes/historial-mensajes/historial-mensajes.component';
@@ -14,6 +13,7 @@ import { GuardService } from './servicios/guard.service';
 import { TablaFiltroComponent } from './componentes/tabla-filtro/tabla-filtro.component';
 import { ModificarInformeComponent } from './componentes/modificar-informe/modificar-informe.component';
 import { LiquidacionesComponent } from './componentes/liquidaciones/liquidaciones.component';
+import { MailsComponent } from './componentes/mails/mails.component';
 
 export const routes: Routes = [
   {path:'inicio', component:InicioComponent},
@@ -29,6 +29,7 @@ export const routes: Routes = [
   {path:'mensaje', component:MensajeComponent, canActivate:[GuardService]},
   {path:'modificarinformes', component:ModificarInformeComponent, canActivate:[GuardService]},
   {path:'liquidaciones', component:LiquidacionesComponent, canActivate:[GuardService]},
+  {path:'mails', component:MailsComponent, canActivate:[GuardService]},
   {path:'', pathMatch:'full', redirectTo:'inicio'}
 ];
 
