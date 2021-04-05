@@ -62,7 +62,6 @@
           <option value="En tramite">En tramite</option>
           <option value="Liquidado">Liquidado</option>
           <option value="Rechazado">Rechazado</option>
-          <option value="Observado">Observado</option>
           </select>
       </td>
       <td *ngIf="usuario.perfil == 'adm'"><i style="cursor: pointer;" (click)="borrarRegistro(item.uid)" class="fas fa-trash"></i></td>
@@ -98,7 +97,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button (click)="guardarIndemnizacion()" type="button" class="btn btn-primary">Aceptar</button>
+        <button (click)="guardarIndemnizacion()" type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>
+        <button (click)="abrirVentanaObservacion()" type="button" class="btn btn-info">Agregar Nota</button>
       </div>
     </div>
   </div>

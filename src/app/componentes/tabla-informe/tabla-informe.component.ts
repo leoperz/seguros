@@ -97,14 +97,14 @@ export class TablaInformeComponent implements OnInit {
       this.flag=uid;
       document.getElementById('btnIndemnizacion').click();
     }
-    if(value=="Observado"){
+    if(value=="Observado"||value=="Rechazado"||value=="Cerrado"){
       this.estado=value;
       this.flag=uid;
       this.notas=[];
       for(let i of item.notas){
         this.notas.push(i);
       }
-      document.getElementById('btnObservacion').click();
+      this.abrirVentanaObservacion();
       return;
     }
 
@@ -113,7 +113,10 @@ export class TablaInformeComponent implements OnInit {
 
   guardarIndemnizacion(){
     this._info.updateEstado2((document.getElementById('importe') as HTMLInputElement).value,this.flag);
-    
+  }
+
+  abrirVentanaObservacion(){
+    document.getElementById('btnObservacion').click();
   }
 
   verReclamante(item:any){
