@@ -245,8 +245,21 @@ export class InformeComponent  {
       }
       this._noti.guardarNotificacion(variable);
 
+      let mail = {
+        para:"jleoperz@gmail.com",
+        asunto:"Alvarenga Seguros",
+        cuerpo:`se han dado de alta nuevos siniestros en la sucursal ${this._stor.getLocalStorage().sucursal}`
+      }
+      this._fireStorage.enviarMail({mail}).subscribe(resp=>{
+        console.log(resp);
+      });
+
       this.onResetForm();
       this.limpiarImporte();
+
+     
+
+
     } else{
      
     }

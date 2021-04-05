@@ -8,8 +8,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class FirestorageService {
 
-  urlBack:string = 'https://segurosalvarenga.herokuapp.com/';
-  //urlBack:string = 'http://localhost:5500/';
+  //urlBack:string = 'https://segurosalvarenga.herokuapp.com/';
+  urlBack:string = 'http://localhost:5500/';
   constructor(private _fireStorage: AngularFireStorage,private _http: HttpClient) { }
 
 
@@ -23,11 +23,15 @@ export class FirestorageService {
   }
 
   public enviarMail(payload:any){
-
+    console.log("se envia el mail");
+    return this._http.post(this.urlBack+'enviarMail',payload);
   }
 
 
-   /*Llamadas a servicios del back end de Heroku*/
+  /*Llamadas a servicios del back end de Heroku*/
+
+
+
   
 
   public tareaCloudStorage(nombreArchivo: string, datos: any) {
