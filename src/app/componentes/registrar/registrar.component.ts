@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import {Router} from '@angular/router';
 
+
 export function CompareData(
   controlName: string,
   matchingControlName: string
