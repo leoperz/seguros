@@ -92,7 +92,7 @@ export class TablaInformeComponent implements OnInit {
 
   cambiarEstado(value:string, uid:string,item:any){
     this.sucursal=item.usuario.sucursal;
-    if(value=='Resuelto'){
+    if(value=='Liquidado'){
       //abrir modal para ingreso de indemnizacion
       this.flag=uid;
       document.getElementById('btnIndemnizacion').click();

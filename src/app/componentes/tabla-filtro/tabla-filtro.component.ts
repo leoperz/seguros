@@ -102,7 +102,7 @@ export class TablaFiltroComponent implements OnInit {
   cambiarEstado(value:string, uid:string, item:any){
     console.log("este es el item-->",item);
     this.sucursal=item.usuario.sucursal;
-    if(value=='Resuelto'){
+    if(value=='Liquidado'){
       //abrir modal para ingreso de indemnizacion
       this.flag=uid;
       this.estado=value;

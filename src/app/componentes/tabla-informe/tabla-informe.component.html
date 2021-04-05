@@ -36,7 +36,7 @@
       <th scope="row">{{i+1}}</th>
       <td *ngIf="item.estado == 'Pendiente' "><span  class="badge badge-pill badge-danger">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'En tramite' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
-      <td *ngIf="item.estado == 'Resuelto' "><span  class="badge badge-pill badge-warning">{{item.estado}}</span></td>
+      <td *ngIf="item.estado == 'Liquidado' "><span  class="badge badge-pill badge-warning">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'Cerrado' "><span  class="badge badge-pill badge-success  ">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'Rechazado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'Observado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
@@ -60,7 +60,7 @@
         <select *ngIf="usuario.perfil == 'abogado'" (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
           <option value="" disabled selected>---Selecciona---</option>
           <option value="En tramite">En tramite</option>
-          <option value="Resuelto">Resuelto</option>
+          <option value="Liquidado">Liquidado</option>
           <option value="Rechazado">Rechazado</option>
           <option value="Observado">Observado</option>
           </select>
