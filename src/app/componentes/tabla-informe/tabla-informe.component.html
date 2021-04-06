@@ -18,6 +18,8 @@
       <th scope="col">ESTADO</th>
       <th scope="col">FECHA DE ALTA</th>
       <th scope="col">FECHA DE CIERRE</th>
+      <th scope="col">NOMBRE</th>
+      <th scope="col">DOMINIO</th>
       <th scope="col">SUCURSAL</th>
       <th scope="col">COMPAÑIA DE TERCEROS</th>
       <th scope="col">DATOS DEL RECLAMANTE</th>
@@ -42,6 +44,8 @@
       <td *ngIf="item.estado == 'Observado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
       <td> {{item.fechaAlta}}</td>
       <td>{{item.fechaCierre}}</td>
+      <td>{{item.nombreCompleto}} {{item.apellido}}</td>
+      <td>{{item.dominio}}</td>
       <td> {{item.usuario.sucursal}}</td>
       <td>{{item.compania}}</td>
       <td><i (click)="verReclamante(item)" style="cursor: pointer;" class="far fa-eye"></i></td>
