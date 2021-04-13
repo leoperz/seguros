@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FirestorageService } from 'src/app/servicios/firestorage.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { InformeService } from 'src/app/servicios/informe.service';
 import { StorageService } from 'src/app/servicios/storage.service';
 import * as moment from 'moment';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
+import { MailService } from 'src/app/servicios/mail.service';
 
 
 
@@ -23,7 +24,7 @@ import { NotificacionService } from 'src/app/servicios/notificacion.service';
 
 
 
-export class InformeComponent  {
+export class InformeComponent implements OnInit  {
   
   
   public mensajeArchivo = 'No hay un archivo seleccionado';
@@ -35,6 +36,7 @@ export class InformeComponent  {
   public nombresURL:any[]=[];
   public informeForm: FormGroup;
   
+  mailCargado:any;
   value='0.0'
   compania="";
   nombreCompleto="";
@@ -58,10 +60,22 @@ export class InformeComponent  {
 
   constructor(private _fireStorage: FirestorageService, private _infor :InformeService, 
               private _stor : StorageService,
-              private _noti : NotificacionService
+              private _noti : NotificacionService,
+              private _mail : MailService
               ) {
                 this.informeForm = this.createInformeForm();
                }
+  
+  
+  ngOnInit(): void {
+    this._mail.getMailEmisor().subscribe((resp:any[])=>{
+      if(resp.length == 0){
+        this.mailCargado=null;
+      }else{
+        console.log("si mail configurado",resp);
+      }
+    })
+  }
 
 
   public archivoForm = new FormGroup({
@@ -245,14 +259,14 @@ export class InformeComponent  {
       }
       this._noti.guardarNotificacion(variable);
 
-      let mail = {
-        para:"jleoperz@gmail.com",
-        asunto:"Alvarenga Seguros",
-        cuerpo:`se han dado de alta nuevos siniestros en la sucursal ${this._stor.getLocalStorage().sucursal}`
-      }
-      this._fireStorage.enviarMail({mail}).subscribe(resp=>{
+      
+    if(this.mailCargado!=null){
+      this._fireStorage.enviarMail({}).subscribe(resp=>{
         console.log(resp);
       });
+    }
+
+     
 
       this.onResetForm();
       this.limpiarImporte();

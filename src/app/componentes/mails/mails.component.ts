@@ -9,11 +9,14 @@ import { MailService } from 'src/app/servicios/mail.service';
 })
 export class MailsComponent implements OnInit {
 
+  deshabilitadoR=0;
   deshabilitado=0;
   mailOrigen="";
   uidMailOrigen="";
   uidMailDestino="";
   mailDestino="";
+  asunto="";
+  mensaje="";
   list:string[]=[];
   
   constructor(private _mails: MailService, private _route: Router ) { }
@@ -23,20 +26,37 @@ export class MailsComponent implements OnInit {
       (data:any[])=>{
         if(data.length > 0){
           for(let i of data){
-            if(i.tipo == "receptor"){
-              this.list=i.direccion;
-              this.uidMailDestino=i.uid;
-            }else{
-              this.mailOrigen=i.direccion;
+            
+              
+              
+              this.asunto= "asunto: " + i.asunto;
+              this.mensaje= "mensaje: " + i.mensaje;
+              this.mailOrigen=i.de;
+              this.mailDestino = i.para;
               this.uidMailOrigen=i.uid;
               this.guardarCorreo();
-            }
+              this.guardarCorreoReceptor();
+            
             
           }
         }
       }
     );
   }
+
+
+  guardarCorreoReceptor(){
+    this.deshabilitadoR=1;
+    (document.getElementById('mailHasta') as HTMLInputElement).disabled = true;
+  }
+
+
+  modificarCorreoReceptor(){
+    this.deshabilitadoR=0;
+    (document.getElementById('mailHasta') as HTMLInputElement).disabled = false;
+  }
+
+
 
   guardarCorreo(){
     this.deshabilitado=1;
@@ -48,50 +68,36 @@ export class MailsComponent implements OnInit {
     (document.getElementById('mailDesde') as HTMLInputElement).disabled = false;
   }
 
-  agregarCorreo(){
-    this.list.push(this.mailDestino);
-    this.mailDestino="";
+ 
 
-  }
 
-  borrarMail(item:any){
-    
-    this.list.splice(this.list.indexOf(item),1);
-  
-  }
 
   aceptarSalir(){
+    
+
     let payload = {
-      tipo:"emisor",
-      direccion:this.mailOrigen
-    };
-    let payload2 = {
-      tipo:"receptor",
-      direccion:this.list
-    };
+      de:this.mailOrigen,
+      para:this.mailDestino,
+      asunto:this.asunto.replace("asunto: ",""),
+      mensaje:this.mensaje.replace("mensaje: ","")
+    }
+
+    console.log("payload-->",payload)
 
 
     if(this.uidMailOrigen==""){
       
       this._mails.guardarMail(payload);
+      this.asunto= "asunto: " + payload.asunto;
+      this.mensaje= "mensaje: " + payload.mensaje
     }else{
       
+
       this._mails.actualizarMail(payload,this.uidMailOrigen);
+      this.asunto= "asunto: " + payload.asunto;
+      this.mensaje= "mensaje: " +  payload.mensaje;
     }
     
-    
-    if(this.uidMailDestino==""){
-      console.log("entra en this.uidMailDestino")
-      this._mails.guardarMail(payload2);
-      
-    }else{
-      console.log("lista-->",this.list);
-      this._mails.actualizarMail(payload2,this.uidMailDestino);
-    }
-
-
-    
-    this._route.navigateByUrl('/dashboard');
     
   }
 

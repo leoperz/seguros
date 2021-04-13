@@ -10,6 +10,7 @@ export class MailService {
   constructor(private _firestore: AngularFirestore) { }
 
   guardarMail(payload){
+  
    
     this._firestore.collection('mails').add(payload).then(resp=>{
       this._firestore.collection('mails').doc(resp.id).update({uid:resp.id});
@@ -20,12 +21,18 @@ export class MailService {
     return this._firestore.collection('mails').valueChanges();
   }
 
+  getMailEmisor(){
+    return this._firestore.collection('mails', resp=>resp.where('tipo','==','emisor')).valueChanges();
+  }
+
 
   actualizarMail(payload:any , uid:string) {
-    console.log(payload.direccion,uid);
+    
     this._firestore.collection('mails').doc(uid).update({
-      tipo:payload.tipo,
-      direccion:payload.direccion
+      de : payload.de,
+      para:payload.para,
+      asunto: payload.asunto,
+      mensaje:payload.mensaje
 
     });
   }

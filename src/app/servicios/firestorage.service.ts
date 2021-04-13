@@ -23,7 +23,7 @@ export class FirestorageService {
   }
 
   public enviarMail(payload:any){
-    console.log("se envia el mail");
+    
     return this._http.post(this.urlBack+'enviarMail',payload);
   }
 

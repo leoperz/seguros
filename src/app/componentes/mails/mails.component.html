@@ -29,7 +29,15 @@
             <br>
             <div class="row">
               <div class="col-md-4">
-                <input placeholder="password"  class="form-control" type="password">
+                <input [(ngModel)]="asunto" placeholder="asunto"  class="form-control" type="text">
+              </div>
+              
+            </div>
+
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <input [(ngModel)]="mensaje" placeholder="mensaje automatico"  class="form-control" type="text">
               </div>
               
             </div>
@@ -50,23 +58,18 @@
             
             
 
-            <div class="row">
-              <div class="col-md-4">
-                <input autocomplete="off" [(ngModel)]="mailDestino" id="" class="form-control" type="text">
+            
+              <div class="row">
+                <div class="col-md-4">
+                  <input autocomplete="off" [(ngModel)]="mailDestino" id="mailHasta" class="form-control" type="text">
+                </div>
+                <div class="col-md-2">
+                  <button *ngIf="deshabilitadoR == 0" id="boton"  (click)="guardarCorreoReceptor()" type="button" class="btn">Guardar</button>
+                  <button *ngIf="deshabilitadoR == 1" id="boton"  (click)="modificarCorreoReceptor()" type="button" class="btn">Modificar</button>
+                </div>
               </div>
-              <div class="col-md-2">
-                <button  id="boton" (click)="agregarCorreo()" type="button" class="btn">Agregar</button>
-              </div>
-              <div class="col-md-4">
-                
-                  <select (change)="borrarMail($event.target.value)" class="form-control fa">
-                    <option selected>---Lista de correos---</option>
-                    <option  *ngFor="let item of list" class="fa"> &#xf056; {{item}} </option>
-                    
-                  </select>
-                  
-              </div>
-            </div>
+              
+           
             
           </div>
         </div>
@@ -77,7 +80,7 @@
       <br>
       <div class="row">
         <div class="col-md-4">
-          <button (click)="aceptarSalir()" type="button" class="btn btn-lg btn-primary">Aceptar y salir</button>
+          <button (click)="aceptarSalir()" type="button" class="btn btn-lg btn-primary">Aceptar</button>
         </div>
       </div>
       
