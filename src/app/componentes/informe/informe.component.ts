@@ -15,6 +15,7 @@ import { MailService } from 'src/app/servicios/mail.service';
 
 
 
+
 @Component({
   selector: 'app-informe',
   templateUrl: './informe.component.html',
@@ -71,11 +72,12 @@ export class InformeComponent implements OnInit  {
   ngOnInit(): void {
 
     this.lstorgae= this._stor.getLocalStorage(),
-    this._mail.getMailEmisor().subscribe((resp:any[])=>{
+    this._mail.getMails().subscribe((resp:any[])=>{
       if(resp.length == 0){
         this.mailCargado=null;
       }else{
-        console.log("si mail configurado",resp);
+        this.mailCargado = resp[0];
+        
       }
     })
   }
@@ -265,8 +267,9 @@ export class InformeComponent implements OnInit  {
       
     if(this.mailCargado!=null){
       let payload = this.mailCargado;
+      console.log("payload antes de mandar el mail-->",payload);
       payload.asunto = payload.asunto + ` SUCURSAL ${this.lstorgae.sucursal}`
-      this._fireStorage.enviarMail({payload}).subscribe(resp=>{
+      this._fireStorage.enviarMail(payload).subscribe(resp=>{
         
       });
     }

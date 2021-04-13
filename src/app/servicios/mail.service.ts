@@ -21,9 +21,7 @@ export class MailService {
     return this._firestore.collection('mails').valueChanges();
   }
 
-  getMailEmisor(){
-    return this._firestore.collection('mails', resp=>resp.where('tipo','==','emisor')).valueChanges();
-  }
+ 
 
 
   actualizarMail(payload:any , uid:string) {
