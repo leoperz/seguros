@@ -36,7 +36,8 @@ export class InformeComponent implements OnInit  {
   public nombresURL:any[]=[];
   public informeForm: FormGroup;
   
-  mailCargado:any;
+  lstorgae:any;
+  mailCargado:any={};
   value='0.0'
   compania="";
   nombreCompleto="";
@@ -68,6 +69,8 @@ export class InformeComponent implements OnInit  {
   
   
   ngOnInit(): void {
+
+    this.lstorgae= this._stor.getLocalStorage(),
     this._mail.getMailEmisor().subscribe((resp:any[])=>{
       if(resp.length == 0){
         this.mailCargado=null;
@@ -261,8 +264,10 @@ export class InformeComponent implements OnInit  {
 
       
     if(this.mailCargado!=null){
-      this._fireStorage.enviarMail({}).subscribe(resp=>{
-        console.log(resp);
+      let payload = this.mailCargado;
+      payload.asunto = payload.asunto + ` SUCURSAL ${this.lstorgae.sucursal}`
+      this._fireStorage.enviarMail({payload}).subscribe(resp=>{
+        
       });
     }
 
