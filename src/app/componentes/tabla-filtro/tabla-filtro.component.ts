@@ -99,33 +99,38 @@ export class TablaFiltroComponent implements OnInit {
     this.page=number;
   }
 
-  cambiarEstado(value:string, uid:string, item:any){
-    console.log("este es el item-->",item);
+  cambiarEstado(value:string, uid:string,item:any){
+    
     this.sucursal=item.usuario.sucursal;
     if(value=='Liquidado'){
       //abrir modal para ingreso de indemnizacion
       this.flag=uid;
-      this.estado=value;
       document.getElementById('btnIndemnizacion').click();
-      return;
+      let fecha = moment().format('DD/MM/yyyy');
+      this._info.updateFechaLiquidacion(fecha,uid);
     }
-
-    //si no ingresa la nota no cambia el estado de la nota.
-    if(value=="Observado"){
+    if(value=="Observado"||value=="Rechazado"||value=="Cerrado"){
       this.estado=value;
       this.flag=uid;
       this.notas=[];
       for(let i of item.notas){
         this.notas.push(i);
       }
-      document.getElementById('btnObservacion').click();
+      this.abrirVentanaObservacion();
+      if(value == "Cerrado"){
+        //actualizo fecha de cierre
+        
+        let fecha = moment().format('DD/MM/yyyy');
+        this._info.updateFechaCierre(fecha,uid);
+      }
       return;
     }
 
-    this._info.updateEstado(value, uid).then(data=>{
-      this.buscar();
-    });
-    
+    this._info.updateEstado(value, uid);
+  }
+
+  abrirVentanaObservacion(){
+    document.getElementById('btnObservacion').click();
   }
 
 

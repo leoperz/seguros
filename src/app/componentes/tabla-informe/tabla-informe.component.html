@@ -17,6 +17,7 @@
       <th scope="col">#</th>
       <th scope="col">ESTADO</th>
       <th scope="col">FECHA DE ALTA</th>
+      <th scope="col">FECHA DE LIQUIDACION</th>
       <th scope="col">FECHA DE CIERRE</th>
       <th scope="col">NOMBRE</th>
       <th scope="col">DOMINIO</th>
@@ -43,6 +44,7 @@
       <td *ngIf="item.estado == 'Rechazado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
       <td *ngIf="item.estado == 'Observado' "><span  class="badge badge-pill badge-info">{{item.estado}}</span></td>
       <td> {{item.fechaAlta}}</td>
+      <td>{{item.fechaLiquidacion}}</td>
       <td>{{item.fechaCierre}}</td>
       <td>{{item.nombreCompleto}} {{item.apellido}}</td>
       <td>{{item.dominio}}</td>

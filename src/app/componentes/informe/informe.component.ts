@@ -213,6 +213,7 @@ export class InformeComponent implements OnInit  {
         
         fechaAlta : f[2]+"/"+f[1]+"/"+f[0],
         fechaCierre:"",
+        fechaLiquidacion:"",
         compania: this.compania,
         nombreCompleto:this.nombreCompleto,
         apellido:this.apellido,

@@ -24,24 +24,17 @@
         
         
         
-        <div style="background-color:antiquewhite ;" class="dropdown-menu dropdown-menu-right text-center">
+        <div style="background-color:antiquewhite; overflow-y: scroll; height: 500px; " class="dropdown-menu dropdown-menu-right text-center">
             
             <div *ngFor="let item of notificaciones">
               <a *ngIf="notificaciones.length > 0" ><i class="fas fa-exclamation"></i> {{item.motivo}}. Sucursal {{item.sucursal}}</a>
               <hr>
             </div>
-            
-            
             <a *ngIf="notificaciones.length == 0"><strong>No hay notificaciones nuevas</strong></a>
-            
             <div class="dropdown-divider"></div>
-            
-            
-            
-            
-            
-            <a (click)="limpiarNotificaciones()" class="dropdown-item">Limpiar notificaciones <i class="fas fa-comment-dots"></i></a>
+             <a (click)="limpiarNotificaciones()" class="dropdown-item">Limpiar notificaciones <i class="fas fa-comment-dots"></i></a>
         </div>
+      
       </li>
   </ul>
 

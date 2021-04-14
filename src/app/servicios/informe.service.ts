@@ -6,10 +6,24 @@ import {AngularFirestore} from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class InformeService {
+  
+  
+  
+
 
   constructor(private _firestore: AngularFirestore) { }
 
+  updateFechaCierre(fecha: string, uid: string) {
+    this._firestore.collection('informe').doc(uid).update({
+      fechaCierre:fecha
+    })
+  }
 
+  updateFechaLiquidacion(fecha: string, uid: string) {
+    this._firestore.collection('informe').doc(uid).update({
+      fechaLiquidacion:fecha
+    })
+  }
  
   getInformeSucursalEstado(sucursal:string){
     return this._firestore.collection('informe', resp=>resp.where('usuario.sucursal','==',sucursal)).valueChanges();
