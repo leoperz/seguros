@@ -73,7 +73,7 @@ export class InformeComponent implements OnInit  {
 
     this.lstorgae= this._stor.getLocalStorage(),
     this._mail.getMails().subscribe((resp:any[])=>{
-      if(resp.length == 0){
+      if(resp.length == 0 || (resp[0].asunto=="" && resp[0].de=="" && resp[0].mensaje=="" && resp[0].para=="" )){
         this.mailCargado=null;
       }else{
         this.mailCargado = resp[0];
@@ -267,7 +267,6 @@ export class InformeComponent implements OnInit  {
       
     if(this.mailCargado!=null){
       let payload = this.mailCargado;
-      console.log("payload antes de mandar el mail-->",payload);
       payload.asunto = payload.asunto + ` SUCURSAL ${this.lstorgae.sucursal}`
       this._fireStorage.enviarMail(payload).subscribe(resp=>{
         
