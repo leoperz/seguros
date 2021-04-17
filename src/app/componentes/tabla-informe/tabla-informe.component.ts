@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { NotificacionService } from 'src/app/servicios/notificacion.service';
 import { FirestorageService } from 'src/app/servicios/firestorage.service.js';
 import saveAs from "file-saver";
+import { SucursalService } from 'src/app/servicios/sucursal.service';
 
 
 @Component({
@@ -25,7 +26,9 @@ export class TablaInformeComponent implements OnInit {
   estado="";
   sucursal="";
 
-  constructor(private _fire : FirestorageService,  private _info:InformeService, private _stor :StorageService, private _noti: NotificacionService) { }
+  constructor(private _fire : FirestorageService,  private _info:InformeService, 
+              private _stor :StorageService, private _noti: NotificacionService,
+              private _sucursales : SucursalService) { }
 
   ngOnInit() {
 
@@ -185,6 +188,41 @@ export class TablaInformeComponent implements OnInit {
   }
 
 
+  generarRecibo(item:any){
+
+    let valor = item.indemnizacion.replace('$','').trim().replace('.','').replace(',','.');
+    valor = parseFloat(valor);
+    this._sucursales.getPorcentaje(item.usuario.sucursal).subscribe((resp:any)=>{
+      valor = valor + (resp[0].porcentaje * valor / 100);
+      valor = parseFloat(valor).toFixed(2);
+      let payload={
+        fecha: moment().format('DD/MM/yyyy'),
+        emitido:item.usuario.nombre + " " + item.usuario.apellido,
+        cliente:item.nombreCompleto + " " + item.apellido,
+        cantidad:1,
+        precioU: valor,
+        precioTotal:valor,
+        totalPagar:valor
+      };
+      this._fire.generarRecibo(payload).subscribe((resp:any)=>{
+        console.log("repuesta del servicio-->",resp);
+        if(resp.messagge == "ok"){
+           
+           this._fire.descargarRecibo().subscribe(
+              data=>saveAs(data,'recibo'),
+              error=>console.log(error)
+          );
+          
+          
+        }else{
+          console.log('hubo un problema');
+        }
+      });
+      
+    });
+    
+   
+  }
    
     
   

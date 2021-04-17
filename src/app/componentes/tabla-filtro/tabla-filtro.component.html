@@ -77,18 +77,25 @@
       <td *ngIf="item.notas.length>0"><span (click)="verNotas(item.notas)" style="font-size: 28px; cursor: pointer;"><i class="far fa-clipboard"></i></span></td>
       <td *ngIf="item.notas.length==0"></td>
       <td>
-        <select *ngIf="usuario.perfil == 'operador' || usuario.perfil == 'adm' " (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
-        <option value="" disabled selected>---Selecciona---</option>
-        <option value="Pendiente">Pendiente</option>
-        <option value="Cerrado">Cerrado</option>
-        </select>
-        <select *ngIf="usuario.perfil == 'abogado'" (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
-          <option value="" disabled selected>---Selecciona---</option>
-          <option value="En tramite">En tramite</option>
-          <option value="Liquidado">Liquidado</option>
-          <option value="Rechazado">Rechazado</option>
-          <option value="Observado">Observado</option>
+        
+            <span (click)="generarRecibo(item)"  *ngIf="item.estado == 'Cerrado' " style="font-size: 28px ; cursor: pointer;" ><i class="fas fa-file-download animate__animated animate__heartBeat animate__infinite	infinite"></i></span>
+            <select *ngIf="usuario.perfil == 'operador' || usuario.perfil == 'adm' " (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
+              <option value="" disabled selected>---Selecciona---</option> 
+              <option value="Pendiente">Pendiente</option>
+              <option value="Cerrado">Cerrado</option>
           </select>
+          <select *ngIf="usuario.perfil == 'abogado'" (change)="cambiarEstado($event.target.value, item.uid, item)"  id="select">
+                <option value="" disabled selected>---Selecciona---</option>
+                <option value="En tramite">En tramite</option>
+                <option value="Liquidado">Liquidado</option>
+                <option value="Rechazado">Rechazado</option>
+                <option value="Observado">Observado</option>
+           </select>
+          
+          
+            
+          
+        
       </td>
       <td *ngIf="usuario.perfil == 'adm'"><i style="cursor: pointer;" (click)="borrarRegistro(item.uid)" class="fas fa-trash"></i></td>
      

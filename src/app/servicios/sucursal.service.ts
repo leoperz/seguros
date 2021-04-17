@@ -8,6 +8,11 @@ export class SucursalService {
 
   constructor(private _firestore: AngularFirestore) { }
 
+
+  getPorcentaje(sucursal:string){
+    return this._firestore.collection('sucursales',ref=>ref.where("nombre",'==',sucursal)).valueChanges();
+  }
+
   getPorcentajes(){
     return this._firestore.collection('sucursales', ref=>ref.orderBy("nombre")).valueChanges();
   }

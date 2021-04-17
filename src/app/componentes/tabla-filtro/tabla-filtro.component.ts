@@ -8,6 +8,8 @@ import 'jspdf-autotable'
 import {UserOptions}   from 'jspdf-autotable';
 import saveAs from "file-saver";
 import { FirestorageService } from 'src/app/servicios/firestorage.service';
+import { SucursalService } from 'src/app/servicios/sucursal.service';
+
 
 
 interface jsPDFWithPlugin extends jsPDF{
@@ -38,7 +40,7 @@ export class TablaFiltroComponent implements OnInit {
   seleccion:string="Pendiente";
 
   constructor( private _info: InformeService, private _stor :StorageService, private _noti: NotificacionService,
-               private  _firestore: FirestorageService ) { }
+               private  _firestore: FirestorageService, private _sucursales: SucursalService ) { }
 
   ngOnInit() {
     this.usuario = this._stor.getLocalStorage();
@@ -236,29 +238,7 @@ export class TablaFiltroComponent implements OnInit {
   
     doc.save("documento.pdf");   
 
-    /*const DATA = document.getElementById('htmlData');
-    console.log("data=>",DATA);
-    const doc = new jsPDF('p', 'pt', 'a4');
-    const options = {
-      background: 'white',
-      scale: 3
-    };
-
-    html2canvas(DATA, options).then((canvas) => {
-
-      const img = canvas.toDataURL('image/PNG');
-
-      // Add image Canvas to PDF
-      const bufferX = 15;
-      const bufferY = 15;
-      const imgProps = (doc as any).getImageProperties(img);
-      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
-      return doc;
-    }).then((docResult) => {
-      docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
-    });*/
+    
   }
 
   abrirSeleccion(){
@@ -266,15 +246,40 @@ export class TablaFiltroComponent implements OnInit {
   }
 
 
-  verAdjuntos(archivos:[]){
-   
-     
-   
-   
-   
+  generarRecibo(item:any){
 
-
-  
+    let valor = item.indemnizacion.replace('$','').trim().replace('.','').replace(',','.');
+    valor = parseFloat(valor);
+    this._sucursales.getPorcentaje(item.usuario.sucursal).subscribe((resp:any)=>{
+      valor = valor + (resp[0].porcentaje * valor / 100);
+      valor = parseFloat(valor).toFixed(2);
+      let payload={
+        fecha: moment().format('DD/MM/yyyy'),
+        emitido:item.usuario.nombre + " " + item.usuario.apellido,
+        cliente:item.nombreCompleto + " " + item.apellido,
+        cantidad:1,
+        precioU: valor,
+        precioTotal:valor,
+        totalPagar:valor
+      };
+      this._firestore.generarRecibo(payload).subscribe((resp:any)=>{
+        console.log("repuesta del servicio-->",resp);
+        if(resp.messagge == "ok"){
+           
+           this._firestore.descargarRecibo().subscribe(
+              data=>saveAs(data,'recibo'),
+              error=>console.log(error)
+          );
+          
+          
+        }else{
+          console.log('hubo un problema');
+        }
+      });
+      
+    });
+    
+   
   }
 
 }

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestorageService {
+ 
 
   //urlBack:string = 'https://segurosalvarenga.herokuapp.com/';
   urlBack:string = 'http://localhost:5500/';
@@ -28,6 +29,11 @@ export class FirestorageService {
   }
 
 
+  public generarRecibo(datos:any){
+    return this._http.post(this.urlBack + 'generarRecibo',datos);
+  }
+
+
   /*Llamadas a servicios del back end de Heroku*/
 
 
@@ -46,6 +52,16 @@ export class FirestorageService {
 
   public borrarImagen(nombreArchivo: string) {
     return this._fireStorage.ref(nombreArchivo).delete();
+  }
+
+
+  descargarRecibo() {
+    
+  
+    return this._http.get(this.urlBack+'descargarRecibo', {
+     responseType:'blob',
+     headers: new HttpHeaders().append('Content-Type', 'application/json')
+   });
   }
 
  
