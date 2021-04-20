@@ -193,11 +193,11 @@ export class TablaInformeComponent implements OnInit {
     let valor = item.indemnizacion.replace('$','').trim().replace('.','').replace(',','.');
     valor = parseFloat(valor);
     this._sucursales.getPorcentaje(item.usuario.sucursal).subscribe((resp:any)=>{
-      valor = valor + (resp[0].porcentaje * valor / 100);
+      valor = (resp[0].porcentaje * valor / 100);
       valor = parseFloat(valor).toFixed(2);
       let payload={
         fecha: moment().format('DD/MM/yyyy'),
-        emitido:item.usuario.nombre + " " + item.usuario.apellido,
+        emitido:this.usuario.nombre + " " + this.usuario.apellido,
         cliente:item.nombreCompleto + " " + item.apellido,
         cantidad:1,
         precioU: valor,
