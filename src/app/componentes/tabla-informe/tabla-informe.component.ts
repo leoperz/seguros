@@ -189,13 +189,14 @@ export class TablaInformeComponent implements OnInit {
 
 
   generarRecibo(item:any){
-
+    
+    console.log("entra en generar recibo");
     let valor = item.indemnizacion.replace('$','').trim().replace('.','').replace(',','.');
     valor = parseFloat(valor);
     this._sucursales.getPorcentaje(item.usuario.sucursal).subscribe((resp:any)=>{
       valor = (resp[0].porcentaje * valor / 100);
-      valor = parseFloat(valor).toFixed(2);
-      let payload={
+      valor = (parseFloat(valor).toFixed(2));
+        let payload={
         fecha: moment().format('DD/MM/yyyy'),
         emitido:this.usuario.nombre + " " + this.usuario.apellido,
         cliente:item.nombreCompleto + " " + item.apellido,
