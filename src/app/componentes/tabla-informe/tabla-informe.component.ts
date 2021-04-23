@@ -196,14 +196,17 @@ export class TablaInformeComponent implements OnInit {
     this._sucursales.getPorcentaje(item.usuario.sucursal).subscribe((resp:any)=>{
       valor = (resp[0].porcentaje * valor / 100);
       valor = (parseFloat(valor).toFixed(2));
+      const formatter = new Intl.NumberFormat('en-US');
+      let str = (formatter.format(valor)).replace('.','-').replace(',','.').replace('-',',');
+      
         let payload={
         fecha: moment().format('DD/MM/yyyy'),
         emitido:this.usuario.nombre + " " + this.usuario.apellido,
         cliente:item.nombreCompleto + " " + item.apellido,
         cantidad:1,
-        precioU: valor,
-        precioTotal:valor,
-        totalPagar:valor
+        precioU: str,
+        precioTotal:str,
+        totalPagar:str
       };
       this._fire.generarRecibo(payload).subscribe((resp:any)=>{
         console.log("repuesta del servicio-->",resp);
