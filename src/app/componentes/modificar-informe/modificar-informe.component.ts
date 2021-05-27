@@ -80,7 +80,7 @@ export class ModificarInformeComponent implements OnInit {
       this._info.getInformes().subscribe((resp:any)=>{
         this.informes=[];
         for(let u of resp){
-          if(u.estado == "Pendiente" || u.estado=="Observado") this.informes.push(u);
+          if(u.estado == "Pendiente" || u.estado=="Rechazado") this.informes.push(u);
         }
       });
     }
