@@ -31,6 +31,7 @@
       <th scope="col">OBSERVACIONES</th>
       <th scope="col">ACCION</th>
       <th *ngIf="usuario.perfil == 'adm'" scope="col">BORRAR REGISTRO</th>
+      <th scope="col">AGREGAR NOTAS</th>
     </tr>
     
   </thead>
@@ -72,6 +73,7 @@
           </select>
       </td>
       <td *ngIf="usuario.perfil == 'adm'"><i style="cursor: pointer;" (click)="borrarRegistro(item.uid)" class="fas fa-trash"></i></td>
+      <td><i style="cursor: pointer;" (click)="abrirVentanaAgregarNotas(item.uid,item)" class='fas fa-pencil-alt fa-lg'></i></td>
     </tr>
    
   </tbody>

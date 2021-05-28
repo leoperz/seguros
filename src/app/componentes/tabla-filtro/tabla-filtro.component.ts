@@ -38,6 +38,7 @@ export class TablaFiltroComponent implements OnInit {
   estado="";
   sucursal="";
   seleccion:string="Pendiente";
+  esSoloNota:boolean = false;
 
   constructor( private _info: InformeService, private _stor :StorageService, private _noti: NotificacionService,
                private  _firestore: FirestorageService, private _sucursales: SucursalService ) { }
@@ -132,6 +133,16 @@ export class TablaFiltroComponent implements OnInit {
   }
 
   abrirVentanaObservacion(){
+    this.esSoloNota=false;
+    document.getElementById('btnObservacion').click();
+  }
+
+  abrirVentanaAgregarNotas(uid:string,item:any){
+    this.flag=uid;
+    this.esSoloNota=true;
+    for(let i of item.notas){
+      this.notas.push(i);
+    }
     document.getElementById('btnObservacion').click();
   }
 
@@ -180,17 +191,21 @@ export class TablaFiltroComponent implements OnInit {
       
     }
     
-    this._info.updateEstado(this.estado, this.flag).then(data=>{
-      this.buscar();
-    });
+    if (this.esSoloNota!=true){
+      this._info.updateEstado(this.estado, this.flag).then(data=>{
+         this.buscar();
+      });
 
-    let variable ={
-      motivo:"Se ha cambiado el estado de un informe",
-      sucursal: this.sucursal,
-      fecha: moment().format('DD/MM/yyyy')
+      let variable ={
+        motivo:"Se ha cambiado el estado de un informe",
+        sucursal: this.sucursal,
+        fecha: moment().format('DD/MM/yyyy')
+      }
+      this._noti.guardarNotificacion(variable);
     }
-    this._noti.guardarNotificacion(variable);
-    
+    else{
+      this.buscar();
+    }    
   }
 
 
