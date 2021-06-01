@@ -125,7 +125,7 @@ export class TablaFiltroComponent implements OnInit {
         let fecha = moment().format('DD/MM/yyyy');
         this._info.updateFechaCierre(fecha,uid);
       }
-      return;
+    
     }
 
     this._info.updateEstado(value, uid);
