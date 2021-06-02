@@ -90,7 +90,7 @@ export class ModificarInformeComponent implements OnInit {
           
           this.informes=[];
           for(let i of resp){
-            if(i.estado == "Pendiente" || i.estado=="Observado")this.informes.push(i);
+            if(i.estado == "Pendiente" || i.estado=="Rechazado")this.informes.push(i);
           }
           
         }
