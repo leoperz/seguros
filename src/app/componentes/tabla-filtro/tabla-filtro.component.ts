@@ -102,7 +102,11 @@ export class TablaFiltroComponent implements OnInit {
   }
 
   cambiarEstado(value:string, uid:string,item:any){
-    
+    this.notas=[];
+      
+    for(let i of item.notas){
+      this.notas.push(i);
+    }
     this.sucursal=item.usuario.sucursal;
     if(value=='Liquidado'){
       //abrir modal para ingreso de indemnizacion
@@ -110,14 +114,14 @@ export class TablaFiltroComponent implements OnInit {
       document.getElementById('btnIndemnizacion').click();
       let fecha = moment().format('DD/MM/yyyy');
       this._info.updateFechaLiquidacion(fecha,uid);
+      this._info.updateEstado(value, uid);
+      return;
     }
-    if(value=="Observado"||value=="Rechazado"||value=="Cerrado"){
+    if(value=="Observado"||value=="Rechazado"||value=="Cerrado" || value == "Pendiente"){
       this.estado=value;
       this.flag=uid;
-      this.notas=[];
-      for(let i of item.notas){
-        this.notas.push(i);
-      }
+     
+
       this.abrirVentanaObservacion();
       if(value == "Cerrado"){
         //actualizo fecha de cierre

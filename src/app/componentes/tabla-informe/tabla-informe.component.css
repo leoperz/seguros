@@ -18,3 +18,9 @@ hr{
     background-color: transparent;
     border: none;
 }
+
+
+.mod{
+    height: 300px;
+    overflow-y: auto;
+  }

@@ -271,10 +271,10 @@
 <div class="modal fade" id="notas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-     <div class="modal-body">
+      <div class="mod">
         <div *ngFor="let item of notas ; index as i"  class="accordion" id="acordionejemplo">
-         
-          <div  class="card">
+        
+          <div class="card">
             <div class="card-header" id="headingThree">
               <h5 class="mb-0">
                 <button  class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]=" '#colapse'+i" aria-expanded="false" aria-controls="collapseThree">
@@ -289,16 +289,22 @@
               </div>
             </div>
           </div>
+         
+          
 
 
-        </div>
-        <hr>
+        
+          <hr>
       </div>
+      </div>
+     
+
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        
       </div>
     </div>
+  
   </div>
 </div>
 
