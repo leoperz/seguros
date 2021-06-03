@@ -39,6 +39,8 @@ export class TablaFiltroComponent implements OnInit {
   sucursal="";
   seleccion:string="Pendiente";
   esSoloNota:boolean = false;
+  
+  resolucion:boolean = true;
 
   constructor( private _info: InformeService, private _stor :StorageService, private _noti: NotificacionService,
                private  _firestore: FirestorageService, private _sucursales: SucursalService ) { }
