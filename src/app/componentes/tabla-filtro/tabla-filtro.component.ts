@@ -140,10 +140,11 @@ export class TablaFiltroComponent implements OnInit {
   abrirVentanaAgregarNotas(uid:string,item:any){
     this.flag=uid;
     this.esSoloNota=true;
+    
+    document.getElementById('btnObservacion').click();
     for(let i of item.notas){
       this.notas.push(i);
     }
-    document.getElementById('btnObservacion').click();
   }
 
 
@@ -203,10 +204,8 @@ export class TablaFiltroComponent implements OnInit {
       }
       this._noti.guardarNotificacion(variable);
     }
-    else{
-      this.buscar();
-    }    
-  }
+
+ }
 
 
   verNotas(notas:[]){

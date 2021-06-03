@@ -84,9 +84,9 @@ export class TablaInformeComponent implements OnInit {
       
       });
       let variable ={
-      motivo:"Se ha cambiado el estado de un informe",
-      sucursal: this.sucursal,
-      fecha: moment().format('DD/MM/yyyy')
+        motivo:"Se ha cambiado el estado de un informe",
+        sucursal: this.sucursal,
+        fecha: moment().format('DD/MM/yyyy')
       }
       this._noti.guardarNotificacion(variable);
     }
